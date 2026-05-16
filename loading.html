@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AJUKAN</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100%;
+    height:100vh;
+
+    background:#118EEA;
+
+    overflow:hidden;
+
+    font-family:Arial,sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    /* FADE */
+    opacity:0;
+
+    transition:
+    opacity .5s ease;
+}
+
+/* ========================= */
+/* LOGO WRAP */
+/* ========================= */
+
+.logo-wrap{
+    position:absolute;
+
+    top:43%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%);
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+}
+
+/* ICON BULAT */
+.logo-icon{
+    width:50px;
+
+    opacity:0;
+
+    animation:
+    logoRoll 1.3s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* TEXT DANA */
+.logo-text{
+    width:170px;
+
+    opacity:0;
+
+    animation:
+    textZoom .8s ease forwards;
+
+    animation-delay:.35s;
+}
+
+/* LOGO MASUK DARI KIRI */
+@keyframes logoRoll{
+
+    0%{
+        opacity:0;
+
+        transform:
+        translateX(-220px)
+        rotate(-720deg);
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+        translateX(0)
+        rotate(0deg);
+    }
+
+}
+
+/* TEXT MEMBESAR */
+@keyframes textZoom{
+
+    0%{
+        opacity:0;
+
+        transform:
+        scale(.5);
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+        scale(1);
+    }
+
+}
+
+/* ========================= */
+/* BOTTOM */
+/* ========================= */
+
+.bottom{
+    position:absolute;
+
+    bottom:66px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:14px;
+
+    padding:0 20px;
+}
+
+/* ITEM */
+.bottom-item{
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+}
+
+/* ICON */
+.bottom-item img{
+    width:38px;
+
+    height:auto;
+
+    object-fit:contain;
+}
+
+/* TEXT */
+.bottom-text{
+    color:#fff;
+
+    font-size:12px;
+    line-height:1.4;
+
+    text-align:center;
+}
+
+</style>
+</head>
+<body>
+    
+<div class="logo-wrap">
+
+    <!-- LOGO BULAT -->
+    <img
+    src="assets/dana-icon.png"
+    class="logo-icon">
+
+    <!-- TEXT -->
+    <img
+    src="assets/dana-text.png"
+    class="logo-text">
+
+</div>
+
+<!-- BOTTOM -->
+<div class="bottom">
+
+    <!-- BI -->
+    <div class="bottom-item">
+
+        <img
+        src="assets/bi.png">
+
+    </div>
+
+    <!-- KOMINFO -->
+    <div class="bottom-item">
+
+        <img
+        src="assets/kominfo.png">
+
+    </div>
+
+    <!-- TEXT -->
+    <div class="bottom-text">
+
+        DANA Indonesia terdaftar dan diawasi
+        oleh Bank Indonesia dan Kominfo
+
+    </div>
+
+</div>
+
+<script>
+
+/* ========================= */
+/* FADE IN */
+/* ========================= */
+
+window.addEventListener(
+"load",
+() => {
+
+    document.body.style.opacity =
+    "1";
+
+});
+
+/* ========================= */
+/* PINDAH PAGE */
+/* ========================= */
+
+setTimeout(() => {
+
+    /* FADE OUT */
+    document.body.style.opacity =
+    "0";
+
+    /* PINDAH */
+    setTimeout(() => {
+
+        window.location.href =
+        "form.html";
+
+    },500);
+
+},2500);
+
+</script>
+
+</body>
+</html>

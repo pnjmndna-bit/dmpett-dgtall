@@ -1,0 +1,490 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* ========================= */
+/* FADE EFFECT */
+/* ========================= */
+
+.container{
+    opacity:0;
+    transition:opacity 1s ease;
+}
+
+body.fade-in .container{
+    opacity:1;
+}
+
+
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+    margin:0;
+    padding:0;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    background:#118EEA;
+    font-family:Arial,sans-serif;
+
+    touch-action:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+body{
+    position:relative;
+}
+
+/* CONTAINER */
+.container{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:430px;
+    margin:auto;
+
+    background:transparent;
+
+    min-height:100vh;
+    padding-top:22px;
+    padding-bottom:50px;
+
+    text-align:center;
+}
+
+/* LOGO */
+
+.logo-wrap{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+
+    margin-top:14px;
+    margin-bottom:42px;
+}
+
+.logo{
+    width:120px;
+
+    height:auto;
+
+    display:block;
+}
+
+/* TITLE */
+.title{
+    color:#fff;
+    font-size:19px;
+    margin-bottom:22px;
+    font-weight:600;
+    margin-bottom:9px;
+}
+
+.title b{
+    font-weight:600;
+}
+
+/* NUMBER BOX */
+.number-box{
+    width:65%;
+    height:36px;
+
+    margin:0 auto 12px;
+
+    padding:0 12px;
+
+    background:rgba(22,49,97,0.458);
+
+    border-radius:9px;
+
+    display:flex;
+    align-items:center;
+
+    gap:6px;
+}
+
+/* FLAG */
+.flag{
+    width:25px;
+    height:20px;
+    margin-top:5px;
+
+    object-fit:cover;
+}
+
+/* KODE */
+.kode{
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+
+    margin-right:5px;
+    margin-left:5px;
+}
+
+/* NOMOR */
+.nomor{
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+}
+
+/* VIA */
+.via{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:6px;
+
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+
+    margin-bottom:25px;
+}
+
+/* WA & SMS */
+.wa-box,
+.sms-box{
+    display:flex;
+    align-items:center;
+
+    gap:6px;
+
+    font-weight:700;
+}
+
+.wa-box{
+    color:#25d366;
+}
+
+.sms-box{
+    color:#fff;
+}
+
+/* ICON */
+.via-icon{
+    width:16px;
+    height:16px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+}
+
+/* OTP */
+.otp-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:7px;
+
+    margin-top:25px;
+    margin-bottom:22px;
+}
+
+/* OTP BOX */
+.otp-box{
+    width:45px;
+    height:48px;
+
+    border:none;
+    outline:none;
+
+    border-radius:7px;
+
+    background:#fff;
+
+    text-align:center;
+
+    font-size:20px;
+    font-weight:600;
+
+    color:#000;
+}
+
+/* SHAKE */
+.shake{
+    animation:shake .35s linear;
+}
+
+@keyframes shake{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-6px);
+    }
+
+    50%{
+        transform:translateX(6px);
+    }
+
+    75%{
+        transform:translateX(-6px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+
+}
+
+/* ALERT */
+.alert-box{
+    width:85%;
+    min-height:45px;
+
+    background:#d9001b;
+
+    border-radius:6px;
+
+    padding:14px 12px;
+
+    margin:20px auto;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    display:none;
+}
+
+/* ALERT TITLE */
+.alert-title{
+    color:#fff;
+
+    font-size:10px;
+    font-weight:700;
+
+    line-height:1.4;
+
+    margin-bottom:6px;
+
+    word-wrap:break-word;
+}
+
+/* ALERT DESC */
+.alert-desc{
+    color:#fff;
+
+    font-size:10px;
+    font-weight:700;
+
+    line-height:1.5;
+
+    word-wrap:break-word;
+}
+
+/* BOX KIRIM ULANG */
+.resend-box{
+    width:150px;
+    height:30px;
+
+    margin:22px auto 0;
+
+    background:#fff;
+
+    border-radius:4px;
+
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+}
+
+/* BUTTON */
+.resend-btn{
+    width:65%;
+    height:100%;
+
+    border:none;
+
+    background:#f3f3f3;
+
+    color:#c7c7c7;
+
+    font-size:11px;
+    font-weight:700;
+
+    transition:.3s;
+}
+
+/* ACTIVE */
+.resend-btn.active{
+    background:#0d6efd;
+    color:#fff;
+}
+
+/* TIMER */
+.timer{
+    width:35%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#1d2b5c;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+/* BLOCK PAGE */
+.blocked-box{
+    width:100%;
+
+    background:#ffffff;
+
+    border-radius:12px;
+
+    padding:22px 16px;
+
+    margin-top:20px;
+
+    display:none;
+
+    text-align:center;
+}
+
+.blocked-title{
+    color:#d9001b;
+
+    font-size:17px;
+    font-weight:700;
+
+    margin-bottom:12px;
+}
+
+.blocked-desc{
+    color:#333;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    margin-bottom:18px;
+}
+
+.blocked-btn{
+    width:100%;
+    height:45px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#118EEA;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:700;
+}
+
+/* LOADING */
+.loading-box{
+    width:110px;
+    height:110px;
+
+    position:fixed;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:#083b69;
+
+    border-radius:15px;
+
+    display:none;
+
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+    box-shadow:
+    0 8px 30px
+    rgba(0,0,0,.30);
+}
+
+/* BULATAN */
+.loading-circle{
+    width:58px;
+    height:58px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* RING */
+.spinner-ring{
+    width:58px;
+    height:58px;
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:5px solid
+    rgba(255,255,255,.20);
+
+    border-top:5px solid
+    #53adff;
+
+    animation:spin .9s linear infinite;
+}
+
+/* LOGO */
+.loading-logo{
+    width:35px;
+    height:35px;
+
+    object-fit:contain;
+
+    position:relative;
+    z-index:2;
+}
+
+/* TEXT */
+.loading-text{
+    margin-top:12px;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:500;
+}
+
+/* SPIN */
+@keyframes spin{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
+
+}
