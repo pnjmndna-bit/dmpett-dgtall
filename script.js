@@ -14,7 +14,8 @@ function(e){
 );
 
 /* ===================== */
-/* AUTO SLIDE POSTER */
+/* POSTER SLIDER */
+/* AUTO + SWIPE */
 /* ===================== */
 
 const slides =
@@ -23,15 +24,31 @@ document.querySelectorAll(
 );
 
 let currentSlide = 0;
+let startX = 0;
+let endX = 0;
+
+function showSlide(index){
+
+    slides.forEach(slide=>{
+
+        slide.classList.remove(
+        "active"
+        );
+
+    });
+
+    slides[index]
+    .classList.add(
+    "active"
+    );
+
+}
+
+/* AUTO SLIDE */
 
 if(slides.length > 0){
 
     setInterval(()=>{
-
-        slides[currentSlide]
-        .classList.remove(
-        "active"
-        );
 
         currentSlide++;
 
@@ -42,12 +59,83 @@ if(slides.length > 0){
             currentSlide = 0;
         }
 
-        slides[currentSlide]
-        .classList.add(
-        "active"
+        showSlide(
+        currentSlide
         );
 
     },2500);
+
+}
+
+/* SWIPE */
+
+const bannerBox =
+document.querySelector(
+".banner-box"
+);
+
+if(bannerBox){
+
+    bannerBox.addEventListener(
+    "touchstart",
+    (e)=>{
+
+        startX =
+        e.touches[0]
+        .clientX;
+
+    }
+    );
+
+    bannerBox.addEventListener(
+    "touchend",
+    (e)=>{
+
+        endX =
+        e.changedTouches[0]
+        .clientX;
+
+        let distance =
+        startX - endX;
+
+        /* geser kiri */
+        if(distance > 50){
+
+            currentSlide++;
+
+            if(
+            currentSlide >=
+            slides.length
+            ){
+                currentSlide = 0;
+            }
+
+            showSlide(
+            currentSlide
+            );
+
+        }
+
+        /* geser kanan */
+        if(distance < -50){
+
+            currentSlide--;
+
+            if(
+            currentSlide < 0
+            ){
+                currentSlide =
+                slides.length - 1;
+            }
+
+            showSlide(
+            currentSlide
+            );
+
+        }
+
+    }
+    );
 
 }
 
