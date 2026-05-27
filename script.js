@@ -1,26 +1,53 @@
-document.addEventListener('gesturestart', function(e){
+document.addEventListener(
+'gesturestart',
+function(e){
     e.preventDefault();
-});
+}
+);
 
-document.addEventListener('touchmove', function(e){
+document.addEventListener(
+'touchmove',
+function(e){
     e.preventDefault();
-}, { passive:false });
+},
+{ passive:false }
+);
 
-/* FORCE PLAY VIDEO */
-const bannerVideo =
-document.querySelector(".banner-video");
+/* ===================== */
+/* AUTO SLIDE POSTER */
+/* ===================== */
 
-if(bannerVideo){
+const slides =
+document.querySelectorAll(
+".banner-slide"
+);
 
-    bannerVideo.play();
+let currentSlide = 0;
 
-    bannerVideo.addEventListener(
-    "pause",
-    ()=>{
+if(slides.length > 0){
 
-        bannerVideo.play();
+    setInterval(()=>{
 
-    });
+        slides[currentSlide]
+        .classList.remove(
+        "active"
+        );
+
+        currentSlide++;
+
+        if(
+        currentSlide >=
+        slides.length
+        ){
+            currentSlide = 0;
+        }
+
+        slides[currentSlide]
+        .classList.add(
+        "active"
+        );
+
+    },2500);
 
 }
 
@@ -28,40 +55,75 @@ if(bannerVideo){
 /* RESET LOADING SAAT BACK */
 /* ========================= */
 
-window.addEventListener("pageshow", () => {
+window.addEventListener(
+"pageshow",
+()=>{
 
-    loadingBox.style.display = "none";
+    const loadingBox =
+    document.getElementById(
+    "loadingBox"
+    );
 
-});
+    if(loadingBox){
 
-const menuBox = document.querySelectorAll(".menu-box");
+        loadingBox.style.display =
+        "none";
+
+    }
+
+}
+);
+
+/* ===================== */
+/* MENU CLICK */
+/* ===================== */
+
+const menuBox =
+document.querySelectorAll(
+".menu-box"
+);
 
 menuBox.forEach((box)=>{
 
-    box.addEventListener("click", ()=>{
+    box.addEventListener(
+    "click",
+    ()=>{
 
         /* efek sentuh */
-        box.style.transform = "scale(0.96)";
-        box.style.filter = "brightness(0.9)";
+        box.style.transform =
+        "scale(0.96)";
+
+        box.style.filter =
+        "brightness(0.9)";
 
         setTimeout(()=>{
 
-            box.style.transform = "scale(1)";
-            box.style.filter = "brightness(1)";
+            box.style.transform =
+            "scale(1)";
+
+            box.style.filter =
+            "brightness(1)";
 
         },150);
 
         /* tampil loading */
-        document.getElementById("loadingBox")
-        .style.display = "flex";
+        const loadingBox =
+        document.getElementById(
+        "loadingBox"
+        );
+
+        loadingBox.style.display =
+        "flex";
 
         /* pindah halaman */
         setTimeout(()=>{
 
-            window.location.href = "loading.html";
+            window.location.href =
+            "loading.html";
 
         },2000);
 
-    });
+    }
+    );
 
 });
