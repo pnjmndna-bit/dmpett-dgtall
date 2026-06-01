@@ -1,5 +1,3 @@
-/* success.css */
-
 *{
     margin:0;
     padding:0;
@@ -14,17 +12,13 @@ html,
 body{
     width:100%;
     min-height:100%;
-
     overflow:hidden;
-
     background:#118EEA;
-
     font-family:Arial,sans-serif;
 }
 
 body{
     opacity:0;
-
     transition:opacity .5s ease;
 }
 
@@ -43,13 +37,9 @@ body.fade-out{
 .container{
     width:100%;
     max-width:430px;
-
     margin:auto;
-
     min-height:100vh;
-
-    padding-top:22px;
-
+    padding:22px 14px 0;
     text-align:center;
 }
 
@@ -59,47 +49,145 @@ body.fade-out{
 
 .logo-wrap{
     width:100%;
-
     display:flex;
     justify-content:center;
-
     margin-top:14px;
     margin-bottom:42px;
 }
 
 .logo{
     width:120px;
-
     display:block;
 }
 
 /* ========================= */
-/* FOTO */
+/* VIDEO CARD */
 /* ========================= */
 
 .card{
     width:100%;
+    background:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    padding:10px;
+    position:relative;
+}
+
+.photo-video{
+    width:100%;
+    display:block;
+    border-radius:12px;
+}
+
+/* ========================= */
+/* TEKS DI ATAS VIDEO */
+/* ========================= */
+
+.video-overlay{
+    position:absolute;
+    top:25px;
+    left:50%;
+    transform:translateX(-50%);
+    width:86%;
+    z-index:10;
+}
+
+.video-text{
+    color:#118EEA;
+    font-size:15px;
+    font-weight:800;
+    text-align:center;
+    line-height:1.4;
+
+    background:rgba(255, 255, 255, 0.28);
+
+    padding:12px 14px;
+
+    border-radius:14px;
+
+    backdrop-filter:blur(6px);
+}
+
+/* ========================= */
+/* TITIK LOADING */
+/* ========================= */
+
+.dots-loading{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:10px;
+}
+
+.dots-loading span{
+    width:7px;
+    height:7px;
+
+    background:#118EEA;
+
+    border-radius:50%;
+
+    animation:bounce 1s infinite ease-in-out;
+}
+
+.dots-loading span:nth-child(2){
+    animation-delay:.2s;
+}
+
+.dots-loading span:nth-child(3){
+    animation-delay:.4s;
+}
+
+@keyframes bounce{
+
+    0%,80%,100%{
+        transform:scale(.7);
+        opacity:.4;
+    }
+
+    40%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+
+}
+
+/* ========================= */
+/* TEKS PETUNJUK */
+/* ========================= */
+
+.verify-text{
+    margin-top:70px;
+    margin-bottom:14px;
+
+    color:#fff;
+
+    font-size:17px;
+    font-weight:700;
+
+    text-align:center;
+}
+
+/* ========================= */
+/* BUTTON LANJUTKAN */
+/* ========================= */
+
+.btn-lanjut{
+    width:60%;
+    height:40px;
+
+    border:none;
+    border-radius:5px;
 
     background:#fff;
 
-    border-radius:12px;
+    color:#118EEA;
 
-    overflow:hidden;
+    font-size:16px;
+    font-weight:700;
 
-    padding:10px;
+    cursor:pointer;
 }
-
-.photo{
-    width:95%;
-    height:auto;
-
-    object-fit:block;
-
-    display:contain;
-
-    border-radius:12px;
-}
-
 
 /* ========================= */
 /* NOTIF */
@@ -107,24 +195,18 @@ body.fade-out{
 
 .notif-overlay{
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
     height:100%;
-
     pointer-events:none;
-
     z-index:9999;
 }
 
 .notif-box{
     position:absolute;
-
     top:18px;
     left:50%;
-
     width:92%;
     max-width:430px;
 
@@ -133,7 +215,6 @@ body.fade-out{
     translateY(-180px);
 
     transition:.45s ease;
-
     opacity:0;
 }
 
@@ -148,9 +229,7 @@ body.fade-out{
 
 .notif-img{
     width:100%;
-
     border-radius:12px;
-
     display:block;
 }
 
@@ -160,10 +239,8 @@ body.fade-out{
 
 .popup-overlay{
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
     height:100%;
 
@@ -205,80 +282,41 @@ body.fade-out{
 
 .popup-overlay.show .popup-box{
     transform:scale(1);
-
     opacity:1;
 }
 
 .popup-img{
     width:100%;
-
     display:block;
 }
 
-/* ========================= */
-/* BUTTON */
-/* ========================= */
-
-.btn{
-    width:92%;
-    height:45px;
-
-    margin:14px auto 18px auto;
-
-    display:block;
-
-    border:none;
-    border-radius:10px;
-
-    background:#118EEA;
-
-    color:#fff;
-
-    font-size:18px;
-    font-weight:700;
-
-    cursor:pointer;
-}
-
-/* ========================= */
 /* BUTTON GROUP */
-/* ========================= */
 
 .btn-group{
     display:flex;
-
     gap:12px;
-
-    padding:14px 16px 18px 16px;
+    padding:14px 16px 18px;
 }
 
 .btn-no,
 .btn-yes{
     flex:1;
-
     height:45px;
-
     border:none;
-
     border-radius:10px;
-
     font-size:18px;
     font-weight:700;
-
     cursor:pointer;
 }
 
 .btn-no{
     background:#fff;
-
     border:1px solid #ddd;
-
     color:#444;
 }
 
 .btn-yes{
     background:#118EEA;
-
     color:#fff;
 }
 
@@ -313,7 +351,6 @@ body.fade-out{
 .loading-circle{
     width:58px;
     height:58px;
-
     position:relative;
 
     display:flex;
@@ -330,7 +367,6 @@ body.fade-out{
     border-radius:50%;
 
     border:5px solid rgba(255,255,255,.20);
-
     border-top:5px solid #53adff;
 
     animation:spin .9s linear infinite;
@@ -339,22 +375,15 @@ body.fade-out{
 .loading-logo{
     width:35px;
     height:35px;
-
     position:relative;
     z-index:2;
 }
 
 .loading-text{
     margin-top:12px;
-
     color:#fff;
-
     font-size:15px;
 }
-
-/* ========================= */
-/* ANIM */
-/* ========================= */
 
 @keyframes spin{
 
