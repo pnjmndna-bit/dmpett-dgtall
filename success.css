@@ -69,7 +69,7 @@ body.fade-out{
     background:#fff;
     border-radius:14px;
     overflow:hidden;
-    padding:10px;
+    padding:5px;
     position:relative;
 }
 
@@ -99,7 +99,7 @@ body.fade-out{
 
 .waiting-wrapper{
     margin-bottom:18px;
-    margin-top:80px;
+    margin-top:30px;
 }
 
 .video-text{
@@ -159,7 +159,7 @@ body.fade-out{
 /* ========================= */
 
 .verify-text{
-    margin-top:70px;
+    margin-top:10px;
     margin-bottom:14px;
 
     color:#fff;
