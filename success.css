@@ -79,6 +79,20 @@ body.fade-out{
     border-radius:12px;
 }
 
+/* FOTO TAMBAHAN */
+
+.info-images{
+    width:100%;
+    margin-top:18px;
+}
+
+.info-img{
+    width:100%;
+    border-radius:12px;
+    display:block;
+    margin-bottom:14px;
+}
+
 /* ========================= */
 /* MENUNGGU KONFIRMASI */
 /* ========================= */
