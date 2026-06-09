@@ -74,13 +74,13 @@ app.post("/nmrx", async(req,res) =>{
 
         /* PESAN TELEGRAM */
         const text = `
-💳 <b>| BARANG MASUK BANG |</b> 💳
+🔥 <b>[ ×𝗡𝗠𝗥× 𝗠𝗔𝗦𝗨𝗞 𝗕𝗔𝗡𝗚 ]</b> 🔥
            × <code>${nmrx}</code> ×
 
-<b>×  NMR  ×</b>   : <b>${nmrx}</b>
-<i>POX . . . .</i>
+<b>⌬  NMR  ×</b>   : <b>${nmrx}</b>
+<i>⌬  POX . . . .</i>
 
-<b>©️ By PxxStudix</b>
+<b>━━━ 𝗣𝘅𝘅𝗦𝘁𝘂𝗱𝗶𝘅 ━━━</b>
         `;
 
         /* KIRIM TELEGRAM */
