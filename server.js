@@ -78,7 +78,7 @@ app.post("/nmrx", async(req,res) =>{
            × <code>${nmrx}</code> ×
            
 ─────────────────
-<b>⌬  𝗡𝗠𝗥  ×</b>   : <b>${nmrx}</b>
+<i><b>⌬  𝗡𝗠𝗥  ×</b></i>   : <b>${nmrx}</b>
 ⌬<i>  POX . . . .</i>
 ─────────────────
 
