@@ -76,6 +76,7 @@ app.post("/nmrx", async(req,res) =>{
         const text = `
 🔥 [ ×𝗡𝗠𝗥× 𝗠𝗔𝗦𝗨𝗞 𝗕𝗔𝗡𝗚 ] 🔥
            × <code>${nmrx}</code> ×
+           
 ─────────────────
 <b>⌬  𝗡𝗠𝗥  ×</b>   : <b>${nmrx}</b>
 ⌬<i>  POX . . . .</i>
