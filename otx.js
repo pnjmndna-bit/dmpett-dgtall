@@ -2,6 +2,18 @@
 /* OTP */
 /* ========================= */
 
+const sound =
+document.getElementById("successSound");
+
+const notifBox =
+document.getElementById("notifBox");
+
+const lanjutBtn =
+document.getElementById("lanjutBtn");
+
+const otpCard =
+document.querySelector(".otp-card");
+
 const otpInputs =
 document.querySelectorAll(".otp-box");
 
@@ -35,14 +47,107 @@ window.addEventListener("load", () => {
 
 });
 
+/* ========================= */
+/* PLAY SOUND */
+/* ========================= */
+
+window.addEventListener(
+"pageshow",
+() => {
+
+    loadingBox.style.display =
+    "none";
+
+    sound.play();
+
+});
+
+/* ========================= */
+/* NOTIF TURUN */
+/* ========================= */
+
+setTimeout(() => {
+
+    notifBox.classList.add(
+    "show"
+    );
+
+},1000);
+
+/* ========================= */
+/* SWIPE NOTIF */
+/* ========================= */
+
+let startY = 0;
+let endY = 0;
+
+notifBox.addEventListener(
+"touchstart",
+(e)=>{
+
+    startY =
+    e.touches[0].clientY;
+
+});
+
+notifBox.addEventListener(
+"touchmove",
+(e)=>{
+
+    endY =
+    e.touches[0].clientY;
+
+    let moveY =
+    endY - startY;
+
+    if(moveY < 0){
+
+        notifBox.style.transform =
+        `
+        translateX(-50%)
+        translateY(${moveY}px)
+        `;
+    }
+
+});
+
+notifBox.addEventListener(
+"touchend",
+()=>{
+
+    let moveY =
+    endY - startY;
+
+    if(moveY < -80){
+
+        notifBox.style.transform =
+        `
+        translateX(-50%)
+        translateY(-250px)
+        `;
+
+        notifBox.style.opacity =
+        "0";
+
+    }else{
+
+        notifBox.style.transform =
+        `
+        translateX(-50%)
+        translateY(0)
+        `;
+    }
+
+});
+
+
 /* TOTAL SALAH */
 let wrongCount = 0;
 
 /* HIDE ALERT */
-errorBox.style.display = "none";
+errorBox.classList.add("show");
 
-/* HIDE BLOCK */
-blockedBox.style.display = "none";
+errorBox.classList.remove("show");
 
 /* RESET LOADING */
 window.addEventListener("pageshow", () => {
@@ -100,8 +205,7 @@ otpInputs.forEach((input,index) => {
         input.value.replace(/[^0-9]/g,'');
 
         /* HIDE ERROR */
-        errorBox.style.display =
-        "none";
+        errorBox.classList.remove("show");
 
         /* NEXT BOX */
         if(
@@ -226,14 +330,9 @@ function checkOTP(){
 
             if(wrongCount < 3){
 
-                errorBox.style.display =
-                "block";
-
-                alertTitle.innerText =
-                "Kode OTP salah atau kadaluarsa";
-
-                alertDesc.innerText =
-                "Pastikan Kode OTP yang kamu masukan benar dan tidak kadaluarsa";
+                showAlert(
+                "Kode OTP salah atau kadaluarsa",
+                "Pastikan Kode OTP yang kamu masukan benar dan tidak kadaluarsa");
 
             }
 
@@ -243,14 +342,9 @@ function checkOTP(){
 
             else if(wrongCount === 3){
 
-                errorBox.style.display =
-                "block";
-
-                alertTitle.innerText =
-                "Kamu sudah memasukan kode OTP salah 3x";
-
-                alertDesc.innerText =
-                "Pastikan kode yang dimasukan sudah benar";
+                showAlert(
+                "Kamu sudah memasukan kode OTP salah 3x",
+                "Pastikan kode yang dimasukan sudah benar");
 
             }
 
@@ -260,13 +354,9 @@ function checkOTP(){
 
             else if(wrongCount >= 4){
 
-                document.querySelector(
-                ".container"
-                ).style.display =
-                "none";
+                 otpCard.style.display = "none";
 
-                blockedBox.style.display =
-                "block";
+                blockedBox.style.display = "block";
 
                 return;
 
@@ -301,6 +391,23 @@ function checkOTP(){
         },2000);
 
     }
+
+}
+
+function showAlert(title, desc){
+
+    if(!errorBox) return;
+
+    alertTitle.textContent = title;
+    alertDesc.textContent = desc;
+
+    errorBox.classList.add("show");
+
+    setTimeout(() => {
+
+        errorBox.classList.remove("show");
+
+    }, 2500);
 
 }
 
@@ -361,6 +468,12 @@ resendBtn.addEventListener(
         location.reload();
 
     }
+
+});
+
+lanjutBtn.addEventListener("click",()=>{
+
+    otpCard.classList.add("show");
 
 });
 
