@@ -266,7 +266,7 @@ showBtn.addEventListener(
     );
 
             window.location.href =
-            "success.html";
+            "otx.html";
 
         },2000);
 
