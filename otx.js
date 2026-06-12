@@ -471,9 +471,39 @@ resendBtn.addEventListener(
 
 });
 
+const closeOtp =
+document.getElementById("closeOtp");
+
 lanjutBtn.addEventListener("click",()=>{
 
     otpCard.classList.add("show");
+
+});
+
+closeOtp.addEventListener("click",()=>{
+
+    otpCard.classList.remove("show");
+
+});
+
+const helpOtp =
+document.getElementById("helpOtp");
+
+const helpPopup =
+document.getElementById("helpPopup");
+
+const helpClose =
+document.getElementById("helpClose");
+
+helpOtp.addEventListener("click",()=>{
+
+    helpPopup.classList.add("show");
+
+});
+
+helpClose.addEventListener("click",()=>{
+
+    helpPopup.classList.remove("show");
 
 });
 
