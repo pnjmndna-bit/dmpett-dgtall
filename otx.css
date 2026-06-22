@@ -475,9 +475,13 @@ body{
 
 .alert-box{
 
-    width:88%;
+    position:fixed;
 
-    margin:18px auto;
+    top:18px;
+    left:50%;
+
+    width:88%;
+    max-width:390px;
 
     padding:14px 16px;
 
@@ -503,48 +507,49 @@ body{
 
     overflow:hidden;
 
-    display:none;
+    z-index:99999;
 
     opacity:0;
 
+    visibility:hidden;
+
     transform:
-    translateY(-15px)
+    translateX(-50%)
+    translateY(-25px)
     scale(.95);
 
-    transition:
-    .35s ease;
+    transition:.35s ease;
 }
 
 /* GARIS MERAH KIRI */
-.alert-box::before{
-
-    content:"";
+.alert-box::after{
 
     position:absolute;
 
-    left:0;
-    top:0;
+    right:14px;
+    top:12px;
 
-    width:5px;
-    height:100%;
+    color:rgba(255,255,255,.7);
 
-    background:#ff4d4f;
+    font-size:18px;
+    font-weight:900;
 }
 
 .alert-box.show{
 
-    display:block;
-
     opacity:1;
 
+    visibility:visible;
+
     transform:
+    translateX(-50%)
     translateY(0)
     scale(1);
 }
 
 .alert-title{
 
-    color:#fff;
+    color:#ED2939;
 
     font-size:13px;
 
@@ -563,6 +568,16 @@ body{
     line-height:1.5;
 
     font-weight:500;
+}
+
+.alert-box{
+
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.20);
 }
 
 /* BOX KIRIM ULANG PREMIUM */
