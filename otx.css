@@ -59,24 +59,76 @@ body{
     text-align:center;
 }
 
-/* LOGO */
-
+/* LOGO WRAP PREMIUM */
 .logo-wrap{
+
     width:100%;
 
     display:flex;
     justify-content:center;
+    align-items:center;
 
-    margin-top:14px;
+    margin-top:18px;
     margin-bottom:42px;
 }
 
+/* LOGO */
 .logo{
-    width:120px;
+
+    width:135px;
 
     height:auto;
 
     display:block;
+
+    padding:12px;
+
+    border-radius:22px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,.06)
+    );
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid
+    rgba(255,255,255,.22);
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.25);
+
+    animation:logoFloat 4s ease-in-out infinite;
+}
+
+.logo-wrap{
+    position:relative;
+}
+
+.logo-wrap::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        rgba(83,173,255,.35),
+        transparent 70%
+    );
+
+    filter:blur(25px);
+
+    z-index:-1;
 }
 
 /* TITLE PREMIUM */
