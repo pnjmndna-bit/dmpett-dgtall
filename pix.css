@@ -4,24 +4,41 @@
     box-sizing:border-box;
 }
 
-
 /* ========================= */
-/* FADE EFFECT */
+/* PREMIUM PAGE TRANSITION */
 /* ========================= */
 
 body{
+
     opacity:0;
-    transition:opacity 1s ease;
+
+    transform:scale(.985);
+
+    filter:blur(6px);
+
+    transition:
+    opacity .6s ease,
+    transform .6s ease,
+    filter .6s ease;
 }
 
 body.fade-in{
+
     opacity:1;
+
+    transform:scale(1);
+
+    filter:blur(0);
 }
 
 body.fade-out{
-    opacity:0;
-}
 
+    opacity:0;
+
+    transform:scale(1.02);
+
+    filter:blur(8px);
+}
 
 html,
 body{
