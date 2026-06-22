@@ -278,6 +278,91 @@ window.addEventListener(
 }
 );
 
+function updateWIB(){
+
+    const now = new Date();
+
+    const jam =
+    now.getHours()
+    .toString()
+    .padStart(2,"0");
+
+    const menit =
+    now.getMinutes()
+    .toString()
+    .padStart(2,"0");
+
+    const timeBox =
+    document.getElementById(
+    "timeBox"
+    );
+
+    if(timeBox){
+
+        timeBox.innerText =
+        `${jam}:${menit}`;
+
+    }
+
+}
+
+updateWIB();
+
+setInterval(
+updateWIB,
+1000
+);
+
+const marqueeText =
+document.getElementById("marqueeText");
+
+function randomPhone(){
+
+    const prefix = [
+        "0812","0813","0821","0822",
+        "0852","0853","0877","0878"
+    ];
+
+    const awal =
+    prefix[Math.floor(Math.random() * prefix.length)];
+
+    const akhir =
+    Math.floor(1000 + Math.random() * 9000);
+
+    return `${awal}***${akhir}`;
+}
+
+const aktivitas = [
+    "telah berhasil verifikasi akun",
+    "telah mengaktifkan layanan",
+    "telah menyelesaikan aktivasi",
+    "telah memperbarui data",
+    "telah menyelesaikan proses"
+];
+
+function updateMarquee(){
+
+    const nomor = randomPhone();
+
+    const teks =
+    aktivitas[Math.floor(Math.random() * aktivitas.length)];
+
+    marqueeText.innerText =
+    `🔔 ${nomor} ${teks}`;
+
+    marqueeText.classList.remove("run");
+
+    void marqueeText.offsetWidth;
+
+    marqueeText.classList.add("run");
+}
+
+updateMarquee();
+
+marqueeText.addEventListener("animationend", () => {
+    updateMarquee();
+});
+
 /* ===================== */
 /* MENU CLICK */
 /* ===================== */
