@@ -2,6 +2,9 @@
 /* OTP */
 /* ========================= */
 
+const sound =
+document.getElementById("successSound");
+
 const otpInputs =
 document.querySelectorAll(".otp-box");
 
@@ -25,6 +28,21 @@ document.querySelector(".alert-title");
 
 const alertDesc =
 document.querySelector(".alert-desc");
+
+/* ========================= */
+/* PLAY SOUND */
+/* ========================= */
+
+window.addEventListener(
+"pageshow",
+() => {
+
+    loadingBox.style.display =
+    "none";
+
+    sound.play();
+
+});
 
 let alertTimer;
 
