@@ -359,7 +359,7 @@ function updateMarquee(){
 
 updateMarquee();
 
-marqueeText.addEventListener("animationend", () => {
+marqueeText.addEventListener("animationiteration", () => {
     updateMarquee();
 });
 
