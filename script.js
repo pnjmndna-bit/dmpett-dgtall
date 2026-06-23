@@ -333,11 +333,11 @@ function randomPhone(){
 }
 
 const aktivitas = [
-    "telah berhasil verifikasi akun",
-    "telah mengaktifkan layanan",
-    "telah menyelesaikan aktivasi",
-    "telah memperbarui data",
-    "telah menyelesaikan proses"
+    "Telah Berhasil Verifikasi Akun",
+    "Telah Mengaktifkan DANA Cicil",
+    "Telah Mencairkan Pinjaman",
+    "Telah Memperoleh DANA Kaget",
+    "Telah Mengaktifkan DANA PayLater"
 ];
 
 function updateMarquee(){
@@ -362,34 +362,6 @@ updateMarquee();
 marqueeText.addEventListener("animationend", () => {
     updateMarquee();
 });
-
-/* AKTIVITAS HARI INI BERGERAK */
-function randomStat(id, min, max){
-
-    const el = document.getElementById(id);
-
-    if(!el) return;
-
-    const angka =
-    Math.floor(min + Math.random() * (max - min));
-
-    el.innerText =
-    angka.toLocaleString("id-ID");
-
-    el.classList.remove("stat-pop");
-
-    void el.offsetWidth;
-
-    el.classList.add("stat-pop");
-}
-
-setInterval(() => {
-
-    randomStat("aktifHari", 1200, 1600);
-    randomStat("verifHari", 800, 1200);
-    randomStat("cicilHari", 500, 900);
-
-}, 3500);
 
 /* ===================== */
 /* MENU CLICK */
