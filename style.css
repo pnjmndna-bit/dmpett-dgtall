@@ -402,10 +402,10 @@ body{
 
 /* INFO BOX PREMIUM */
 .info-box{
-    width:100%;
+    width:calc(100% + 28px);
     height:auto;
 
-    margin:14px auto 0;
+    margin:14px -14px 0;
     padding:20px 18px;
 
     position:relative;
