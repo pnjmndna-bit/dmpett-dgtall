@@ -34,31 +34,30 @@ body{
 ========================= */
 
 .topbar{
-    height:64px;
+    height:66px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:0 16px;
-    border-radius:26px;
-
+    border-radius:28px;
     position:relative;
     overflow:hidden;
+    isolation:isolate;
 
     background:
         linear-gradient(
             180deg,
-            rgba(255,255,255,.22),
-            rgba(255,255,255,.10)
+            rgba(7,153,242,.32),
+            rgba(4,119,217,.18)
         );
 
-    backdrop-filter:blur(34px) saturate(180%);
-    -webkit-backdrop-filter:blur(34px) saturate(180%);
+    backdrop-filter:blur(38px) saturate(190%);
+    -webkit-backdrop-filter:blur(38px) saturate(190%);
 
-    border:1px solid rgba(255,255,255,.30);
+    border:1px solid rgba(255,255,255,.32);
 
     box-shadow:
-        0 30px 55px rgba(0,0,0,.18),
+        0 32px 65px rgba(0,0,0,.20),
         inset 0 1px 0 rgba(255,255,255,.55),
         inset 0 -1px 0 rgba(255,255,255,.08);
 }
@@ -67,16 +66,12 @@ body{
     content:"";
     position:absolute;
     inset:0;
-    border-radius:inherit;
+    z-index:-1;
 
     background:
-        linear-gradient(
-            120deg,
-            rgba(255,255,255,.22),
-            transparent 38%,
-            transparent 62%,
-            rgba(255,255,255,.08)
-        );
+        radial-gradient(circle at 15% 0%, rgba(255,255,255,.22), transparent 34%),
+        radial-gradient(circle at 85% 100%, rgba(7,153,242,.24), transparent 36%),
+        linear-gradient(120deg, rgba(255,255,255,.18), transparent 42%, rgba(4,119,217,.14));
 
     pointer-events:none;
 }
@@ -85,81 +80,90 @@ body{
     content:"";
     position:absolute;
     top:0;
-    left:8%;
-    width:84%;
+    left:10%;
+    width:80%;
     height:1px;
 
-    background:rgba(255,255,255,.55);
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.75),
+            transparent
+        );
 
-    opacity:.7;
+    pointer-events:none;
 }
 
-/* =========================
-   TIME
-========================= */
-
 .time-box{
-
-    min-width:58px;
-    height:36px;
+    min-width:60px;
+    height:38px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
     padding:0 15px;
-
-    border-radius:16px;
+    border-radius:17px;
 
     background:
         linear-gradient(
             180deg,
-            rgba(255,255,255,.30),
-            rgba(255,255,255,.10)
+            rgba(7,153,242,.34),
+            rgba(4,119,217,.16)
         );
 
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
+    backdrop-filter:blur(26px);
+    -webkit-backdrop-filter:blur(26px);
 
     border:1px solid rgba(255,255,255,.35);
 
     box-shadow:
-        0 12px 24px rgba(0,0,0,.16),
-        inset 0 1px 0 rgba(255,255,255,.55),
-        inset 0 -1px 0 rgba(255,255,255,.08);
+        0 14px 26px rgba(0,0,0,.17),
+        inset 0 1px 0 rgba(255,255,255,.48);
 
     color:#fff;
 
     font-size:13px;
     font-weight:900;
-    letter-spacing:.8px;
+    letter-spacing:.9px;
 
-    text-shadow:
-        0 2px 10px rgba(0,0,0,.28);
+    text-shadow:0 3px 10px rgba(0,0,0,.28);
 }
-
-/* =========================
-   LOGO
-========================= */
 
 .top-logo{
-    width:118px;
+    width:120px;
 
     filter:
-        drop-shadow(0 10px 18px rgba(0,0,0,.20))
-        drop-shadow(0 2px 4px rgba(255,255,255,.18));
+        drop-shadow(0 10px 18px rgba(0,0,0,.22))
+        drop-shadow(0 0 8px rgba(255,255,255,.18));
+
+    animation:logoMove 4s ease-in-out infinite;
 }
 
-/* =========================
-   BUTTON
-========================= */
+@keyframes logoMove{
+    0%{
+        transform:translateX(0);
+    }
+    25%{
+        transform:translateX(2px);
+    }
+    50%{
+        transform:translateX(0);
+    }
+    75%{
+        transform:translateX(-2px);
+    }
+    100%{
+        transform:translateX(0);
+    }
+}
 
 .help-btn{
+    min-width:54px;
+    height:38px;
 
-    min-width:52px;
-    height:36px;
-
-    padding:0 16px;
+    padding:0 17px;
 
     display:flex;
     align-items:center;
@@ -174,12 +178,12 @@ body{
     background:
         linear-gradient(
             180deg,
-            rgba(255,255,255,.28),
-            rgba(255,255,255,.10)
+            rgba(7,153,242,.34),
+            rgba(4,119,217,.16)
         );
 
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
+    backdrop-filter:blur(26px);
+    -webkit-backdrop-filter:blur(26px);
 
     border:1px solid rgba(255,255,255,.35);
 
@@ -187,19 +191,15 @@ body{
 
     font-size:12px;
     font-weight:900;
-    letter-spacing:.4px;
+    letter-spacing:.45px;
 
-    text-shadow:
-        0 2px 8px rgba(0,0,0,.25);
+    text-shadow:0 3px 9px rgba(0,0,0,.26);
 
     box-shadow:
-        0 12px 24px rgba(0,0,0,.16),
-        inset 0 1px 0 rgba(255,255,255,.55),
-        inset 0 -1px 0 rgba(255,255,255,.08);
+        0 14px 26px rgba(0,0,0,.17),
+        inset 0 1px 0 rgba(255,255,255,.48);
 
-    transition:
-        transform .18s ease,
-        box-shadow .18s ease;
+    transition:.18s ease;
 }
 
 .help-btn::before{
@@ -210,22 +210,29 @@ body{
     background:
         linear-gradient(
             120deg,
-            rgba(255,255,255,.35),
-            transparent 35%,
-            transparent 65%,
-            rgba(255,255,255,.08)
+            rgba(255,255,255,.30),
+            transparent 38%,
+            transparent 64%,
+            rgba(7,153,242,.18)
         );
 
     pointer-events:none;
 }
 
 .help-btn:active{
+    transform:scale(.95);
+}
 
-    transform:scale(.96);
-
-    box-shadow:
-        0 6px 12px rgba(0,0,0,.14),
-        inset 0 1px 0 rgba(255,255,255,.45);
+@keyframes logoFloat{
+    0%{
+        transform:translateY(0) scale(1);
+    }
+    50%{
+        transform:translateY(-3px) scale(1.035);
+    }
+    100%{
+        transform:translateY(0) scale(1);
+    }
 }
  
 /* =========================
@@ -373,7 +380,7 @@ body{
     position:relative;
     overflow:hidden;
 
-    border-radius:26px;
+    border-radius:18px;
 
     background:
         linear-gradient(
@@ -513,11 +520,11 @@ body{
 }
 
 .banner-btn.prev{
-    left:12px;
+    left:10px;
 }
 
 .banner-btn.next{
-    right:12px;
+    right:10px;
 }
 
 /* =========================
@@ -621,12 +628,12 @@ body{
 .quick-btn{
     flex:0 0 calc(50% - 6px);
 
-    height:88px;
+    height:85px;
 
     position:relative;
     overflow:hidden;
 
-    border-radius:20px;
+    border-radius:12px;
 
     background:
         linear-gradient(
