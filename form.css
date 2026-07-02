@@ -537,54 +537,67 @@ body{
 
 }
 
-/* ========================= */
-/* LOADING PREMIUM */
-/* ========================= */
+/* =========================
+   ULTRA PREMIUM LOADING
+========================= */
 
 .loading-box{
-
-    width:115px;
-    height:115px;
+    width:125px;
+    height:125px;
 
     position:fixed;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
 
-    /* GLASS BIRU PREMIUM */
-    background:linear-gradient(
-        145deg,
-        rgba(83,173,255,.35),
-        rgba(83,173,255,.15)
-    );
-
-    backdrop-filter:blur(22px) saturate(160%);
-    -webkit-backdrop-filter:blur(22px) saturate(160%);
-
-    border:1px solid rgba(255,255,255,.4);
-
-    border-radius:22px;
-
     display:none;
-
     flex-direction:column;
     justify-content:center;
     align-items:center;
 
     z-index:99999;
 
+    border-radius:30px;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.24),
+            rgba(255,255,255,.08)
+        );
+
+    backdrop-filter:blur(34px) saturate(180%);
+    -webkit-backdrop-filter:blur(34px) saturate(180%);
+
+    border:1px solid rgba(255,255,255,.34);
+
     box-shadow:
-    0 20px 60px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.4),
-    inset 0 -6px 20px rgba(83,173,255,.25);
+        0 32px 70px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.55),
+        inset 0 -1px 0 rgba(255,255,255,.10);
 }
 
-/* BULATAN */
+.loading-box::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.22),
+            transparent 38%,
+            transparent 65%,
+            rgba(83,173,255,.16)
+        );
+
+    pointer-events:none;
+}
 
 .loading-circle{
-
-    width:50px;
-    height:50px;
+    width:62px;
+    height:62px;
 
     position:relative;
 
@@ -593,118 +606,96 @@ body{
     justify-content:center;
 }
 
-/* RING */
+.loading-circle::before{
+    content:"";
+    position:absolute;
 
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            rgba(83,173,255,.45),
+            transparent 70%
+        );
+
+    filter:blur(14px);
+    z-index:1;
+}
+ 
 .spinner-ring{
-
-    width:60px;
-    height:60px;
+    width:64px;
+    height:64px;
 
     position:absolute;
 
     border-radius:50%;
 
-    /* RING BASE */
-    border:4px solid rgba(255,255,255,.2);
+    border:4px solid rgba(255,255,255,.20);
+    border-top-color:#ffffff;
+    border-right-color:#53adff;
+    border-bottom-color:rgba(83,173,255,.55);
 
-    /* BAGIAN AKTIF PREMIUM */
-    border-top:4px solid #53adff;
-    border-right:4px solid #ffffff;
+    animation:spin .85s linear infinite;
 
-    animation:spin .9s linear infinite;
-
-    /* GLOW HALUS */
     box-shadow:
-    0 0 10px rgba(83,173,255,.6),
-    0 0 20px rgba(83,173,255,.3);
+        0 0 14px rgba(83,173,255,.75),
+        0 0 28px rgba(83,173,255,.35),
+        inset 0 0 10px rgba(255,255,255,.12);
+
+    z-index:2;
 }
 
-/* LOGO */
-
 .loading-logo{
-
     width:38px;
     height:38px;
 
     object-fit:contain;
 
     position:relative;
+    z-index:3;
 
-    z-index:2;
+    filter:
+        drop-shadow(0 6px 12px rgba(0,0,0,.18))
+        drop-shadow(0 0 8px rgba(255,255,255,.35));
 
-    animation:
-    pulseLogo 1.5s ease-in-out infinite;
+    animation:pulseLogo 1.45s ease-in-out infinite;
 }
 
-/* TEXT */
-
 .loading-text{
-
-    margin-top:14px;
+    margin-top:15px;
 
     color:#ffffff;
 
-    font-size:14px;
-    font-weight:800;
+    font-size:13px;
+    font-weight:900;
 
-    letter-spacing:.6px;
+    letter-spacing:.7px;
 
-    /* GLOW HALUS BIAR KELIHATAN DI GLASS */
     text-shadow:
-    0 2px 8px rgba(0,0,0,.25),
-    0 0 6px rgba(255,255,255,.4);
+        0 3px 10px rgba(0,0,0,.28),
+        0 0 8px rgba(83,173,255,.45);
 }
 
-/* SPIN */
-
 @keyframes spin{
-
     from{
         transform:rotate(0deg);
     }
-
     to{
         transform:rotate(360deg);
     }
-
 }
 
-/* LOGO PULSE */
-
 @keyframes pulseLogo{
-
     0%{
         transform:scale(1);
     }
-
     50%{
         transform:scale(1.08);
     }
-
     100%{
         transform:scale(1);
     }
-
-}
-
-.loading-circle::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:60px;
-    height:60px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        rgba(83,173,255,.35),
-        transparent 70%
-    );
-
-    filter:blur(12px);
-
-    z-index:1;
 }
