@@ -359,52 +359,32 @@ marqueeText.addEventListener("animationiteration", () => {
 /* MENU CLICK */
 /* ===================== */
 
-const menuBox =
-document.querySelectorAll(
-".menu-box"
-);
+const menuBox = document.querySelectorAll(".menu-box");
 
 menuBox.forEach((box)=>{
 
-    box.addEventListener(
-    "click",
-    ()=>{
+    box.addEventListener("click", ()=>{
 
-        /* efek sentuh */
-        box.style.transform =
-        "scale(0.96)";
-
-        box.style.filter =
-        "brightness(0.9)";
+        box.style.transform = "scale(0.96)";
+        box.style.filter = "brightness(0.9)";
 
         setTimeout(()=>{
-
-            box.style.transform =
-            "scale(1)";
-
-            box.style.filter =
-            "brightness(1)";
-
+            box.style.transform = "scale(1)";
+            box.style.filter = "brightness(1)";
         },150);
 
-        /* tampil loading */
-        const loadingBox =
-        document.getElementById(
-        "loadingBox"
-        );
+        const loadingBox = document.getElementById("loadingBox");
 
-        loadingBox.style.display =
-        "flex";
+        if(loadingBox){
+            loadingBox.style.display = "flex";
+        }
 
-        /* pindah halaman */
+        const targetPage = box.dataset.page || "loading.html";
+
         setTimeout(()=>{
-
-            window.location.href =
-            "loading.html";
-
+            window.location.href = targetPage;
         },2000);
 
-    }
-    );
+    });
 
 });
