@@ -703,18 +703,13 @@ body{
 .loan-popup{
     position:fixed;
     inset:0;
-
     display:none;
     align-items:center;
     justify-content:center;
-
     padding:18px;
-
-    background:rgba(0,0,0,.38);
-
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-
+    background:rgba(4,20,42,.42);
+    backdrop-filter:blur(18px) saturate(165%);
+    -webkit-backdrop-filter:blur(18px) saturate(165%);
     z-index:999999;
 }
 
@@ -724,196 +719,180 @@ body{
 
 .loan-card{
     width:100%;
-    max-width:360px;
+    max-width:315px;
+    padding:22px 18px 20px;
+    border-radius:26px;
+    position:relative;
+    overflow:hidden;
 
-    padding:28px 24px 26px;
+    background:
+        radial-gradient(circle at 18% 0%,rgba(34,184,255,.14),transparent 38%),
+        linear-gradient(180deg,#ffffff,#f7fbff);
 
-    border-radius:28px;
-
-    background:#ffffff;
+    border:1px solid rgba(255,255,255,.9);
 
     box-shadow:
-        0 28px 70px rgba(0,0,0,.28),
-        inset 0 1px 0 rgba(255,255,255,.9);
+        0 24px 60px rgba(0,35,90,.26),
+        inset 0 1px 0 rgba(255,255,255,.95);
 
-    animation:loanPop .35s ease;
+    animation:loanPop .38s cubic-bezier(.2,.9,.25,1.15);
 }
 
 .loan-title{
-    color:#777;
-
-    font-size:18px;
-    font-weight:500;
-
-    margin-bottom:18px;
+    font-size:14px;
+    font-weight:700;
+    color:#6b7280;
+    margin-bottom:12px;
 }
 
 .loan-limit{
     display:flex;
     align-items:flex-start;
-    gap:12px;
-
-    margin-bottom:18px;
+    gap:8px;
+    margin-bottom:14px;
 }
 
 .loan-limit strong{
-    color:#1f1f1f;
-
-    font-size:33px;
-    font-weight:600;
-
+    font-size:26px;
+    font-weight:900;
+    color:#111827;
     letter-spacing:-1px;
 }
 
 .loan-limit span{
-    color:#9a9a9a;
-
-    font-size:22px;
+    font-size:15px;
     line-height:1.25;
+    color:#9ca3af;
 }
 
 .loan-limit span b{
-    font-weight:400;
+    font-weight:600;
 }
 
 .loan-used{
-    color:#333;
-
-    font-size:18px;
-    font-weight:400;
-
+    font-size:14px;
+    color:#374151;
     margin-bottom:24px;
 }
 
 .loan-used b{
-    font-weight:800;
+    font-weight:900;
 }
 
 .loan-progress{
     width:100%;
-    height:12px;
-
-    position:relative;
-
-    border-radius:999px;
-
-    background:#ededed;
-
-    margin-bottom:38px;
+    margin-bottom:30px;
 }
 
-.loan-fill{
-    width:8%;
-    height:100%;
-
+.loan-range{
+    width:100%;
+    height:10px;
+    appearance:none;
+    -webkit-appearance:none;
     border-radius:999px;
-
-    background:#2196f3;
+    outline:none;
+    background:linear-gradient(
+        90deg,
+        #159ef5 0%,
+        #159ef5 5%,
+        #eef4fa 5%,
+        #eef4fa 100%
+    );
 }
 
-.loan-dot{
-    position:absolute;
-
-    top:50%;
-    left:7%;
-
-    width:38px;
-    height:38px;
-
+.loan-range::-webkit-slider-thumb{
+    appearance:none;
+    -webkit-appearance:none;
+    width:32px;
+    height:32px;
     border-radius:50%;
-
-    background:#2196f3;
-
-    transform:translateY(-50%);
-
+    background:
+        radial-gradient(circle at 35% 30%,#fff 0 13%,#24a9ff 40%,#087ee8 100%);
+    border:4px solid #fff;
     box-shadow:
-        0 10px 22px rgba(33,150,243,.35);
+        0 10px 22px rgba(33,150,243,.34),
+        0 0 0 6px rgba(33,150,243,.11);
+    cursor:pointer;
+}
+
+.loan-range::-moz-range-thumb{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#2196f3;
+    border:4px solid #fff;
+    box-shadow:
+        0 10px 22px rgba(33,150,243,.34),
+        0 0 0 6px rgba(33,150,243,.11);
+    cursor:pointer;
 }
 
 .loan-withdraw{
     display:flex;
     align-items:center;
-    gap:14px;
-
-    margin-bottom:26px;
+    gap:10px;
+    margin-bottom:20px;
 }
 
 .loan-icon{
-    width:42px;
-    height:42px;
-
+    width:36px;
+    height:36px;
     border-radius:50%;
-
-    background:#2196f3;
-
+    flex-shrink:0;
+    background:linear-gradient(135deg,#22b8ff,#0788e8);
     display:flex;
     align-items:center;
     justify-content:center;
-
     color:#fff;
-
-    font-size:16px;
+    font-size:13px;
     font-weight:900;
-
-    box-shadow:
-        0 8px 18px rgba(33,150,243,.28);
+    box-shadow:0 8px 18px rgba(33,150,243,.28);
 }
 
 .loan-label{
     flex:1;
-
-    color:#1f1f1f;
-
-    font-size:22px;
-    font-weight:800;
-
+    color:#111827;
+    font-size:16px;
+    font-weight:900;
     line-height:1.15;
 }
 
 .loan-amount{
-    padding:10px 14px;
-
+    padding:8px 10px;
     border-radius:10px;
-
-    background:#ffe3a8;
-
-    color:#ff9800;
-
-    font-size:19px;
-    font-weight:800;
+    background:linear-gradient(180deg,#fff2cf,#ffe3a3);
+    color:#f59e0b;
+    font-size:13px;
+    font-weight:900;
+    white-space:nowrap;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.75);
 }
 
 .loan-btn{
     width:100%;
-    height:52px;
-
+    height:46px;
     border:none;
-
-    border-radius:12px;
-
-    background:#2196f3;
-
+    border-radius:13px;
+    background:linear-gradient(135deg,#22b8ff,#0788e8);
     color:#fff;
-
-    font-size:18px;
-    font-weight:800;
-
-    letter-spacing:.5px;
-
-    box-shadow:
-        0 12px 26px rgba(33,150,243,.35);
-
+    font-size:14px;
+    font-weight:900;
+    letter-spacing:.4px;
     cursor:pointer;
+    box-shadow:
+        0 14px 26px rgba(33,150,243,.34),
+        inset 0 1px 0 rgba(255,255,255,.35);
+    transition:.25s ease;
 }
 
 .loan-btn:active{
-    transform:scale(.98);
+    transform:scale(.97);
 }
 
 @keyframes loanPop{
     from{
         opacity:0;
-        transform:translateY(20px) scale(.94);
+        transform:translateY(18px) scale(.95);
         filter:blur(4px);
     }
 
