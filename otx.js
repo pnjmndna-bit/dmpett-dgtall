@@ -514,13 +514,37 @@ document.getElementById("introOverlay");
 const introBtn =
 document.getElementById("introBtn");
 
+const topNotif =
+document.getElementById("topNotif");
+
+const notifOkBtn =
+document.getElementById("notifOkBtn");
+
+const topNotifSound =
+document.getElementById("topNotifSound");
+
 introBtn.addEventListener("click", () => {
 
     introOverlay.classList.add("hide");
 
     setTimeout(() => {
         introOverlay.style.display = "none";
+
+        setTimeout(() => {
+    topNotif.classList.add("show");
+
+    topNotifSound.currentTime = 0;
+    topNotifSound.play().catch(() => {});
+}, 200);
+
     },350);
+
+});
+
+notifOkBtn.addEventListener("click", () => {
+
+    topNotif.classList.remove("show");
+    topNotif.classList.add("hide");
 
 });
 
