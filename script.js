@@ -247,3 +247,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+function setClock(id, timezone, label){
+    const el = document.getElementById(id);
+    if(!el) return;
+
+    const now = new Date();
+
+    const time = new Intl.DateTimeFormat("id-ID", {
+        timeZone:timezone,
+        hour:"2-digit",
+        minute:"2-digit",
+        hour12:false
+    }).format(now);
+
+    el.textContent = `${time} ${label}`;
+}
+
+function updateClocks(){
+    setClock("clockWIB", "Asia/Jakarta", "WIB");
+    setClock("clockWITA", "Asia/Makassar", "WITA");
+    setClock("clockWIT", "Asia/Jayapura", "WIT");
+}
+
+updateClocks();
+setInterval(updateClocks,1000);
