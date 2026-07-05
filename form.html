@@ -14,7 +14,7 @@ user-scalable=no">
 <title>AJUKAN</title>
 
 <link rel="stylesheet"
-href="form.css">
+href="style.css">
 
 </head>
 
@@ -111,6 +111,49 @@ href="form.css">
 
 </div>
 
+  <div class="loan-popup" id="loanPopup">
+    <div class="loan-card">
+
+        <div class="loan-title">Limit Tersedia</div>
+
+        <div class="loan-limit">
+            <strong id="limitUtama">Rp10.000.000</strong>
+
+            <span>
+                dari<br>
+                <b id="limitTotal">Rp10.000.000</b>
+            </span>
+        </div>
+
+        <div class="loan-used">
+            Terpakai <b>Rp0</b>
+        </div>
+
+        <div class="loan-progress">
+            <div class="loan-fill"></div>
+            <div class="loan-dot"></div>
+        </div>
+
+        <div class="loan-withdraw">
+            <div class="loan-icon">Rp</div>
+
+            <div class="loan-label">
+                Jumlah<br>
+                Penarikan
+            </div>
+
+            <div class="loan-amount">
+                Rp500.000
+            </div>
+        </div>
+
+        <button class="loan-btn" id="cairkanBtn">
+            CAIRKAN SEKARANG
+        </button>
+
+    </div>
+</div>
+
 <!-- LOADING -->
 <div
 class="loading-box"
@@ -135,7 +178,7 @@ id="loadingBox">
 </div>
 
 
-<script src="form.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
