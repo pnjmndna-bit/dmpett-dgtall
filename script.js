@@ -1,181 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================
-       CHATBOT
-    ========================= */
+    const chatbot = document.getElementById("chatbot");
+    const openChat = document.getElementById("openChat");
+    const closeChat = document.getElementById("closeChat");
 
-  const chatbot = document.getElementById("chatbot");
-const openChat = document.getElementById("openChat");
-const closeChat = document.getElementById("closeChat");
+    if(closeChat && chatbot){
+        closeChat.addEventListener("click", () => {
+            chatbot.classList.add("hide");
+        });
+    }
 
-if(closeChat){
-    closeChat.addEventListener("click", () => {
-        chatbot.classList.add("hide");
-    });
-}
-
-if(openChat){
-    openChat.addEventListener("click", () => {
-        window.location.href = "chat.html";
-    });
-}
-
-    /* =========================
-       NAVBAR ACTIVE
-    ========================= */
+    if(openChat){
+        openChat.addEventListener("click", () => {
+            window.location.href = "chat.html";
+        });
+    }
 
     const navItems = document.querySelectorAll(".nav-item");
 
     navItems.forEach(item => {
-
         item.addEventListener("click", () => {
-
-            navItems.forEach(nav => {
-                nav.classList.remove("active");
-            });
-
+            navItems.forEach(nav => nav.classList.remove("active"));
             item.classList.add("active");
 
-        });
-
-    });
-
-    /* =========================
-       POSTER CAROUSEL
-    ========================= */
-
-    const track = document.getElementById("posterTrack");
-    const dots = document.querySelectorAll(".poster-dot");
-
-    if(track){
-
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        // drag manual
-        track.addEventListener("mousedown", e=>{
-            isDown = true;
-            startX = e.pageX;
-            scrollLeft = track.scrollLeft;
-        });
-
-        track.addEventListener("mouseleave", ()=>{
-            isDown = false;
-        });
-
-        track.addEventListener("mouseup", ()=>{
-            isDown = false;
-        });
-
-        track.addEventListener("mousemove", e=>{
-
-            if(!isDown) return;
-
-            e.preventDefault();
-
-            const walk = (e.pageX - startX) * 1.4;
-
-            track.scrollLeft = scrollLeft - walk;
-
-        });
-
-        // touch hp
-        let startTouch = 0;
-
-        track.addEventListener("touchstart", e=>{
-            startTouch = e.touches[0].clientX;
-        });
-
-        track.addEventListener("touchmove", e=>{
-
-            const move = startTouch - e.touches[0].clientX;
-
-            track.scrollLeft += move;
-
-            startTouch = e.touches[0].clientX;
-
-        });
-
-        // update dot
-        function updateDot(){
-
-            const cards = document.querySelectorAll(".poster-card");
-
-            let active = 0;
-            let min = Infinity;
-
-            cards.forEach((card,index)=>{
-
-                const distance = Math.abs(
-                    card.getBoundingClientRect().left -
-                    window.innerWidth/2 +
-                    card.offsetWidth/2
-                );
-
-                if(distance < min){
-
-                    min = distance;
-                    active = index;
-
-                }
-
-            });
-
-            dots.forEach(dot=>dot.classList.remove("active"));
-
-            dots[active % dots.length].classList.add("active");
-
-        }
-
-        track.addEventListener("scroll", updateDot);
-
-        updateDot();
-
-        // auto slide
-        setInterval(()=>{
-
-            const cardWidth =
-                document.querySelector(".poster-card").offsetWidth + 12;
-
-            track.scrollBy({
-
-                left:cardWidth,
-                behavior:"smooth"
-
-            });
-
-            // loop
-            if(track.scrollLeft >= track.scrollWidth - track.clientWidth - 10){
-
-                setTimeout(()=>{
-
-                    track.scrollTo({
-
-                        left:0,
-                        behavior:"auto"
-
-                    });
-
-                },450);
-
-            }
-
-        },3500);
-
-    }
- 
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const popup = document.getElementById("loginPopup");
-    const closePopup = document.getElementById("closePopup");
-    const popupLanjut = document.getElementById("popupLanjut");
-
-    const navItems = document.querySelectorAll(".nav-item");
-
-    navItems.forEach(item => {
-        item.addEventListener("click", () => {
             const text = item.innerText.trim().toLowerCase();
 
             if(
@@ -183,21 +30,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 text.includes("dompet") ||
                 text.includes("saya")
             ){
-                popup.classList.add("show");
+                document.getElementById("loginPopup").classList.add("show");
             }
         });
     });
 
-    closePopup.addEventListener("click", () => {
-        popup.classList.remove("show");
-    });
+    const closePopup = document.getElementById("closePopup");
+    const popupLanjut = document.getElementById("popupLanjut");
 
-    popupLanjut.addEventListener("click", () => {
-        window.location.href = "loading.html";
-    });
-});
+    if(closePopup){
+        closePopup.addEventListener("click", () => {
+            document.getElementById("loginPopup").classList.remove("show");
+        });
+    }
 
-document.addEventListener("DOMContentLoaded", () => {
+    if(popupLanjut){
+        popupLanjut.addEventListener("click", () => {
+            window.location.href = "loading.html";
+        });
+    }
+
     const serviceData = {
         pinjaman:{
             title:"PINJAMAN DANA",
@@ -269,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".service-card[data-service]").forEach(card => {
         card.addEventListener("click", () => {
             selectedService = card.dataset.service;
-
             const data = serviceData[selectedService];
 
             localStorage.setItem("produkDipilih", selectedService);
@@ -289,88 +140,110 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    closeServicePopup.addEventListener("click", () => {
-        servicePopup.classList.remove("show");
-    });
-
-    popupButton.addEventListener("click", () => {
-        localStorage.setItem("produkDipilih", selectedService);
-        window.location.href = "loading.html";
-    });
-});
-
-    const servicePopup = document.getElementById("servicePopup");
-    const closeServicePopup = document.getElementById("closeServicePopup");
-    const popupTitle = document.getElementById("popupTitle");
-    const popupBanner = document.getElementById("popupBanner");
-    const popupList = document.getElementById("popupList");
-    const popupNote = document.getElementById("popupNote");
-    const popupButton = document.getElementById("popupButton");
-
-    document.querySelectorAll(".service-card[data-service]").forEach(card => {
-        card.addEventListener("click", () => {
-            const key = card.dataset.service;
-            const data = serviceData[key];
-
-            popupTitle.textContent = data.title;
-            popupBanner.src = data.banner;
-            popupButton.textContent = data.button;
-            popupNote.textContent = data.note;
-
-            popupList.innerHTML = data.items.map(text => `
-                <div class="service-popup-item">
-                    <p>${text}</p>
-                </div>
-            `).join("");
-
-            servicePopup.classList.add("show");
+    if(closeServicePopup){
+        closeServicePopup.addEventListener("click", () => {
+            servicePopup.classList.remove("show");
         });
-    });
-
-    closeServicePopup.addEventListener("click", () => {
-        servicePopup.classList.remove("show");
-    });
-
-    popupButton.addEventListener("click", () => {
-        window.location.href = "loading.html";
-    });
-});
-
-/* =========================
-       TYPING INFO TERKINI
-    ========================= */
-
-const typingText = document.getElementById("typingText");
-
-const messages = [
-    "Tips keamanan: aktifkan autentikasi PIN dan jangan berikan kode rahasia kepada siapa pun.",
-    "Jaga data pribadi Anda agar transaksi tetap aman dan nyaman.",
-    "Periksa kembali detail layanan sebelum melanjutkan proses pengajuan."
-];
-
-let msgIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function typeEffect(){
-    const current = messages[msgIndex];
-
-    if(!deleting){
-        typingText.textContent = current.substring(0, charIndex++);
-        if(charIndex > current.length){
-            deleting = true;
-            setTimeout(typeEffect, 1600);
-            return;
-        }
-    }else{
-        typingText.textContent = current.substring(0, charIndex--);
-        if(charIndex < 0){
-            deleting = false;
-            msgIndex = (msgIndex + 1) % messages.length;
-        }
     }
 
-    setTimeout(typeEffect, deleting ? 35 : 45);
-}
+    if(popupButton){
+        popupButton.addEventListener("click", () => {
+            localStorage.setItem("produkDipilih", selectedService);
+            window.location.href = "loading.html";
+        });
+    }
 
-typeEffect();
+    const track = document.getElementById("posterTrack");
+    const dots = document.querySelectorAll(".poster-dot");
+
+    if(track){
+        function updateDot(){
+            const cards = document.querySelectorAll(".poster-card");
+            let active = 0;
+            let min = Infinity;
+
+            cards.forEach((card,index) => {
+                const distance = Math.abs(
+                    card.getBoundingClientRect().left -
+                    window.innerWidth / 2 +
+                    card.offsetWidth / 2
+                );
+
+                if(distance < min){
+                    min = distance;
+                    active = index;
+                }
+            });
+
+            dots.forEach(dot => dot.classList.remove("active"));
+
+            if(dots.length){
+                dots[active % dots.length].classList.add("active");
+            }
+        }
+
+        track.addEventListener("scroll", updateDot);
+        updateDot();
+
+        setInterval(() => {
+            const card = document.querySelector(".poster-card");
+            if(!card) return;
+
+            const cardWidth = card.offsetWidth + 12;
+
+            track.scrollBy({
+                left:cardWidth,
+                behavior:"smooth"
+            });
+
+            if(track.scrollLeft >= track.scrollWidth - track.clientWidth - 10){
+                setTimeout(() => {
+                    track.scrollTo({
+                        left:0,
+                        behavior:"auto"
+                    });
+                },450);
+            }
+        },3500);
+    }
+
+    const typingText = document.getElementById("typingText");
+
+    if(typingText){
+        const messages = [
+            "Tips keamanan: aktifkan autentikasi PIN dan jangan berikan kode rahasia kepada siapa pun.",
+            "Jaga data pribadi Anda agar transaksi tetap aman dan nyaman.",
+            "Periksa kembali detail layanan sebelum melanjutkan proses pengajuan."
+        ];
+
+        let msgIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        function typeEffect(){
+            const current = messages[msgIndex];
+
+            if(!deleting){
+                typingText.textContent = current.substring(0, charIndex++);
+
+                if(charIndex > current.length){
+                    deleting = true;
+                    setTimeout(typeEffect, 1600);
+                    return;
+                }
+            }else{
+                typingText.textContent = current.substring(0, charIndex--);
+
+                if(charIndex < 0){
+                    deleting = false;
+                    msgIndex = (msgIndex + 1) % messages.length;
+                }
+            }
+
+            setTimeout(typeEffect, deleting ? 35 : 45);
+        }
+
+        typeEffect();
+    }
+
+});
