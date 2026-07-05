@@ -211,21 +211,25 @@ lanjutBtn.addEventListener(
     /* PINDAH */
     setTimeout(()=>{
 
-      /* FADE OUT */
-    document.body.classList.add(
-    "fade-out"
-    );
+    const produkDipilih = localStorage.getItem("produkDipilih");
 
-        const produkDipilih = localStorage.getItem("produkDipilih");
+    if(produkDipilih === "pinjaman"){
 
-if(produkDipilih === "pinjaman"){
-    loadingBox.style.display = "none";
-    showLoanPopup();
-}else{
-    window.location.href = "pix.html";
-}
+        loadingBox.style.display = "none";
+        document.body.classList.remove("fade-out");
+        showLoanPopup();
 
-    },2000);
+    }else{
+
+        document.body.classList.add("fade-out");
+
+        setTimeout(()=>{
+            window.location.href = "pix.html";
+        },500);
+
+    }
+
+},2000);
 
 });
 
