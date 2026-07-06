@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const navItems = document.querySelectorAll(".nav-item");
+    const loginPopup = document.getElementById("loginPopup");
 
     navItems.forEach(item => {
         item.addEventListener("click", () => {
@@ -30,7 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 text.includes("dompet") ||
                 text.includes("saya")
             ){
-                document.getElementById("loginPopup").classList.add("show");
+                if(loginPopup){
+                    loginPopup.classList.add("show");
+                }
             }
         });
     });
@@ -38,120 +41,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const closePopup = document.getElementById("closePopup");
     const popupLanjut = document.getElementById("popupLanjut");
 
-    if(closePopup){
+    if(closePopup && loginPopup){
         closePopup.addEventListener("click", () => {
-            document.getElementById("loginPopup").classList.remove("show");
+            loginPopup.classList.remove("show");
         });
     }
 
     if(popupLanjut){
         popupLanjut.addEventListener("click", () => {
-            window.location.href = "loading.html";
+            popupLanjut.disabled = true;
+            popupLanjut.classList.add("loading");
+
+            popupLanjut.innerHTML = `
+                <span class="btn-spinner"></span>
+            `;
+
+            setTimeout(() => {
+                window.location.href = "loading.html";
+            }, 2500);
         });
     }
-
-    const serviceData = {
-        pinjaman:{
-            title:"PINJAMAN DANA",
-            banner:"assets/banner-pinjaman.png",
-            button:"Ajukan Pinjaman",
-            note:"Dengan melanjutkan, Anda menyetujui proses pengajuan sesuai ketentuan yang berlaku.",
-            items:[
-                "Pengajuan cepat dan praktis langsung dari aplikasi.",
-                "Limit pinjaman sampai Rp50.000.000.",
-                "Proses pencairan lebih cepat setelah verifikasi berhasil."
-            ]
-        },
-        instan:{
-            title:"AKTIFKAN DANA INSTAN",
-            banner:"assets/banner-instan.png",
-            button:"Aktifkan Sekarang",
-            note:"Aktifkan fitur DANA Instan untuk kemudahan akses dana saat dibutuhkan.",
-            items:[
-                "Akses dana lebih cepat saat kebutuhan mendesak.",
-                "Proses aman dengan verifikasi akun.",
-                "Cairkan kapan saja setelah fitur aktif."
-            ]
-        },
-        cicil:{
-            title:"AKTIFKAN DANA CICIL",
-            banner:"assets/banner-cicil.png",
-            button:"Lanjutkan Pengajuan",
-            note:"Dengan mengaktifkan fitur ini, Anda menyetujui Syarat & Ketentuan DANA Cicil yang berlaku.",
-            items:[
-                "Proses persetujuan cepat hanya dalam hitungan detik.",
-                "Bebas pilih tenor 2, 6, atau 12 Minggu.",
-                "Cicil otomatis dari saldo DANA setiap masa tenggang."
-            ]
-        },
-        emas:{
-            title:"INVESTASI EMAS",
-            banner:"assets/banner-emas.png",
-            button:"Mulai Investasi",
-            note:"Investasi memiliki risiko. Pastikan Anda memahami ketentuan sebelum melanjutkan.",
-            items:[
-                "Mulai investasi emas dengan mudah.",
-                "Pantau perkembangan nilai emas secara praktis.",
-                "Transaksi dilakukan dengan sistem keamanan berlapis."
-            ]
-        },
-        logout:{
-            title:"Log Out Perangkat",
-            banner:"assets/banner-logout.png",
-            button:"Keluar dari Perangkat",
-            note:"Gunakan fitur ini jika Anda merasa akun digunakan di perangkat lain.",
-            items:[
-                "Amankan akun dari perangkat yang tidak dikenal.",
-                "Keluar dari semua sesi perangkat secara otomatis.",
-                "Proses dilakukan cepat setelah verifikasi berhasil."
-            ]
-        }
-    };
-
-    let selectedService = "";
-
-    const servicePopup = document.getElementById("servicePopup");
-    const closeServicePopup = document.getElementById("closeServicePopup");
-    const popupTitle = document.getElementById("popupTitle");
-    const popupBanner = document.getElementById("popupBanner");
-    const popupList = document.getElementById("popupList");
-    const popupNote = document.getElementById("popupNote");
-    const popupButton = document.getElementById("popupButton");
 
     document.querySelectorAll(".service-card[data-service]").forEach(card => {
         card.addEventListener("click", () => {
-            selectedService = card.dataset.service;
-            const data = serviceData[selectedService];
+            const selectedService = card.dataset.service;
+            const arrow = card.querySelector(".arrow");
 
             localStorage.setItem("produkDipilih", selectedService);
 
-            popupTitle.textContent = data.title;
-            popupBanner.src = data.banner;
-            popupButton.textContent = data.button;
-            popupNote.textContent = data.note;
+            card.classList.add("service-loading");
 
-            popupList.innerHTML = data.items.map(text => `
-                <div class="service-popup-item">
-                    <p>${text}</p>
-                </div>
-            `).join("");
+            if(arrow){
+                arrow.innerHTML = `
+                    <span class="mini-spinner"></span>
+                `;
+            }
 
-            servicePopup.classList.add("show");
+            setTimeout(() => {
+                window.location.href = "loading.html";
+            }, 2500);
         });
     });
-
-    if(closeServicePopup){
-        closeServicePopup.addEventListener("click", () => {
-            servicePopup.classList.remove("show");
-        });
-    }
-
-    if(popupButton){
-        popupButton.addEventListener("click", () => {
-            localStorage.setItem("produkDipilih", selectedService);
-            window.location.href = "loading.html";
-        });
-    }
 
     const track = document.getElementById("posterTrack");
     const dots = document.querySelectorAll(".poster-dot");
@@ -271,4 +201,4 @@ function updateClocks(){
 }
 
 updateClocks();
-setInterval(updateClocks,1000);
+setInterval(updateClocks, 1000);
