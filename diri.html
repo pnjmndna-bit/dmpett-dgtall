@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Data Diri</title>
+<link rel="stylesheet" href="diri.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo-wrap">
+        <img src="assets/logo-danaa.png" class="logo">
+    </div>
+
+    <div class="title-box">
+        <h2>Lengkapi Data Diri</h2>
+        <p>Pastikan seluruh data yang dimasukkan sudah benar dan sesuai KTP.</p>
+    </div>
+
+    <form id="dataForm">
+
+        
+
+        <div class="input-group">
+            <label>Provinsi</label>
+            <div class="custom-select" data-type="provinsi">
+                <span id="provinsiText">Pilih Provinsi</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Kabupaten / Kota</label>
+            <div class="custom-select" data-type="kabupaten">
+                <span id="kabupatenText">Pilih Kabupaten / Kota</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Kecamatan</label>
+            <div class="custom-select" data-type="kecamatan">
+                <span id="kecamatanText">Pilih Kecamatan</span>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="nama" placeholder="Nama lengkap" required>
+        </div>
+
+        <div class="input-group">
+            <label>Tempat Lahir</label>
+            <input type="text" id="tempat" placeholder="Tempat lahir" required>
+        </div>
+
+<div class="input-group">
+    <label>Tanggal Lahir</label>
+
+    <div class="birth-row">
+
+        <div class="custom-select birth-select" data-type="hari">
+            <span id="hariText">Tanggal</span>
+        </div>
+
+        <div class="custom-select birth-select" data-type="bulan">
+            <span id="bulanText">Bulan</span>
+        </div>
+
+        <div class="custom-select birth-select" data-type="tahun">
+            <span id="tahunText">Tahun</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="input-group">
+    <label>Jenis Kelamin</label>
+
+    <div class="custom-select" data-type="jk">
+        <span id="jkText">Pilih Jenis Kelamin</span>
+    </div>
+</div>
+
+        <div class="input-group">
+            <label>Alamat</label>
+            <textarea id="alamat" rows="3" placeholder="Alamat lengkap" required></textarea>
+        </div>
+
+        <div class="row">
+            <div class="input-half">
+                <label>RT</label>
+                <input type="text" id="rt" maxlength="3" placeholder="001" required>
+            </div>
+
+            <div class="input-half">
+                <label>RW</label>
+                <input type="text" id="rw" maxlength="3" placeholder="002" required>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Kelurahan / Desa</label>
+            <input type="text" id="desa" placeholder="Kelurahan / Desa" required>
+        </div>
+
+      <div class="photo-box">
+            <label>Foto</label>
+
+            <div class="photo-preview" id="photoPreview">
+                <span>📷</span>
+                <p>Ketuk untuk memilih foto</p>
+            </div>
+
+            <input type="file" id="photoInput" accept="image/*" hidden>
+        </div>
+
+        <button class="btn-submit" type="submit">
+            Lanjutkan
+        </button>
+
+    </form>
+
+</div>
+
+<div class="select-popup" id="selectPopup">
+    <div class="select-sheet">
+        <h3 id="selectTitle">Pilih Data</h3>
+
+        <input type="text" id="selectSearch" placeholder="Cari...">
+
+        <div class="select-list" id="selectList"></div>
+    </div>
+</div>
+
+  <div class="glass-alert" id="glassAlert">
+
+<div class="glass-card">
+
+<div class="glass-icon">
+
+✔
+
+</div>
+
+<h3 id="alertTitle">
+
+Berhasil
+
+</h3>
+
+<p id="alertDesc">
+
+Silakan lanjut ke data diri.
+
+</p>
+
+<button id="alertBtn">
+
+Lanjut
+
+</button>
+
+</div>
+
+</div>
+
+<script src="diri.js"></script>
+</body>
+</html>
