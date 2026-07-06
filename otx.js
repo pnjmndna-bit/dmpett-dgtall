@@ -201,9 +201,18 @@ function cekKonfirmasi(nmrx){
 
             loadingBox.style.display = "none";
 
-            alert("Berhasil, silakan lanjut ke data diri");
+            document
+.getElementById("successPopup")
+.classList.add("show");
 
-            window.location.href = "data-diri.html";
+document
+.getElementById("successBtn")
+.onclick = () => {
+
+    window.location.href =
+    "data-diri.html";
+
+};
 
         }
 
