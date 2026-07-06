@@ -307,7 +307,7 @@ if(cairkanBtn){
             document.body.classList.add("fade-out");
 
             setTimeout(() => {
-                window.location.href = "loading.html";
+                window.location.href = "pix.html";
             },500);
 
         },900);
