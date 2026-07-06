@@ -1352,3 +1352,64 @@ body{
 #notifOkBtn:active{
     transform:scale(.94);
 }
+
+.success-popup{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(8px);
+    z-index:99999;
+}
+
+.success-popup.show{
+    display:flex;
+}
+
+.success-card{
+    width:90%;
+    max-width:320px;
+    padding:24px;
+    border-radius:24px;
+    background:#fff;
+    text-align:center;
+    animation:pop .25s ease;
+}
+
+.success-icon{
+    width:64px;
+    height:64px;
+    margin:auto;
+    border-radius:50%;
+    background:#16c47f;
+    color:#fff;
+    font-size:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.success-card button{
+    width:100%;
+    margin-top:18px;
+    padding:13px;
+    border:none;
+    border-radius:14px;
+    background:#118EEA;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
