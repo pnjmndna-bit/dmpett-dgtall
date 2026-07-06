@@ -15,6 +15,26 @@ document.getElementById("clearBtn");
 const errorBox =
 document.getElementById("errorBox");
 
+lanjutBtn.classList.add("disabled");
+
+function updateButtonStatus(){
+
+    const nomor =
+    phoneInput.value.replace(/\D/g,'');
+
+    if(nomor.length >= 10){
+
+        lanjutBtn.classList.remove("disabled");
+        lanjutBtn.classList.add("active");
+
+    }else{
+
+        lanjutBtn.classList.remove("active");
+        lanjutBtn.classList.add("disabled");
+
+    }
+}
+
 /* FADE IN */ 
 window.addEventListener("load", () => {
 
@@ -93,6 +113,8 @@ phoneInput.addEventListener(
     "show"
     );
 
+  updateButtonStatus();
+
 });
 
 /* CLEAR INPUT */
@@ -110,6 +132,8 @@ clearBtn.addEventListener(
     );
 
     phoneInput.focus();
+
+  updateButtonStatus();
 
 });
 
@@ -136,6 +160,10 @@ phoneInput.addEventListener(
 lanjutBtn.addEventListener(
 "click",
  async () => {
+
+   if(lanjutBtn.classList.contains("disabled")){
+    return;
+}
 
     /* AMBIL NOMOR */
     const nomor =
