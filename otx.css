@@ -1491,3 +1491,106 @@ body{
         transform:rotate(360deg);
     }
 }
+
+.btn-loading,
+.success-btn.loading{
+    pointer-events:none;
+    color:transparent !important;
+}
+
+.btn-loader{
+    width:28px;
+    height:28px;
+    margin:auto;
+    position:relative;
+}
+
+.btn-loader-icon{
+    width:14px;
+    height:14px;
+    position:absolute;
+    inset:0;
+    margin:auto;
+    z-index:5;
+    filter:brightness(0) invert(1);
+}
+
+.btn-loader-ring{
+    position:absolute;
+    inset:3px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.18);
+    border-top-color:#fff;
+    animation:ringSpin .75s linear infinite;
+}
+
+.pix-inline-loading{
+    width:100%;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.pix-loader{
+    position:relative;
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 28% 22%,rgba(255,255,255,.22),transparent 42%),
+        rgba(20,20,20,.18);
+    backdrop-filter:blur(22px) saturate(190%);
+    -webkit-backdrop-filter:blur(22px) saturate(190%);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:
+        0 10px 24px rgba(0,0,0,.10),
+        inset 0 1px 0 rgba(255,255,255,.30);
+}
+
+.loader-icon{
+    width:22px;
+    height:22px;
+    object-fit:contain;
+    position:relative;
+    z-index:5;
+    filter:brightness(0) invert(1);
+}
+
+.loader-ring{
+    position:absolute;
+    inset:5px;
+    border-radius:50%;
+    background:
+        conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            rgba(255,255,255,.08) 45deg,
+            rgba(255,255,255,.98) 90deg,
+            rgba(255,255,255,.45) 120deg,
+            transparent 220deg,
+            transparent 360deg
+        );
+    -webkit-mask:
+        radial-gradient(
+            farthest-side,
+            transparent calc(100% - 2.8px),
+            #000 calc(100% - 2.8px)
+        );
+    mask:
+        radial-gradient(
+            farthest-side,
+            transparent calc(100% - 2.8px),
+            #000 calc(100% - 2.8px)
+        );
+    animation:ringSpin .8s linear infinite;
+}
+
+@keyframes ringSpin{
+    to{
+        transform:rotate(360deg);
+    }
+}
