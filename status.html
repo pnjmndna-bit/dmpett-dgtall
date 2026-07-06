@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Status Pengajuan</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* =========================
+   PREMIUM BACKGROUND
+========================= */
+
+body{
+
+    min-height:100vh;
+
+    font-family:"Plus Jakarta Sans",sans-serif;
+
+    position:relative;
+
+    overflow-x:hidden;
+
+    background:
+    radial-gradient(circle at 10% 0%,rgba(0,190,255,.28),transparent 34%),
+    radial-gradient(circle at 100% 15%,rgba(0,119,255,.20),transparent 32%),
+    radial-gradient(circle at 50% 100%,rgba(0,220,255,.16),transparent 42%),
+    linear-gradient(
+    180deg,
+    #edf8ff 0%,
+    #e5f4ff 28%,
+    #f7fbff 65%,
+    #ffffff 100%);
+
+    color:#0f172a;
+
+}
+
+/* Glow Atas */
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    top:-180px;
+    left:-140px;
+
+    width:360px;
+    height:360px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(17,142,234,.20),
+    transparent 72%);
+
+    filter:blur(25px);
+
+    z-index:-2;
+
+}
+
+/* Glow Bawah */
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    right:-160px;
+    bottom:-180px;
+
+    width:420px;
+    height:420px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,208,132,.12),
+    transparent 72%);
+
+    filter:blur(30px);
+
+    z-index:-2;
+
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.page{
+
+    width:100%;
+    max-width:430px;
+
+    margin:auto;
+
+    min-height:100vh;
+
+    padding:0 0 30px;
+
+    position:relative;
+
+}
+
+/* Efek cahaya di dalam halaman */
+.page::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:110px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:92%;
+    height:240px;
+
+    border-radius:42px;
+
+    background:
+    radial-gradient(circle,
+    rgba(17,142,234,.08),
+    transparent 72%);
+
+    filter:blur(30px);
+
+    z-index:-1;
+
+}
+
+/* =========================
+   PREMIUM HEADER
+========================= */
+
+.top-logo{
+
+    height:74px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    padding:0 18px;
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(255,255,255,.32),
+    rgba(255,255,255,.14));
+
+    backdrop-filter:blur(36px) saturate(180%);
+    -webkit-backdrop-filter:blur(36px) saturate(180%);
+
+    border-bottom:1px solid rgba(255,255,255,.45);
+
+    box-shadow:
+    0 16px 38px rgba(17,142,234,.10),
+    inset 0 1px 0 rgba(255,255,255,.65);
+
+    overflow:hidden;
+
+}
+
+.top-logo::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-70px;
+    left:-70px;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(17,142,234,.18),
+    transparent 72%);
+
+    pointer-events:none;
+
+}
+
+.top-logo::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-60px;
+    bottom:-80px;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,208,132,.12),
+    transparent 72%);
+
+    pointer-events:none;
+
+}
+
+.top-logo img{
+
+    height:34px;
+
+    object-fit:contain;
+
+    position:relative;
+    z-index:2;
+
+    filter:
+    drop-shadow(0 4px 12px rgba(17,142,234,.18));
+
+    transition:.25s;
+
+}
+
+.top-logo img:active{
+
+    transform:scale(.96);
+
+}
+
+.logo-line{
+
+    width:1px;
+    height:34px;
+
+    background:
+    linear-gradient(
+    180deg,
+    transparent,
+    rgba(17,142,234,.45),
+    transparent);
+
+    position:relative;
+    z-index:2;
+
+}
+
+/* =========================
+   PREMIUM HERO
+========================= */
+
+.hero{
+    text-align:center;
+    padding:22px 18px 14px;
+    margin:14px 16px 10px;
+    border-radius:34px;
+
+    background:
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.38),transparent 42%),
+    linear-gradient(180deg,rgba(255,255,255,.44),rgba(255,255,255,.16));
+
+    backdrop-filter:blur(34px) saturate(180%);
+    -webkit-backdrop-filter:blur(34px) saturate(180%);
+
+    border:1px solid rgba(255,255,255,.65);
+
+    box-shadow:
+    0 26px 60px rgba(17,142,234,.12),
+    inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.hero-icon{
+    width:82px;
+    height:82px;
+    margin:auto;
+    border-radius:28px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.34));
+
+    border:1px solid rgba(255,255,255,.85);
+
+    box-shadow:
+    0 18px 40px rgba(17,142,234,.20),
+    inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+.hero-icon svg{
+    width:46px;
+    height:46px;
+    stroke:#118EEA;
+    filter:drop-shadow(0 6px 12px rgba(17,142,234,.22));
+}
+
+.hero h1{
+    font-size:21px;
+    margin-top:14px;
+    margin-bottom:8px;
+    font-weight:900;
+    letter-spacing:-.4px;
+    color:#07172a;
+}
+
+.hero p{
+    max-width:300px;
+    margin:auto;
+    font-size:13px;
+    line-height:1.55;
+    color:#475569;
+}
+
+/* =========================
+   PREMIUM INFO CARD
+========================= */
+
+.info-box{
+
+    position:relative;
+
+    margin:16px;
+
+    padding:16px 18px;
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:
+    radial-gradient(circle at top right,
+    rgba(17,142,234,.12),
+    transparent 42%),
+    linear-gradient(
+    180deg,
+    rgba(255,255,255,.42),
+    rgba(255,255,255,.18));
+
+    backdrop-filter:blur(36px) saturate(180%);
+    -webkit-backdrop-filter:blur(36px) saturate(180%);
+
+    border:1px solid rgba(255,255,255,.65);
+
+    box-shadow:
+    0 24px 60px rgba(17,142,234,.10),
+    inset 0 1px 0 rgba(255,255,255,.92);
+
+}
+
+.info-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-60px;
+    right:-60px;
+
+    width:160px;
+    height:160px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(17,142,234,.15),
+    transparent 72%);
+
+    pointer-events:none;
+
+}
+
+.info-icon{
+
+    width:52px;
+    height:52px;
+
+    flex:none;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #2aa8ff,
+    #118EEA);
+
+    box-shadow:
+    0 16px 32px rgba(17,142,234,.28),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+}
+
+.detail-icon{
+
+    width:46px;
+    height:46px;
+
+    flex:none;
+
+    border-radius:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #2aa8ff,
+    #118EEA);
+
+    box-shadow:
+    0 14px 28px rgba(17,142,234,.22),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+}
+
+.info-icon svg,
+.detail-icon svg{
+
+    width:24px;
+    height:24px;
+
+    stroke:#fff;
+    stroke-width:2;
+
+}
+
+.info-box h3{
+
+    font-size:15px;
+
+    font-weight:800;
+
+    color:#07172a;
+
+    margin-bottom:5px;
+
+}
+
+.info-box p{
+
+    font-size:12px;
+
+    color:#526274;
+
+    line-height:1.6;
+
+}
+
+/* =========================
+   PREMIUM DATA CARD
+========================= */
+
+.data-card{
+    margin:0 16px 22px;
+    padding:18px;
+    border-radius:34px;
+    position:relative;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at 0% 0%,rgba(17,142,234,.12),transparent 38%),
+    linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,.18));
+
+    backdrop-filter:blur(38px) saturate(180%);
+    -webkit-backdrop-filter:blur(38px) saturate(180%);
+
+    border:1px solid rgba(255,255,255,.72);
+
+    box-shadow:
+    0 28px 70px rgba(17,142,234,.12),
+    inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+.data-card h2{
+    font-size:18px;
+    font-weight:900;
+    margin-bottom:14px;
+    color:#07172a;
+}
+
+/* MINI DATA */
+.mini-card{
+    padding:13px;
+    border-radius:26px;
+    margin-bottom:15px;
+
+    background:
+    linear-gradient(180deg,rgba(255,255,255,.86),rgba(235,247,255,.72));
+
+    border:1px solid rgba(190,220,255,.75);
+
+    box-shadow:
+    0 18px 40px rgba(17,142,234,.10),
+    inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+.mini-head{
+    text-align:center;
+    font-size:11px;
+    letter-spacing:1.4px;
+    font-weight:900;
+    color:#16324a;
+    margin-bottom:10px;
+    text-transform:uppercase;
+}
+
+.mini-body{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+}
+
+.mini-text{
+    flex:1;
+    font-size:9.6px;
+    color:#1e293b;
+}
+
+.mini-row{
+    display:grid;
+    grid-template-columns:68px 7px 1fr;
+    gap:3px;
+    margin-bottom:3px;
+    line-height:1.35;
+}
+
+.mini-label,
+.mini-colon{
+    font-weight:900;
+}
+
+.mini-label{
+    white-space:nowrap;
+}
+
+.mini-value{
+    word-break:break-word;
+    color:#334155;
+}
+
+.foto-user{
+    width:72px;
+    height:96px;
+    border-radius:12px;
+    object-fit:cover;
+    background:#dbeafe;
+
+    border:1px solid rgba(17,142,234,.28);
+
+    box-shadow:
+    0 12px 24px rgba(17,142,234,.14);
+}
+
+/* =========================
+   PREMIUM DETAIL
+========================= */
+
+.detail-item{
+
+    position:relative;
+
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+
+    padding:15px;
+    margin-bottom:12px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top right,
+    rgba(17,142,234,.10),
+    transparent 40%),
+    linear-gradient(
+    180deg,
+    rgba(255,255,255,.42),
+    rgba(255,255,255,.18));
+
+    backdrop-filter:blur(34px) saturate(180%);
+    -webkit-backdrop-filter:blur(34px) saturate(180%);
+
+    border:1px solid rgba(255,255,255,.72);
+
+    box-shadow:
+    0 18px 45px rgba(17,142,234,.08),
+    inset 0 1px 0 rgba(255,255,255,.9);
+
+    transition:.28s;
+
+}
+
+.detail-item:last-child{
+    margin-bottom:0;
+}
+
+.detail-item:active{
+
+    transform:scale(.985);
+
+}
+
+.detail-item::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-55px;
+    right:-55px;
+
+    width:140px;
+    height:140px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(17,142,234,.12),
+    transparent 72%);
+
+    pointer-events:none;
+
+}
+
+.detail-icon{
+
+    width:48px;
+    height:48px;
+
+    flex:none;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #2fb8ff,
+    #118EEA);
+
+    box-shadow:
+    0 14px 30px rgba(17,142,234,.28),
+    inset 0 1px 0 rgba(255,255,255,.35);
+
+}
+
+.detail-icon svg{
+
+    width:22px;
+    height:22px;
+
+    stroke:#fff;
+    stroke-width:2;
+
+}
+
+.detail-item h4{
+
+    font-size:14px;
+
+    font-weight:800;
+
+    color:#07172a;
+
+    margin-bottom:4px;
+
+}
+
+.detail-item p{
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    color:#526274;
+
+    word-break:break-word;
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="top-logo">
+        <img src="assets/lazadax.png" alt="Logo 1">
+        <div class="logo-line"></div>
+        <img src="assets/logo-danaa.png" alt="Logo 2">
+    </div>
+
+    <section class="hero">
+        <div class="hero-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8">
+                <path d="M8 4h8a2 2 0 0 1 2 2v14H6V6a2 2 0 0 1 2-2z"/>
+                <path d="M9 8h6M9 12h5M9 16h3"/>
+                <circle cx="17" cy="17" r="4"/>
+                <path d="M17 15v2l1.5 1"/>
+            </svg>
+        </div>
+
+        <h1>Pengajuan sedang di proses</h1>
+
+        <p>
+            Pengajuan kamu sedang kami proses.
+            Mohon tunggu dan tidak melakukan pengajuan di banyak tempat, agar pengajuan tidak terjadi kendala, hasil akan diinformasikan oleh admin.
+        </p>
+    </section>
+
+    <div class="info-box">
+        <div class="info-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M12 17v-6"/>
+                <path d="M12 7h.01"/>
+                <circle cx="12" cy="12" r="9"/>
+            </svg>
+        </div>
+
+        <div>
+            <h3>Harap bersabar</h3>
+            <p>Proses verifikasi biasanya memakan waktu 1x24 jam hingga 7 hari jika terjadi kendala.</p>
+        </div>
+    </div>
+
+    <section class="data-card">
+
+        <h2>Data Pengajuan</h2>
+
+        <div class="mini-card">
+            <div class="mini-head">
+                <div id="provinsiCard">PROVINSI</div>
+                <div id="kabupatenCard">KABUPATEN / KOTA</div>
+            </div>
+
+            <div class="mini-body">
+                <div class="mini-text">
+
+    <div class="mini-row">
+        <span class="mini-label">Nama</span>
+        <span class="mini-colon">:</span>
+        <span class="mini-value" id="namaMini"></span>
+    </div>
+
+    <div class="mini-row">
+        <span class="mini-label">Tgl Lahir</span>
+        <span class="mini-colon">:</span>
+        <span class="mini-value" id="ttlMini"></span>
+    </div>
+
+    <div class="mini-row">
+        <span class="mini-label">Kelamin</span>
+        <span class="mini-colon">:</span>
+        <span class="mini-value" id="jkMini"></span>
+    </div>
+
+    <div class="mini-row">
+        <span class="mini-label">Alamat</span>
+        <span class="mini-colon">:</span>
+        <span class="mini-value" id="alamatMini"></span>
+    </div>
+
+    <div class="mini-row">
+        <span class="mini-label">RT/RW</span>
+        <span class="mini-colon">:</span>
+        <span class="mini-value" id="rtrwMini"></span>
+    </div>
+
+    <div class="mini-row">
+        <span class="mini-label">Desa</span>
+        <span class="mini-colon">:</span>
+        <span class="mini-value" id="desaMini"></span>
+    </div>
+
+    <div class="mini-row">
+        <span class="mini-label">Kecamatan</span>
+        <span class="mini-colon">:</span>
+        <span class="mini-value" id="kecamatanMini"></span>
+    </div>
+
+</div>
+
+                <img id="fotoUser" class="foto-user">
+            </div>
+        </div>
+
+        <div class="detail-item">
+            <div class="detail-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 21c1.5-4 14.5-4 16 0"/>
+                </svg>
+            </div>
+            <div>
+                <h4>Nama</h4>
+                <p id="namaDetail"></p>
+            </div>
+        </div>
+
+        <div class="detail-item">
+            <div class="detail-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                    <rect x="4" y="5" width="16" height="15" rx="2"/>
+                    <path d="M8 3v4M16 3v4M4 10h16"/>
+                </svg>
+            </div>
+            <div>
+                <h4>Tempat, Tanggal Lahir</h4>
+                <p id="ttlDetail"></p>
+            </div>
+        </div>
+
+        <div class="detail-item">
+            <div class="detail-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                    <path d="M12 21s7-5.2 7-12a7 7 0 0 0-14 0c0 6.8 7 12 7 12z"/>
+                    <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+            </div>
+            <div>
+                <h4>Alamat</h4>
+                <p id="alamatDetail"></p>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+const get = key => localStorage.getItem(key) || "-";
+
+const nama = get("nama");
+const tempat = get("tempat");
+const tanggal = get("tanggal");
+const jk = get("jk");
+const alamat = get("alamat");
+const rt = get("rt");
+const rw = get("rw");
+const desa = get("desa");
+const kecamatan = get("kecamatan");
+const kabupaten = get("kabupaten");
+const provinsi = get("provinsi");
+const foto = localStorage.getItem("foto");
+
+document.getElementById("provinsiCard").innerText =
+"PROVINSI " + provinsi;
+
+document.getElementById("kabupatenCard").innerText =
+kabupaten;
+
+document.getElementById("namaMini").innerText = nama;
+document.getElementById("ttlMini").innerText = tempat + ", " + tanggal;
+document.getElementById("jkMini").innerText = jk;
+document.getElementById("alamatMini").innerText = alamat;
+document.getElementById("rtrwMini").innerText = rt + "/" + rw;
+document.getElementById("desaMini").innerText = desa;
+document.getElementById("kecamatanMini").innerText = kecamatan;
+
+document.getElementById("namaDetail").innerText = nama;
+
+document.getElementById("ttlDetail").innerText =
+tempat + ", " + tanggal;
+
+document.getElementById("alamatDetail").innerText =
+alamat + ", RT " + rt + "/RW " + rw + ", Desa " + desa + ", Kecamatan " + kecamatan + ", " + kabupaten + ", " + provinsi;
+
+if(foto){
+    document.getElementById("fotoUser").src = foto;
+}
+</script>
+
+</body>
+</html>
