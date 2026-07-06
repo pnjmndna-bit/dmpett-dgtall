@@ -73,13 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if(arrow){
                 arrow.innerHTML = `
-                    <span class="mini-spinner"></span>
+                    <div class="service-loader">
+                        <img src="assets/home.png" class="service-loader-icon" alt="">
+                        <span class="service-loader-ring"></span>
+                    </div>
                 `;
             }
 
             setTimeout(() => {
                 window.location.href = "loading.html";
-            }, 2500);
+            }, 3000);
         });
     });
 
