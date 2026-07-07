@@ -205,3 +205,10 @@ function updateClocks(){
 
 updateClocks();
 setInterval(updateClocks, 1000);
+
+const welcomePopup = document.getElementById("welcomePopup");
+const welcomeBtn = document.getElementById("welcomeBtn");
+
+welcomeBtn.addEventListener("click", () => {
+    welcomePopup.classList.add("hide");
+});
