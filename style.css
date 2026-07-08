@@ -1692,12 +1692,3 @@ body{
     }
 }
 
-@keyframes shineMove{
-    0%{
-        left:-80%;
-    }
-
-    45%,100%{
-        left:130%;
-    }
-}
