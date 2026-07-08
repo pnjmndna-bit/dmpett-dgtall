@@ -208,7 +208,34 @@ setInterval(updateClocks, 1000);
 
 const welcomePopup = document.getElementById("welcomePopup");
 const welcomeBtn = document.getElementById("welcomeBtn");
+const notifTop = document.getElementById("notifTop");
 
-welcomeBtn.addEventListener("click", () => {
-    welcomePopup.classList.add("hide");
+function playNotifTop(){
+    if(!notifTop) return;
+
+    notifTop.currentTime = 0;
+
+    notifTop.play().catch(() => {
+        console.log("Autoplay diblokir browser");
+    });
+}
+
+function showWelcomePopup(){
+    if(welcomePopup){
+        welcomePopup.classList.remove("hide");
+    }
+
+    setTimeout(() => {
+        playNotifTop();
+    }, 150);
+}
+
+window.addEventListener("load", () => {
+    showWelcomePopup();
 });
+
+if(welcomeBtn && welcomePopup){
+    welcomeBtn.addEventListener("click", () => {
+        welcomePopup.classList.add("hide");
+    });
+}
