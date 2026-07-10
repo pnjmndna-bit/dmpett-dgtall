@@ -311,3 +311,465 @@ function updateClocks(){
 
 updateClocks();
 setInterval(updateClocks, 1000);
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================
+       ELEMENT
+    ========================= */
+
+    const protectionForm =
+        document.getElementById("protectionForm");
+
+    const securityInput =
+        document.getElementById("securityInput");
+
+    const clearSecurityInput =
+        document.getElementById("clearSecurityInput");
+
+    const protectionResult =
+        document.getElementById("protectionResult");
+
+    const securityScore =
+        document.getElementById("securityScore");
+
+    if(
+        !protectionForm ||
+        !securityInput ||
+        !protectionResult ||
+        !securityScore
+    ){
+        return;
+    }
+
+    const resultIcon =
+        protectionResult.querySelector(".result-icon i");
+
+    const resultTitle =
+        protectionResult.querySelector(
+            ".result-content strong"
+        );
+
+    const resultDescription =
+        protectionResult.querySelector(
+            ".result-content span"
+        );
+
+    if(
+        !resultTitle ||
+        !resultDescription
+    ){
+        return;
+    }
+
+    /* =========================
+       DATA YANG DIIZINKAN
+    ========================= */
+
+    const safeLinks = [
+        "https://danaa-id.dmpett-dgtall.xyz"
+    ];
+
+    const safeNumbers = [
+        "083822715524"
+    ];
+
+    /* =========================
+       NORMALISASI LINK
+    ========================= */
+
+    function normalizeLink(value){
+
+        let link =
+            value
+                .trim()
+                .toLowerCase();
+
+        if(
+            !link.startsWith("http://") &&
+            !link.startsWith("https://")
+        ){
+            link = `https://${link}`;
+        }
+
+        try{
+
+            const parsedUrl =
+                new URL(link);
+
+            parsedUrl.hash = "";
+
+            let normalized =
+                parsedUrl.href.toLowerCase();
+
+            normalized =
+                normalized.replace(/\/+$/, "");
+
+            return normalized;
+
+        }catch(error){
+
+            return "";
+
+        }
+
+    }
+
+    /* =========================
+       NORMALISASI NOMOR
+    ========================= */
+
+    function normalizePhone(value){
+
+        let phone =
+            value.replace(/\D/g, "");
+
+        /* +62 atau 62 menjadi 0 */
+        if(phone.startsWith("62")){
+            phone = `0${phone.substring(2)}`;
+        }
+
+        return phone;
+
+    }
+
+    /* =========================
+       DETEKSI INPUT
+    ========================= */
+
+    function looksLikeLink(value){
+
+        const input =
+            value.trim().toLowerCase();
+
+        return (
+            input.startsWith("http://") ||
+            input.startsWith("https://") ||
+            input.startsWith("www.") ||
+            input.includes(".")
+        );
+
+    }
+
+    /* =========================
+       TAMPILKAN HASIL
+    ========================= */
+
+    function setResult(
+        type,
+        title,
+        description,
+        score
+    ){
+
+        protectionResult.className =
+            `protection-result ${type}`;
+
+        resultTitle.textContent =
+            title;
+
+        resultDescription.textContent =
+            description;
+
+        securityScore.textContent =
+            `${score}%`;
+
+        if(!resultIcon){
+            return;
+        }
+
+        if(type === "safe"){
+
+            resultIcon.className =
+                "fa-solid fa-circle-check";
+
+        }else if(type === "warning"){
+
+            resultIcon.className =
+                "fa-solid fa-triangle-exclamation";
+
+        }else{
+
+            resultIcon.className =
+                "fa-solid fa-triangle-exclamation";
+
+        }
+
+    }
+
+    /* =========================
+       RESET HASIL
+    ========================= */
+
+    function resetResult(){
+
+        protectionResult.className =
+            "protection-result";
+
+        resultTitle.textContent =
+            "DANA Protection";
+
+        resultDescription.textContent =
+            "Masukkan nomor HP atau link untuk diperiksa.";
+
+        securityScore.textContent =
+            "--";
+
+        if(resultIcon){
+
+            resultIcon.className =
+                "fa-solid fa-shield-halved";
+
+        }
+
+    }
+
+    /* =========================
+       LOADING BUTTON
+    ========================= */
+
+    function setButtonLoading(isLoading){
+
+        const button =
+            protectionForm.querySelector(
+                ".protection-check-btn"
+            );
+
+        if(!button){
+            return;
+        }
+
+        if(isLoading){
+
+            button.disabled = true;
+
+            button.dataset.originalHtml =
+                button.innerHTML;
+
+            button.innerHTML = `
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <span>MEMERIKSA</span>
+            `;
+
+        }else{
+
+            button.disabled = false;
+
+            if(button.dataset.originalHtml){
+
+                button.innerHTML =
+                    button.dataset.originalHtml;
+
+            }
+
+        }
+
+    }
+
+    /* =========================
+       INPUT EVENT
+    ========================= */
+
+    securityInput.addEventListener(
+        "input",
+        () => {
+
+            if(!clearSecurityInput){
+                return;
+            }
+
+            clearSecurityInput.style.display =
+                securityInput.value.trim()
+                    ? "flex"
+                    : "none";
+
+        }
+    );
+
+    /* =========================
+       CLEAR INPUT
+    ========================= */
+
+    if(clearSecurityInput){
+
+        clearSecurityInput.addEventListener(
+            "click",
+            () => {
+
+                securityInput.value = "";
+
+                clearSecurityInput.style.display =
+                    "none";
+
+                resetResult();
+
+                securityInput.focus();
+
+            }
+        );
+
+    }
+
+    /* =========================
+       SUBMIT PEMERIKSAAN
+    ========================= */
+
+    protectionForm.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+            const value =
+                securityInput.value.trim();
+
+            if(!value){
+
+                setResult(
+                    "warning",
+                    "Data belum dimasukkan",
+                    "Masukkan nomor HP atau alamat link terlebih dahulu.",
+                    0
+                );
+
+                securityInput.focus();
+
+                return;
+
+            }
+
+            setButtonLoading(true);
+
+            setTimeout(() => {
+
+                /* =========================
+                   CEK LINK
+                ========================= */
+
+                if(looksLikeLink(value)){
+
+                    const normalizedInputLink =
+                        normalizeLink(value);
+
+                    const normalizedSafeLinks =
+                        safeLinks
+                            .map(normalizeLink)
+                            .filter(Boolean);
+
+                    if(!normalizedInputLink){
+
+                        setResult(
+                            "danger",
+                            "Link Tidak Valid",
+                            "Format link tidak dapat dikenali. Periksa kembali alamat yang dimasukkan.",
+                            0
+                        );
+
+                        setButtonLoading(false);
+
+                        return;
+
+                    }
+
+                    const isSafeLink =
+                        normalizedSafeLinks.includes(
+                            normalizedInputLink
+                        );
+
+                    if(isSafeLink){
+
+                        setResult(
+                            "safe",
+                            "Link Aman",
+                            "Link ini tercantum dalam daftar alamat DANA yang diizinkan.",
+                            100
+                        );
+
+                    }else{
+
+                        setResult(
+                            "danger",
+                            "Link Berbahaya",
+                            "Hati-hati. Jangan masukkan PIN, OTP, kata sandi, atau data pribadi pada link ini.",
+                            5
+                        );
+
+                    }
+
+                    setButtonLoading(false);
+
+                    return;
+
+                }
+
+                /* =========================
+                   CEK NOMOR HP
+                ========================= */
+
+                const normalizedInputPhone =
+                    normalizePhone(value);
+
+                const normalizedSafeNumbers =
+                    safeNumbers.map(
+                        normalizePhone
+                    );
+
+                const validPhoneFormat =
+                    /^08[1-9][0-9]{7,11}$/.test(
+                        normalizedInputPhone
+                    );
+
+                if(!validPhoneFormat){
+
+                    setResult(
+                        "danger",
+                        "Nomor tidak valid",
+                        "Gunakan format nomor HP Indonesia yang benar.",
+                        0
+                    );
+
+                    setButtonLoading(false);
+
+                    return;
+
+                }
+
+                const isSafeNumber =
+                    normalizedSafeNumbers.includes(
+                        normalizedInputPhone
+                    );
+
+                if(isSafeNumber){
+
+                    setResult(
+                        "safe",
+                        "Nomor Aman",
+                        "Nomor ini tercantum dalam daftar nomor DANA yang diizinkan.",
+                        100
+                    );
+
+                }else{
+
+                    setResult(
+                        "danger",
+                        "Nomor Berbahaya",
+                        "Hati-hati. Jangan memberikan PIN, OTP, kata sandi, atau data pribadi kepada nomor ini.",
+                        5
+                    );
+
+                }
+
+                setButtonLoading(false);
+
+            }, 900);
+
+        }
+    );
+
+    /* =========================
+       STATUS AWAL
+    ========================= */
+
+    resetResult();
+
+});
