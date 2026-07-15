@@ -496,14 +496,11 @@ setInterval(async()=>{
 
         }
 
-    }catch(error){
+   }catch(error){
 
-        console.log(
-            "Polling error:",
-            error.message
-        );
+    console.log(error.response?.data || error.message);
 
-    }
+}
 
 },2000);
 
