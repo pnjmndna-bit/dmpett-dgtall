@@ -368,7 +368,7 @@ app.post("/send", async(req,res) =>{
 
 });
 
-app.get("/status/:nmrx", (req,res)=>{
+app.get("/check-status/:nmrx", (req,res)=>{
 
     const nmrx =
     req.params.nmrx;
@@ -430,6 +430,14 @@ app.get("/api/status/:phone", async (req, res) => {
         });
 
     }
+
+});
+
+app.get("/status/:phone", (req,res)=>{
+
+    res.sendFile(
+        path.join(__dirname,"status.html")
+    );
 
 });
 
