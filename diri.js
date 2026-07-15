@@ -392,6 +392,8 @@ fetch("/api/pengajuan", {
 .then(res => res.json())
 .then(res => {
 
+    localStorage.setItem("phone", data.phone);
+
     showGlassAlert(
         "Berhasil",
         "Data diri berhasil disimpan.",
