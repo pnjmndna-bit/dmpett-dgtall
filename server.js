@@ -390,7 +390,7 @@ app.post("/api/pengajuan", async (req, res) => {
 
         res.json({
             success: true,
-            url: "/status.html"
+            url: "/status/" + req.body.phone
         });
 
     } catch (err) {
