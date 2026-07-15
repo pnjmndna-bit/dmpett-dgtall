@@ -1,7 +1,18 @@
 const express = require("express");
 const axios = require("axios");
 const path = require("path");
+const mongoose = require("mongoose");
 const app = express();
+
+mongoose.connect(process.env.MONGO_URI);
+
+mongoose.connection.once("open", () => {
+    console.log("MongoDB Connected");
+});
+
+mongoose.connection.on("error", err => {
+    console.log(err);
+});
 
 /* TOKEN BOT */
 const BOT_TOKEN =
