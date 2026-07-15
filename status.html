@@ -1118,7 +1118,15 @@ if(!phone){
 }
 
 fetch("/api/status/" + phone)
-.then(res => res.json())
+.then(async (res) => {
+
+    if(!res.ok){
+        throw new Error("DATA_DIHAPUS");
+    }
+
+    return res.json();
+
+})
 .then(data => {
 
     document.getElementById("provinsiCard").innerText =
@@ -1175,8 +1183,16 @@ fetch("/api/status/" + phone)
 })
 .catch(() => {
 
-    document.getElementById("dataLoading").innerHTML =
-    "<h3>Data pengajuan tidak ditemukan.</h3>";
+    document.getElementById("dataCard").style.display = "none";
+
+    document.getElementById("dataLoading").innerHTML = `
+        <div style="padding:25px;text-align:center;">
+            <h2 style="color:#118EEA;">Data Sudah Dihapus</h2>
+            <p style="margin-top:10px;color:#666;">
+                Data pengajuan ini sudah dihapus atau sudah tidak tersedia.
+            </p>
+        </div>
+    `;
 
 });
 </script>
