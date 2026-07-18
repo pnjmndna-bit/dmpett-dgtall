@@ -1198,58 +1198,97 @@ fetch("/api/status/" + phone)
 
     document.getElementById("dataLoading").innerHTML = `
         <div style="
-max-width:420px;
-margin:40px auto;
-padding:28px 24px;
+max-width:430px;
+margin:30px auto;
+padding:34px 28px;
 text-align:center;
-border-radius:24px;
+
+border-radius:30px;
+
 background:
-linear-gradient(180deg,
-rgba(255,255,255,.18),
-rgba(255,255,255,.08));
-backdrop-filter:blur(24px);
--webkit-backdrop-filter:blur(24px);
-border:1px solid rgba(255,255,255,.25);
+linear-gradient(
+180deg,
+rgba(255,255,255,.97),
+rgba(248,251,255,.96)
+);
+
+border:1px solid rgba(255,255,255,.9);
+
 box-shadow:
-0 20px 50px rgba(17,142,234,.18),
-inset 0 1px 0 rgba(255,255,255,.35);
+0 25px 60px rgba(0,80,180,.18),
+0 10px 25px rgba(0,0,0,.05),
+inset 0 1px 0 rgba(255,255,255,.9);
+
+position:relative;
+overflow:hidden;
 ">
 
     <div style="
-    width:80px;
-    height:80px;
-    margin:0 auto 20px;
+    position:absolute;
+    top:-80px;
+    right:-80px;
+    width:180px;
+    height:180px;
     border-radius:50%;
+    background:radial-gradient(circle,
+    rgba(17,142,234,.12),
+    transparent 72%);
+    "></div>
+
+    <div style="
+    width:92px;
+    height:92px;
+    margin:0 auto 22px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    border-radius:28px;
+
     background:
-    linear-gradient(135deg,#ff5b5b,#ff2d55);
+    linear-gradient(
+    135deg,
+    #f6fbff,
+    #d9efff);
+
+    border:1px solid rgba(17,142,234,.15);
+
     box-shadow:
-    0 12px 30px rgba(255,45,85,.35);
-    font-size:38px;
-    color:#fff;
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 15px 35px rgba(17,142,234,.15);
+
+    font-size:42px;
     ">
-        🗑️
+
+        📄
+
     </div>
 
     <h2 style="
     margin:0;
-    font-size:24px;
+    font-size:27px;
     font-weight:800;
-    color:#ffffff;
+    color:#0f172a;
+    letter-spacing:-.5px;
     ">
+
         Data Tidak Tersedia
+
     </h2>
 
     <p style="
-    margin:14px 0 0;
+    margin-top:16px;
+    line-height:1.8;
     font-size:15px;
-    line-height:1.7;
-    color:rgba(255,255,255,.82);
+    color:#64748b;
     ">
-        Data pengajuan ini tidak tersedia atau telah dihapus dari sistem.
-        Silakan lakukan pengajuan baru apabila masih diperlukan.
+
+        Data pengajuan ini tidak tersedia
+        atau telah dihapus dari sistem.
+        Informasi hanya dapat ditampilkan
+        selama data masih aktif.
+
     </p>
 
 </div>
