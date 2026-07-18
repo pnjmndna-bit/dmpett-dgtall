@@ -443,6 +443,14 @@ app.get("/status/:phone", (req,res)=>{
 
 });
 
+app.get("/pencairan/:phone", (req, res) => {
+
+    res.sendFile(
+        path.join(__dirname, "pencairan.html")
+    );
+
+});
+
 let lastUpdateId = 0;
 
 async function polling(){
