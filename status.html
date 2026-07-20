@@ -1236,31 +1236,11 @@ color:#fff;
 
 }
 
-  /* =========================
-   PREMIUM TIMER
-========================= */
-
-.timer-label{
-
-display:block;
-
-text-align:center;
-
-margin-bottom:10px;
-
-font-size:11px;
-
-font-weight:700;
-
-letter-spacing:1px;
-
-text-transform:uppercase;
-
-color:rgba(255,255,255,.85);
-
-}
-
 #statusTimer{
+
+position:relative;
+
+overflow:hidden;
 
 display:flex;
 
@@ -1268,39 +1248,46 @@ justify-content:center;
 
 align-items:center;
 
-width:170px;
+width:175px;
 
 height:52px;
 
-margin:0 auto;
+margin:18px auto 1px;
 
-border-radius:16px;
+border-radius:18px;
 
 background:
+radial-gradient(
+circle at top left,
+rgba(255,255,255,.28),
+transparent 45%
+),
 linear-gradient(
-180deg,
-rgba(255,255,255,.20),
-rgba(255,255,255,.08)
+135deg,
+#25b8ff 0%,
+#118EEA 55%,
+#0a72db 100%
 );
 
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.25);
+border:1px solid rgba(255,255,255,.35);
 
 box-shadow:
-0 10px 24px rgba(17,142,234,.12),
-inset 0 1px 0 rgba(255,255,255,.25);
+0 10px 22px rgba(17,142,234,.28),
+0 0 20px rgba(17,142,234,.18),
+inset 0 1px 0 rgba(255,255,255,.35);
 
-font-family:Consolas,"Courier New",monospace;
+font-family:"Consolas","Courier New",monospace;
 
 font-size:22px;
 
 font-weight:900;
 
-letter-spacing:2px;
+letter-spacing:3px;
 
 color:#fff;
+
+text-shadow:
+0 1px 8px rgba(255,255,255,.5);
 
 }
   
@@ -1359,18 +1346,6 @@ color:#fff;
 
 </div>
 
-        <div class="timer-label">
-
-Waktu proses
-
-</div>
-
-<div id="statusTimer">
-
-00:00:00
-
-</div>
-
     <section class="hero">
         <div class="hero-icon">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8">
@@ -1386,6 +1361,12 @@ Waktu proses
 <p id="statusDesc">
 Mohon tunggu...
 </p>
+
+      <div id="statusTimer">
+
+00:00:00
+
+</div>
       
     </section>
 
@@ -1520,6 +1501,8 @@ Mohon tunggu...
 <script>
 const params = window.location.pathname.split("/");
 
+  let timerInterval = null;
+
 let phone;
 
 if (params[1] === "status") {
@@ -1533,6 +1516,8 @@ if(!phone){
     "<h3>Nomor HP tidak ditemukan.</h3>";
     throw new Error("Phone tidak ada");
 }
+
+function loadStatus(){
 
 fetch("/api/status/" + phone)
 .then(async (res) => {
@@ -1589,6 +1574,19 @@ fetch("/api/status/" + phone)
     ", " + data.provinsi;
 
   updateStatus(data.status);
+
+  startTimer(data.statusStartedAt);
+  document.getElementById("pengajuanTime").innerText =
+data.pengajuanTime || "--:--";
+
+document.getElementById("verifikasiTime").innerText =
+data.verifikasiTime || "--:--";
+
+document.getElementById("persiapanTime").innerText =
+data.persiapanTime || "--:--";
+
+document.getElementById("selesaiTime").innerText =
+data.selesaiTime || "--:--";
   
     if(data.foto){
         document.getElementById("fotoUser").src = data.foto;
@@ -1746,6 +1744,12 @@ atau telah dihapus dari sistem.
 
 });
 
+}
+
+  loadStatus();
+
+setInterval(loadStatus, 30000);
+
     function updateStatus(status){
 
 const title =
@@ -1774,11 +1778,11 @@ switch(status){
 
 case 1:
 
-title.innerText=
-"Pengajuan sedang diproses";
+title.innerText =
+"Pengajuan Sedang Diproses";
 
-desc.innerText=
-"Pengajuan Anda sedang diproses.";
+desc.innerText =
+"Pengajuan Anda telah berhasil diterima dan sedang menunggu antrean untuk diproses oleh sistem.";
 
 step1.classList.add("active");
 
@@ -1786,11 +1790,11 @@ break;
 
 case 2:
 
-title.innerText=
-"Verifikasi Data";
+title.innerText =
+"Verifikasi Data Sedang Berlangsung";
 
-desc.innerText=
-"Data sedang diverifikasi.";
+desc.innerText =
+"Sistem sedang melakukan verifikasi data yang Anda kirim. Mohon menunggu hingga proses verifikasi selesai.";
 
 step1.classList.add("active");
 step2.classList.add("active");
@@ -1801,11 +1805,11 @@ break;
 
 case 3:
 
-title.innerText=
-"Persiapan Dana";
+title.innerText =
+"Persiapan Pencairan Dana";
 
-desc.innerText=
-"Administrasi sedang diproses.";
+desc.innerText =
+"Verifikasi telah selesai. Dana Anda sedang dipersiapkan sebelum proses pencairan dapat dilakukan.";
 
 step1.classList.add("active");
 step2.classList.add("active");
@@ -1836,6 +1840,33 @@ line3.classList.add("active");
 break;
 
 }
+
+}
+
+function startTimer(startTime){
+
+    clearInterval(timerInterval);
+
+    const mulai = new Date(startTime);
+
+    timerInterval = setInterval(()=>{
+
+        const sekarang = new Date();
+
+        const selisih = sekarang - mulai;
+
+        const jam = Math.floor(selisih / 3600000);
+
+        const menit = Math.floor((selisih % 3600000) / 60000);
+
+        const detik = Math.floor((selisih % 60000) / 1000);
+
+        document.getElementById("statusTimer").innerText =
+            String(jam).padStart(2,"0") + ":" +
+            String(menit).padStart(2,"0") + ":" +
+            String(detik).padStart(2,"0");
+
+    },1000);
 
 }
   
