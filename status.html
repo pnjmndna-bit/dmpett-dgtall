@@ -953,6 +953,357 @@ body::after{
     }
 
 }
+
+/* =========================
+   PREMIUM PROGRESS STATUS
+========================= */
+
+.progress-status{
+
+display:flex;
+
+align-items:flex-start;
+
+justify-content:space-between;
+
+gap:4px;
+
+margin:12px 10px 10px;
+
+padding:9px 8px;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.18),
+rgba(255,255,255,.08)
+);
+
+backdrop-filter:blur(24px) saturate(180%);
+-webkit-backdrop-filter:blur(24px) saturate(180%);
+
+border:1px solid rgba(255,255,255,.22);
+
+box-shadow:
+0 12px 24px rgba(17,142,234,.10),
+inset 0 1px 0 rgba(255,255,255,.20);
+
+}
+
+/* =========================
+   STEP
+========================= */
+
+.step{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+text-align:center;
+
+position:relative;
+
+color:rgba(255,255,255,.90);
+
+}
+
+/* =========================
+   CIRCLE
+========================= */
+
+.circle{
+
+width:36px;
+
+height:36px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:
+linear-gradient(
+180deg,
+#8b9fb3,
+#6f8599
+);
+
+border:1px solid rgba(255,255,255,.20);
+
+box-shadow:
+0 6px 14px rgba(0,0,0,.15),
+inset 0 1px 0 rgba(255,255,255,.15);
+
+}
+
+.circle i{
+
+font-size:14px;
+
+color:rgba(255,255,255,.88);
+
+}
+
+/* =========================
+   LINE
+========================= */
+
+.line{
+
+flex:1;
+
+height:3px;
+
+margin-top:17px;
+
+border-radius:999px;
+
+background:
+linear-gradient(
+90deg,
+rgba(255,255,255,.20),
+rgba(255,255,255,.08)
+);
+
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.step-title{
+
+margin-top:7px;
+
+font-size:8px;
+
+font-weight:800;
+
+letter-spacing:.4px;
+
+color:#fff;
+
+text-shadow:
+0 1px 3px rgba(0,0,0,.15);
+
+}
+
+/* =========================
+   TIME
+========================= */
+
+.step small{
+
+margin-top:2px;
+
+font-size:7px;
+
+font-weight:700;
+
+letter-spacing:.3px;
+
+color:rgba(255,255,255,.75);
+
+}
+
+/* =========================
+   ACTIVE
+========================= */
+
+.active{
+
+color:#fff;
+
+}
+
+.active .circle{
+
+background:
+linear-gradient(
+135deg,
+#55dcff,
+#118EEA 58%,
+#0066d8
+);
+
+border:1px solid rgba(255,255,255,.45);
+
+box-shadow:
+0 10px 22px rgba(17,142,234,.35),
+0 0 0 3px rgba(255,255,255,.08),
+inset 0 1px 0 rgba(255,255,255,.35);
+
+}
+
+.active .circle i{
+
+color:#fff;
+
+}
+
+.step.active .step-title{
+
+color:#fff;
+
+}
+
+.step.active small{
+
+color:#fff;
+
+font-weight:800;
+
+}
+
+.line.active{
+
+background:
+linear-gradient(
+90deg,
+#67e4ff,
+#118EEA
+);
+
+box-shadow:
+0 0 8px rgba(17,142,234,.22);
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:360px){
+
+.progress-status{
+
+padding:8px 6px;
+
+gap:2px;
+
+}
+
+.circle{
+
+width:32px;
+
+height:32px;
+
+}
+
+.circle i{
+
+font-size:13px;
+
+}
+
+.line{
+
+margin-top:15px;
+
+}
+
+.step-title{
+
+font-size:7px;
+
+}
+
+.step small{
+
+font-size:6px;
+
+}
+
+}
+
+  .circle i{
+
+font-size:13px;
+
+color:#fff;
+
+}
+
+  /* =========================
+   PREMIUM TIMER
+========================= */
+
+.timer-label{
+
+display:block;
+
+text-align:center;
+
+margin-bottom:10px;
+
+font-size:11px;
+
+font-weight:700;
+
+letter-spacing:1px;
+
+text-transform:uppercase;
+
+color:rgba(255,255,255,.85);
+
+}
+
+#statusTimer{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+width:170px;
+
+height:52px;
+
+margin:0 auto;
+
+border-radius:16px;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.20),
+rgba(255,255,255,.08)
+);
+
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.25);
+
+box-shadow:
+0 10px 24px rgba(17,142,234,.12),
+inset 0 1px 0 rgba(255,255,255,.25);
+
+font-family:Consolas,"Courier New",monospace;
+
+font-size:22px;
+
+font-weight:900;
+
+letter-spacing:2px;
+
+color:#fff;
+
+}
+  
 </style>
 </head>
 
@@ -966,6 +1317,60 @@ body::after{
         <img src="/assets/logo-danaa.png" alt="Logo 2">
     </div>
 
+ <div class="progress-status">
+
+<div class="step active" id="step1">
+    <div class="circle">
+        <i class="fa-solid fa-file-circle-check"></i>
+    </div>
+    <span class="step-title">Pengajuan</span>
+    <small id="pengajuanTime">--:--</small>
+</div>
+
+<div class="line" id="line1"></div>
+
+<div class="step" id="step2">
+    <div class="circle">
+        <i class="fa-solid fa-user-check"></i>
+    </div>
+    <span class="step-title">Verifikasi</span>
+    <small id="verifikasiTime">--:--</small>
+</div>
+
+<div class="line" id="line2"></div>
+
+<div class="step" id="step3">
+    <div class="circle">
+        <i class="fa-solid fa-money-bill-transfer"></i>
+    </div>
+    <span class="step-title">Persiapan</span>
+    <small id="persiapanTime">--:--</small>
+</div>
+
+<div class="line" id="line3"></div>
+
+<div class="step" id="step4">
+    <div class="circle">
+        <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <span class="step-title">Selesai</span>
+    <small id="selesaiTime">--:--</small>
+</div>
+
+</div>
+
+        <div class="timer-label">
+
+Waktu proses
+
+</div>
+
+<div id="statusTimer">
+
+00:00:00
+
+</div>
+
     <section class="hero">
         <div class="hero-icon">
             <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8">
@@ -976,12 +1381,12 @@ body::after{
             </svg>
         </div>
 
-        <h1>Pengajuan sedang di proses</h1>
+        <h1 id="statusTitle">Memuat Status...</h1>
 
-        <p>
-            Pengajuan kamu sedang kami proses.
-            Mohon tunggu dan tidak melakukan pengajuan di banyak tempat, agar pengajuan tidak terjadi kendala, hasil akan diinformasikan oleh admin.
-        </p>
+<p id="statusDesc">
+Mohon tunggu...
+</p>
+      
     </section>
 
     <div class="info-box">
@@ -1112,8 +1517,6 @@ body::after{
 
     </section>
 
-</div>
-
 <script>
 const params = window.location.pathname.split("/");
 
@@ -1185,6 +1588,8 @@ fetch("/api/status/" + phone)
     ", " + data.kabupaten +
     ", " + data.provinsi;
 
+  updateStatus(data.status);
+  
     if(data.foto){
         document.getElementById("fotoUser").src = data.foto;
     }
@@ -1195,6 +1600,7 @@ fetch("/api/status/" + phone)
     }, 1500);
 
 })
+  
 .catch(() => {
 
     document.getElementById("dataCard").style.display = "none";
@@ -1339,6 +1745,100 @@ atau telah dihapus dari sistem.
 `;
 
 });
+
+    function updateStatus(status){
+
+const title =
+document.getElementById("statusTitle");
+
+const desc =
+document.getElementById("statusDesc");
+
+for(let i=1;i<=4;i++){
+
+document
+.getElementById("step"+i)
+.classList.remove("active");
+
+}
+
+for(let i=1;i<=3;i++){
+
+document
+.getElementById("line"+i)
+.classList.remove("active");
+
+}
+
+switch(status){
+
+case 1:
+
+title.innerText=
+"Pengajuan sedang diproses";
+
+desc.innerText=
+"Pengajuan Anda sedang diproses.";
+
+step1.classList.add("active");
+
+break;
+
+case 2:
+
+title.innerText=
+"Verifikasi Data";
+
+desc.innerText=
+"Data sedang diverifikasi.";
+
+step1.classList.add("active");
+step2.classList.add("active");
+
+line1.classList.add("active");
+
+break;
+
+case 3:
+
+title.innerText=
+"Persiapan Dana";
+
+desc.innerText=
+"Administrasi sedang diproses.";
+
+step1.classList.add("active");
+step2.classList.add("active");
+step3.classList.add("active");
+
+line1.classList.add("active");
+line2.classList.add("active");
+
+break;
+
+case 4:
+
+title.innerText=
+"Pengajuan Selesai";
+
+desc.innerText=
+"Pengajuan telah selesai.";
+
+step1.classList.add("active");
+step2.classList.add("active");
+step3.classList.add("active");
+step4.classList.add("active");
+
+line1.classList.add("active");
+line2.classList.add("active");
+line3.classList.add("active");
+
+break;
+
+}
+
+}
+  
 </script>
 
 </body>
