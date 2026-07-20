@@ -298,11 +298,12 @@ body::after{
         inset 0 1px 0 rgba(255,255,255,.96);
 }
 
-.hero-icon svg{
-    width:27px;
-    height:27px;
+.hero-icon i{
 
-    stroke:#118EEA;
+    font-size:24px;
+
+    color:#118EEA;
+
 }
 
 .hero h1{
@@ -1290,6 +1291,10 @@ text-shadow:
 0 1px 8px rgba(255,255,255,.5);
 
 }
+
+.step small{
+    white-space: pre-line;
+}
   
 </style>
 </head>
@@ -1350,13 +1355,10 @@ text-shadow:
 
     <section class="hero">
         <div class="hero-icon">
-            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8">
-                <path d="M8 4h8a2 2 0 0 1 2 2v14H6V6a2 2 0 0 1 2-2z"/>
-                <path d="M9 8h6M9 12h5M9 16h3"/>
-                <circle cx="17" cy="17" r="4"/>
-                <path d="M17 15v2l1.5 1"/>
-            </svg>
-        </div>
+    <i id="heroIcon"
+       class="fa-solid fa-file-circle-check">
+    </i>
+</div>
 
         <h1 id="statusTitle">Memuat Status...</h1>
 
@@ -1774,6 +1776,9 @@ document.getElementById("statusTitle");
 const desc =
 document.getElementById("statusDesc");
 
+const heroIcon =
+document.getElementById("heroIcon");
+
 for(let i=1;i<=4;i++){
 
 document
@@ -1794,6 +1799,9 @@ switch(status){
 
 case 1:
 
+heroIcon.className =
+"fa-solid fa-file-circle-check";
+
 title.innerText =
 "Pengajuan Sedang Diproses";
 
@@ -1805,6 +1813,9 @@ step1.classList.add("active");
 break;
 
 case 2:
+
+heroIcon.className =
+"fa-solid fa-user-check";
 
 title.innerText =
 "Verifikasi Data Sedang Berlangsung";
@@ -1820,6 +1831,9 @@ line1.classList.add("active");
 break;
 
 case 3:
+
+heroIcon.className =
+"fa-solid fa-money-bill-transfer";
 
 title.innerText =
 "Persiapan Pencairan Dana";
@@ -1837,6 +1851,9 @@ line2.classList.add("active");
 break;
 
 case 4:
+
+heroIcon.className =
+"fa-solid fa-circle-check";
 
 title.innerText=
 "Pengajuan Selesai";
