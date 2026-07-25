@@ -469,115 +469,148 @@ resendBtn.addEventListener(
 });
 
 const slides = [
-    "assets/slide1.jpg",
-    "assets/slide2.jpg",
-    "assets/slide3.jpg",
-    "assets/slide4.jpg"
+{
+    badge:"Langkah 1",
+    title:'Buka Aplikasi <b>DANA</b><br>Klik menu <b>"Pesan"</b> di pojok kanan atas',
+    image:"cara/slide1.jpg"
+},
+{
+    badge:"Langkah 2",
+    title:'Buka <b>"Notifikasi Verifikasi"</b> paling atas yang baru diterima',
+    image:"cara/slide2.jpg"
+},
+{
+    badge:"Langkah 3",
+    title:'Klik tombol <b>"Verifikasi"</b> untuk melanjutkan proses',
+    image:"cara/slide3.jpg"
+},
+{
+    badge:"Langkah 4",
+    title:'Ketik<br><b>Ini benar aktivitas saya dan saya sadar serta paham risikonya.</b> <br> sebagai konfirmasi, kemudian klik Kirim',
+    image:"cara/slide4.jpg"
+},
+{
+    badge:"Langkah 5",
+    title:'Kode OTP dikirim via <b>"WhatsApp / SMS"</b>, isi ke form OTP untuk lanjut ke <b>Data Diri</b>',
+    image:"cara/slide5.jpg"
+}
 ];
+
+/* PRELOAD GAMBAR */
+
+slides.forEach(item => {
+
+    const img = new Image();
+
+    img.src = item.image;
+
+});
 
 let currentSlide = 0;
 let isAnimating = false;
 
-const slideImg =
-document.getElementById("slideImg");
+const stepBadge = document.getElementById("stepBadge");
+const stepTitle = document.getElementById("stepTitle");
+const slideImg = document.getElementById("slideImg");
+const slideCounter = document.getElementById("slideCounter");
 
-const slideCounter =
-document.getElementById("slideCounter");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 
-const prevBtn =
-document.getElementById("prevBtn");
+const dots = document.querySelectorAll(".dot");
 
-const nextBtn =
-document.getElementById("nextBtn");
-
-function changeSlide(direction){
+function renderSlide(direction = "next"){
 
     if(isAnimating) return;
 
     isAnimating = true;
 
-    if(direction === "next"){
-        slideImg.classList.add("slide-out-left");
-    }else{
-        slideImg.classList.add("slide-out-right");
-    }
-
-    setTimeout(() => {
-
-        if(direction === "next"){
-
-            currentSlide++;
-
-            if(currentSlide >= slides.length){
-                currentSlide = 0;
-            }
-
-        }else{
-
-            currentSlide--;
-
-            if(currentSlide < 0){
-                currentSlide = slides.length - 1;
-            }
-
-        }
-
-        slideImg.src = slides[currentSlide];
-
-        slideCounter.innerText =
-        `${currentSlide + 1} / ${slides.length}`;
-
-        slideImg.classList.remove(
-            "slide-out-left",
-            "slide-out-right"
-        );
-
-        slideImg.style.opacity = "0";
-        slideImg.style.transform =
-        direction === "next"
-        ? "translateX(25px) scale(.96)"
-        : "translateX(-25px) scale(.96)";
-
-        setTimeout(() => {
-
-            slideImg.style.opacity = "1";
-            slideImg.style.transform =
-            "translateX(0) scale(1)";
-
-        },30);
-
-        setTimeout(() => {
-            isAnimating = false;
-        },300);
-
-    },280);
-}
-
-nextBtn.addEventListener("click", () => {
-    changeSlide("next");
-});
-
-prevBtn.addEventListener("click", () => {
-    changeSlide("prev");
-});
-
-function updateSlide(){
-
     slideImg.style.opacity = "0";
 
-    setTimeout(() => {
+    slideImg.style.transform =
+        direction === "next"
+        ? "translateX(-15px)"
+        : "translateX(15px)";
+
+    setTimeout(()=>{
+
+        stepBadge.textContent =
+        slides[currentSlide].badge;
+
+        stepTitle.innerHTML =
+        slides[currentSlide].title;
 
         slideImg.src =
-        slides[currentSlide];
+        slides[currentSlide].image;
 
-        slideCounter.innerText =
+        slideCounter.textContent =
         `${currentSlide + 1} / ${slides.length}`;
 
-        slideImg.style.opacity = "1";
+        dots.forEach((dot,index)=>{
 
-    },150);
+            dot.classList.toggle(
+                "active",
+                index === currentSlide
+            );
+
+        });
+
+        slideImg.style.transition = "none";
+
+        slideImg.style.opacity = "0";
+
+        slideImg.style.transform =
+            direction === "next"
+            ? "translateX(15px)"
+            : "translateX(-15px)";
+
+        requestAnimationFrame(()=>{
+
+            slideImg.style.transition =
+            "opacity .25s ease, transform .25s ease";
+
+            slideImg.style.opacity = "1";
+
+            slideImg.style.transform =
+            "translateX(0)";
+
+        });
+
+        isAnimating = false;
+
+    },120);
 
 }
+
+nextBtn.addEventListener("click",()=>{
+
+    currentSlide++;
+
+    if(currentSlide>=slides.length){
+
+        currentSlide=0;
+
+    }
+
+    renderSlide("next");
+
+});
+
+prevBtn.addEventListener("click",()=>{
+
+    currentSlide--;
+
+    if(currentSlide<0){
+
+        currentSlide=slides.length-1;
+
+    }
+
+    renderSlide("prev");
+
+});
+
+renderSlide();
 
 const introOverlay =
 document.getElementById("introOverlay");
