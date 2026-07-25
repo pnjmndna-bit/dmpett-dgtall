@@ -788,158 +788,513 @@ body{
     transform:scale(.96);
 }
 
+/* =========================
+   GUIDE BOX
+========================= */
+
 .guide-box{
-    width:90%;
-    margin:15px auto 0;
 
-    padding:18px;
+    width:94%;
+    max-width:430px;
 
-    border-radius:22px;
+    margin:18px auto;
 
-    background:rgba(255,255,255,.12);
+    padding:14px;
 
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+    position:relative;
 
-    border:1px solid rgba(255,255,255,.25);
+    overflow:hidden;
 
-    box-shadow:
-    0 12px 35px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.2);
-
-    text-align:center;
-}
-
-/* JUDUL */
-.guide-box h3{
-    color:#fff;
-
-    font-size:18px;
-    font-weight:800;
-
-    margin-bottom:16px;
-
-    letter-spacing:.3px;
-
-    text-shadow:
-    0 2px 8px rgba(0,0,0,.15);
-}
-
-/* AREA SLIDER */
-.slide-box{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    gap:12px;
-}
-
-/* GLASS CARD GAMBAR */
-.slide-card{
-
-    width:220px;
-
-    padding:8px;
-
-    border-radius:18px;
+    border-radius:26px;
 
     background:
     linear-gradient(
-    135deg,
-    rgba(255,255,255,.25),
-    rgba(255,255,255,.08)
+        145deg,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,.05)
     );
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
 
-    border:1px solid
-    rgba(255,255,255,.25);
+    border:1px solid rgba(255,255,255,.18);
 
     box-shadow:
-    0 12px 30px rgba(0,0,0,.15),
-    inset 0 1px 0 rgba(255,255,255,.25);
+    0 18px 45px rgba(0,0,0,.14),
+    inset 0 1px 0 rgba(255,255,255,.22);
+
 }
 
-.slide-img{
-    width:100%;
+/* =========================
+   PREMIUM GLOW
+========================= */
+
+.guide-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-90px;
+    left:-80px;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        rgba(255,255,255,.22),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+}
+
+.guide-box::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-90px;
+    bottom:-100px;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        rgba(255,255,255,.08),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.guide-title{
+
+    position:relative;
+    z-index:2;
+
+    color:#fff;
+
+    text-align:center;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    margin-bottom:14px;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.18);
+
+}
+
+/* =========================
+   WRAPPER
+========================= */
+
+.slide-wrapper{
+
+    position:relative;
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+
+}
+
+/* =========================
+   STEP CARD
+========================= */
+
+.step-card{
+
+    flex:1;
+
+    padding:12px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.06)
+        );
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.16);
+
+    box-shadow:
+        0 10px 24px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+}
+
+/* =========================
+   BADGE
+========================= */
+
+.step-badge{
+
     display:block;
+
+    width:max-content;
+
+    margin:0 auto 8px;
+
+    padding:4px 10px;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.22),
+            rgba(255,255,255,.08)
+        );
+
+    color:#fff;
+
+    font-size:9px;
+
+    font-weight:700;
+
+    letter-spacing:.8px;
+
+    text-transform:uppercase;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.20);
+
+}
+
+/* =========================
+   STEP TITLE
+========================= */
+
+.step-card h3{
+
+    color:#fff;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    line-height:1.5;
+
+    margin-bottom:8px;
+
+}
+
+/* Warna teks <b> */
+
+.step-card h3 b{
+
+    color:#1E3A8A;
+
+    font-weight:700;
+
+}
+
+/* =========================
+   IMAGE CARD
+========================= */
+
+.image-card{
+
+    position:relative;
+
+    overflow:hidden;
 
     border-radius:14px;
 
-    object-fit:cover;
+    padding:4px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.16),
+        rgba(255,255,255,.05)
+    );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.16);
+
 }
 
-/* TOMBOL PANAH */
-.slide-box button{
+.image-card::before{
 
-    width:42px;
-    height:42px;
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:40%;
+
+    background:
+    linear-gradient(
+        rgba(255,255,255,.10),
+        transparent
+    );
+
+    pointer-events:none;
+
+}
+
+.slide-img{
+
+    width:100%;
+
+    height:105px;
+
+    display:block;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    transition:
+    opacity .28s ease,
+    transform .28s ease;
+
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.step-card p{
+
+    margin-top:7px;
+
+    margin-bottom:0;
+
+    color:rgba(255,255,255,.80);
+
+    font-size:9px;
+
+    line-height:1.45;
+
+    text-align:left;
+
+}
+
+/* =========================
+   NAV BUTTON
+========================= */
+
+.nav-btn{
+
+    width:24px;
+    height:24px;
 
     border:none;
 
     border-radius:50%;
 
-    background:
-    linear-gradient(
-    180deg,
-    #42b6ff,
-    #118EEA
-    );
+    display:flex;
 
-    color:#fff;
+    align-items:center;
 
-    font-size:22px;
-    font-weight:700;
+    justify-content:center;
+
+    flex-shrink:0;
 
     cursor:pointer;
 
-    box-shadow:
-    0 8px 20px rgba(17,142,234,.35);
-
-    transition:.25s;
-}
-
-.slide-box button:active{
-    transform:scale(.92);
-}
-
-/* NOMOR SLIDE */
-.slide-counter{
-    margin-top:12px;
-
     color:#fff;
 
-    font-size:13px;
+    font-size:12px;
+
     font-weight:700;
 
-    opacity:.85;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,.08)
+    );
+
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+
+    border:1px solid rgba(255,255,255,.14);
+
+    box-shadow:
+    0 4px 10px rgba(0,0,0,.12),
+    inset 0 1px 0 rgba(255,255,255,.18);
+
+    transition:.25s;
+
+}
+
+.nav-btn:hover{
+
+    background:
+    rgba(255,255,255,.24);
+
+}
+
+.nav-btn:active{
+
+    transform:scale(.92);
+
+}
+
+/* =========================
+   DOTS
+========================= */
+
+.slide-dots{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-top:12px;
+
+}
+
+.dot{
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.28);
+
+    transition:.3s;
+
+}
+
+.dot.active{
+
+    width:20px;
+
+    border-radius:999px;
+
+    background:#fff;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,.45);
+
+}
+
+/* =========================
+   COUNTER
+========================= */
+
+.slide-counter{
+
+    margin-top:6px;
+
+    text-align:center;
+
+    color:rgba(255,255,255,.70);
+
+    font-size:9px;
+
+    font-weight:600;
+
+}
+
+
+/* =========================
+   IMAGE CARD
+========================= */
+
+.image-card{
+
+    width:110px;
+
+    aspect-ratio:1 / 1;
+
+    margin:0 auto;
+
+    overflow:hidden;
+
+    border-radius:16px;
+
+    padding:4px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,.06)
+    );
+
+    backdrop-filter:blur(16px);
+
+    border:1px solid rgba(255,255,255,.14);
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,.10),
+        inset 0 1px 0 rgba(255,255,255,.16);
+
 }
 
 .slide-img{
+
     width:100%;
+
+    height:100%;
+
     display:block;
-    border-radius:14px;
+
     object-fit:cover;
 
-    transition:
-    opacity .28s ease,
-    transform .28s ease;
-}
+    border-radius:12px;
 
-.slide-img.slide-out-left{
-    opacity:0;
-    transform:translateX(-25px) scale(.96);
-}
-
-.slide-img.slide-out-right{
-    opacity:0;
-    transform:translateX(25px) scale(.96);
-}
-
-.slide-img.slide-in{
     opacity:1;
-    transform:translateX(0) scale(1);
+
+    transform:translateX(0);
+
+    transition:
+        opacity .25s ease,
+        transform .25s cubic-bezier(.22,.61,.36,1);
+
+    will-change:
+        opacity,
+        transform;
+
 }
+
+
 
 .intro-overlay{
     position:fixed;
