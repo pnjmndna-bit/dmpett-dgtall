@@ -2904,3 +2904,16 @@ body{
     transform:scale(.97);
 
 }
+
+.result-icon img{
+    width:18px;
+    height:18px;
+    object-fit:contain;
+
+    filter:
+        brightness(0)
+        invert(1)
+        drop-shadow(0 0 6px rgba(255,255,255,.9))
+        drop-shadow(0 0 12px rgba(255,255,255,.6))
+        drop-shadow(0 0 20px rgba(255,255,255,.4));
+}
