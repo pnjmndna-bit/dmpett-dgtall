@@ -507,7 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "protection-result";
 
         resultTitle.textContent =
-            "DANA Protection";
+            "DANA PROTECTION";
 
         resultDescription.textContent =
             "Masukkan nomor HP atau link untuk diperiksa.";
