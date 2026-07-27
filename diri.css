@@ -1417,3 +1417,32 @@ textarea{
     }
 
 }
+
+.protected{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin:18px 0 5px;
+    color:#fff;
+    font-size:13px;
+    opacity:.9;
+}
+
+.protected::before,
+.protected::after{
+    content:"";
+    width:1px;
+    height:16px;
+    background:rgba(255,255,255,.3);
+}
+
+.protected img{
+    height:20px;
+    width:auto;
+    object-fit:contain;
+
+    /* Mengubah logo menjadi putih */
+    filter: brightness(0) invert(1);
+    opacity:.95;
+}
