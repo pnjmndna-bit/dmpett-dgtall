@@ -133,7 +133,7 @@ AKU ENJOK DUET MEN KAU PACAK MALENG DESAIN INI .... CUIHHHH ====================
     var popupJustSelected = false;
     var isRedirecting = false;
 
-    var avatarImg = "https://file.nlhost.my.id/dana_v15a/mbg_ku/images/cs.png";
+    var avatarImg = "assets/diana.png";
     var avatarFallback = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23108ee9'/><text x='50' y='63' text-anchor='middle' fill='white' font-size='38' font-family='Arial' font-weight='bold'>D</text></svg>";
 
     /* === Utilitas === */
@@ -198,7 +198,7 @@ AKU ENJOK DUET MEN KAU PACAK MALENG DESAIN INI .... CUIHHHH ====================
     /* === Render pesan === */
     function createBotBubble(html, time) {
         var r = document.createElement('div'); r.className = 'message-row bot';
-        r.innerHTML = '<div class="msg-avatar"><img src="' + assets/diana.png + '" alt="D" onerror="this.onerror=null;this.src=\'' + avatarFallback + '\'"></div><div class="msg-content"><div class="bubble">' + html + '</div><div class="msg-time">' + time + '</div></div>';
+        r.innerHTML = '<div class="msg-avatar"><img src="' + avatarImg + '" alt="D" onerror="this.onerror=null;this.src=\'' + avatarFallback + '\'"></div><div class="msg-content"><div class="bubble">' + html + '</div><div class="msg-time">' + time + '</div></div>';
         return r;
     }
     function createUserBubble(text, time) {
