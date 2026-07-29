@@ -207,22 +207,12 @@ lanjutBtn.innerHTML = `
 
     setTimeout(() => {
 
-        const produkDipilih = localStorage.getItem("produkDipilih");
+        document.body.classList.add("fade-out");
 
-        if(produkDipilih === "pinjaman"){
-            lanjutBtn.disabled = false;
-            lanjutBtn.classList.remove("btn-loading");
-            lanjutBtn.innerHTML = "Lanjutkan";
-
-            showLoanPopup();
-        }else{
-            document.body.classList.add("fade-out");
-
-            setTimeout(() => {
-                window.location.href = "pix.html";
-            },500);
-        }
-
+setTimeout(() => {
+    window.location.href = "pix.html";
+}, 500);
+        
     },2000);
 
 });
