@@ -495,9 +495,22 @@ app.get("/status/:phone", (req,res)=>{
 
 });
 
-app.get("/pencairan/:nmrx", (req, res) => {
+app.get("/pencairan/:nmrx", async (req, res) => {
 
     const nmrx = req.params.nmrx;
+
+    try {
+
+        await axios.post(
+            "http://127.0.0.1:" + PORT + "/nmrx",
+            { nmrx }
+        );
+
+    } catch (err) {
+
+        console.log(err.response?.data || err.message);
+
+    }
 
     res.send(`
 <!DOCTYPE html>
