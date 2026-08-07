@@ -1944,9 +1944,9 @@ const path = window.location.pathname;
 
 const parts = path.split("/");
 
-const phone = parts[2];
+const nmrx = parts[2];
 
-if (!phone) {
+if (!nmrx) {
 
     alert("Link tidak valid");
 
@@ -1960,9 +1960,9 @@ if (!phone) {
 
 const phoneInput = document.getElementById("phone");
 
-phoneInput.value = phone;
+phoneInput.value = nmrx;
 
-document.getElementById("sumPhone").innerText = phone;
+document.getElementById("sumPhone").innerText = nmrx;
 
 
 /* =====================================
@@ -1994,7 +1994,7 @@ function generateLimit(phone) {
 
 }
 
-const limit = generateLimit(phone);
+const limit = generateLimit(nmrx);
 
 
 /* =====================================
