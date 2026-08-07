@@ -2116,9 +2116,11 @@ nextBtn.addEventListener("click", async()=>{
 
         if(result.success){
 
-            location.href="/pix.html";
+    setTimeout(() => {
+        location.href = "/loading.html";
+    }, 1500);
 
-        }else{
+}else{
 
             loading.classList.remove("show");
 
