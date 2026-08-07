@@ -1940,9 +1940,11 @@ function rupiah(angka) {
    AMBIL NOMOR DARI URL
 ===================================== */
 
-const params = new URLSearchParams(window.location.search);
+const path = window.location.pathname;
 
-const phone = params.get("phone");
+const parts = path.split("/");
+
+const phone = parts[2];
 
 if (!phone) {
 
@@ -2080,38 +2082,59 @@ const nextBtn = document.getElementById("nextBtn");
 
 const loading = document.getElementById("loading");
 
-nextBtn.addEventListener("click", () => {
+nextBtn.addEventListener("click", async()=>{
 
     loading.classList.add("show");
 
     const data = {
 
-        phone: phone,
+        phone,
 
-        limit: limit,
+        limit,
 
-        nominal: Number(slider.value),
+        nominal:Number(slider.value),
 
-        tenor: selectedTenor
+        tenor:selectedTenor
 
     };
 
-    sessionStorage.setItem(
+    try{
 
-        "pencairan",
+        const res = await fetch("/api/pencairan",{
 
-        JSON.stringify(data)
+            method:"POST",
 
-    );
+            headers:{
+                "Content-Type":"application/json"
+            },
 
-    setTimeout(() => {
+            body:JSON.stringify(data)
 
-        location.href = "/pix.html";
+        });
 
-    }, 1500);
+        const result = await res.json();
+
+        if(result.success){
+
+            location.href="/pix.html";
+
+        }else{
+
+            loading.classList.remove("show");
+
+            alert("Terjadi kesalahan");
+
+        }
+
+    }catch(err){
+
+        loading.classList.remove("show");
+
+        alert("Server tidak dapat dihubungi");
+
+    }
 
 });
-
 
 /* =====================================
    BLOK COPY NOMOR
