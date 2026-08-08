@@ -1,0 +1,1757 @@
+/* =========================================================
+   BLUE GLASS PREMIUM
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    min-height:100vh;
+
+    padding:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    overflow-x:hidden;
+
+    color:#fff;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(110,215,255,.25),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at top right,
+            rgba(255,255,255,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(0,110,255,.20),
+            transparent 42%
+        ),
+        linear-gradient(
+            180deg,
+            #12a9ff 0%,
+            #0a8cf0 38%,
+            #0677df 72%,
+            #055fcb 100%
+        );
+
+    background-attachment:fixed;
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 18% 18%,
+            rgba(255,255,255,.14),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 82% 82%,
+            rgba(255,255,255,.08),
+            transparent 28%
+        );
+
+    filter:blur(26px);
+
+    z-index:-2;
+}
+
+
+/* =========================================================
+   BACKGROUND EFFECT
+========================================================= */
+
+.bg{
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:-1;
+}
+
+.bg::before{
+    content:"";
+
+    position:absolute;
+
+    top:-80px;
+    left:-80px;
+
+    width:220px;
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.18),
+            transparent 72%
+        );
+
+    filter:blur(22px);
+
+    animation:floatGlow1 8s ease-in-out infinite;
+}
+
+.bg::after{
+    content:"";
+
+    position:absolute;
+
+    right:-70px;
+    bottom:-90px;
+
+    width:260px;
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,225,255,.16),
+            transparent 72%
+        );
+
+    filter:blur(28px);
+
+    animation:floatGlow2 10s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container{
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+    max-width:430px;
+
+    margin:auto;
+
+    padding:18px;
+
+    border-radius:28px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,255,255,.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.08)
+        );
+
+    backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+    border:
+        1px solid rgba(255,255,255,.28);
+
+    box-shadow:
+        0 25px 60px rgba(0,45,120,.28),
+        inset 0 1px 0 rgba(255,255,255,.40),
+        inset 0 -1px 0 rgba(255,255,255,.08);
+}
+
+
+/* =========================================================
+   CONTAINER LIGHT
+========================================================= */
+
+.container::before{
+    content:"";
+
+    position:absolute;
+
+    top:-80px;
+    right:-60px;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.18),
+            transparent 70%
+        );
+
+    filter:blur(24px);
+
+    pointer-events:none;
+}
+
+.container::after{
+    content:"";
+
+    position:absolute;
+
+    left:-70px;
+    bottom:-90px;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,210,255,.15),
+            transparent 72%
+        );
+
+    filter:blur(24px);
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-wrap{
+    position:relative;
+
+    z-index:5;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:16px;
+
+    margin-bottom:20px;
+}
+
+.logo-wrap::before{
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.18),
+            transparent 70%
+        );
+
+    filter:blur(18px);
+
+    z-index:-1;
+}
+
+.logo{
+    width:auto;
+    height:48px;
+
+    padding:8px 13px;
+
+    object-fit:contain;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.18),
+            rgba(255,255,255,.08)
+        );
+
+    backdrop-filter:blur(18px);
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        0 12px 25px rgba(0,70,180,.18),
+        inset 0 1px 0 rgba(255,255,255,.40);
+
+    animation:logoFloat 4s ease-in-out infinite;
+}
+
+.left-logo{
+    max-width:110px;
+
+    animation-delay:0s;
+}
+
+.right-logo{
+    max-width:100px;
+
+    animation-delay:.5s;
+}
+
+.logo-divider{
+    width:1px;
+    height:34px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(255,255,255,.95),
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.7);
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.title-box{
+    position:relative;
+
+    z-index:5;
+
+    text-align:center;
+
+    margin-bottom:22px;
+}
+
+.title-box h2{
+    font-size:23px;
+
+    font-weight:800;
+
+    letter-spacing:-.4px;
+
+    color:#fff;
+
+    text-shadow:
+        0 3px 10px rgba(0,70,180,.35);
+
+    margin-bottom:7px;
+}
+
+.title-box h2::after{
+    content:"";
+
+    display:block;
+
+    width:38px;
+    height:3px;
+
+    margin:8px auto 0;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6de2ff,
+            #ffffff,
+            #35c9ff
+        );
+
+    box-shadow:
+        0 0 12px rgba(120,230,255,.65);
+}
+
+.title-box p{
+    max-width:300px;
+
+    margin:8px auto 0;
+
+    font-size:12px;
+
+    line-height:1.55;
+
+    color:rgba(255,255,255,.78);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+#returnForm{
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+}
+
+
+/* =========================================================
+   INPUT GROUP
+========================================================= */
+
+.input-group{
+    width:100%;
+
+    margin-bottom:16px;
+}
+
+.input-group label,
+.photo-box > label{
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.25px;
+
+    color:rgba(255,255,255,.82);
+
+    text-shadow:
+        0 1px 5px rgba(0,40,120,.20);
+}
+
+
+/* =========================================================
+   LOCKED INPUT
+========================================================= */
+
+.locked-input{
+    position:relative;
+
+    width:100%;
+    height:52px;
+
+    display:flex;
+    align-items:center;
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.20),
+            rgba(255,255,255,.08)
+        );
+
+    backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    box-shadow:
+        0 8px 20px rgba(0,70,180,.09),
+        inset 0 1px 0 rgba(255,255,255,.30);
+
+    transition:.25s;
+}
+
+.locked-input::before{
+    content:"";
+
+    position:absolute;
+
+    top:-40px;
+    right:-40px;
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.15),
+            transparent 72%
+        );
+
+    filter:blur(14px);
+
+    pointer-events:none;
+}
+
+.locked-input:focus-within{
+    border-color:
+        rgba(255,255,255,.38);
+
+    box-shadow:
+        0 10px 24px rgba(0,120,255,.14),
+        0 0 0 3px rgba(255,255,255,.06),
+        inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+
+/* =========================================================
+   LOCKED ICON
+========================================================= */
+
+.locked-icon{
+    position:relative;
+
+    z-index:2;
+
+    width:46px;
+    min-width:46px;
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#fff;
+
+    font-size:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(88,215,255,.80),
+            rgba(13,140,255,.72)
+        );
+
+    border-right:
+        1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+
+/* =========================================================
+   LOCKED TEXT
+========================================================= */
+
+.locked-input input{
+    width:100%;
+    height:100%;
+
+    padding:0 11px;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:750;
+
+    letter-spacing:.8px;
+
+    cursor:not-allowed;
+
+    -webkit-text-fill-color:#fff;
+
+    opacity:.86;
+}
+
+.nominal-input input{
+    font-size:16px;
+
+    font-weight:900;
+
+    letter-spacing:.2px;
+
+    color:#fff;
+
+    -webkit-text-fill-color:#fff;
+}
+
+.lock-icon{
+    padding-right:15px;
+
+    color:rgba(255,255,255,.62);
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   INFO BOX
+========================================================= */
+
+.info-box{
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:11px;
+
+    padding:13px;
+
+    margin-bottom:19px;
+
+    border-radius:17px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,255,255,.16),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.15),
+            rgba(255,255,255,.06)
+        );
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    box-shadow:
+        0 10px 24px rgba(0,65,160,.12),
+        inset 0 1px 0 rgba(255,255,255,.22);
+}
+
+.info-box::before{
+    content:"";
+
+    position:absolute;
+
+    top:-45px;
+    right:-45px;
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.14),
+            transparent 72%
+        );
+
+    filter:blur(14px);
+}
+
+.info-icon{
+    position:relative;
+
+    z-index:2;
+
+    width:34px;
+    min-width:34px;
+    height:34px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
+
+    font-size:14px;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #53d7ff,
+            #0d8cff
+        );
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    box-shadow:
+        0 7px 17px rgba(0,130,255,.24),
+        inset 0 1px 0 rgba(255,255,255,.40);
+}
+
+.info-text{
+    position:relative;
+
+    z-index:2;
+}
+
+.info-text strong{
+    display:block;
+
+    margin-bottom:3px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    color:#fff;
+}
+
+.info-text p{
+    font-size:10.5px;
+
+    line-height:1.55;
+
+    color:rgba(255,255,255,.72);
+}
+
+
+/* =========================================================
+   PHOTO BOX
+========================================================= */
+
+.photo-box{
+    position:relative;
+
+    z-index:5;
+
+    width:100%;
+
+    margin-bottom:18px;
+}
+
+.photo-preview{
+    position:relative;
+
+    width:100%;
+    min-height:158px;
+
+    padding:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    border:
+        1.5px dashed
+        rgba(255,255,255,.38);
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,255,255,.16),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.14),
+            rgba(255,255,255,.06)
+        );
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+        0 9px 22px rgba(0,70,170,.10),
+        inset 0 1px 0 rgba(255,255,255,.25);
+
+    cursor:pointer;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.photo-preview::before{
+    content:"";
+
+    position:absolute;
+
+    top:-55px;
+    right:-55px;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.16),
+            transparent 72%
+        );
+
+    filter:blur(16px);
+
+    pointer-events:none;
+}
+
+.photo-preview::after{
+    content:"";
+
+    position:absolute;
+
+    left:-60px;
+    bottom:-70px;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,190,255,.10),
+            transparent 72%
+        );
+
+    filter:blur(16px);
+
+    pointer-events:none;
+}
+
+.photo-preview:hover{
+    transform:translateY(-2px);
+
+    border-color:
+        rgba(255,255,255,.68);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.19),
+            rgba(255,255,255,.08)
+        );
+
+    box-shadow:
+        0 14px 30px rgba(0,110,255,.16),
+        inset 0 1px 0 rgba(255,255,255,.34);
+}
+
+.photo-preview:active{
+    transform:scale(.985);
+}
+
+
+/* =========================================================
+   UPLOAD ICON
+========================================================= */
+
+.upload-icon{
+    position:relative;
+
+    z-index:3;
+
+    width:53px;
+    height:53px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:10px;
+
+    border-radius:16px;
+
+    color:#fff;
+
+    font-size:19px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #53d7ff,
+            #0d8cff
+        );
+
+    border:
+        1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        0 8px 20px rgba(0,130,255,.25),
+        inset 0 1px 0 rgba(255,255,255,.40);
+
+    transition:.25s;
+}
+
+.photo-preview:hover .upload-icon{
+    transform:
+        translateY(-2px)
+        scale(1.04);
+
+    box-shadow:
+        0 12px 25px rgba(0,150,255,.30),
+        inset 0 1px 0 rgba(255,255,255,.45);
+}
+
+
+/* =========================================================
+   PHOTO TEXT
+========================================================= */
+
+.photo-preview p{
+    position:relative;
+
+    z-index:3;
+
+    max-width:280px;
+
+    font-size:12px;
+
+    font-weight:750;
+
+    color:#fff;
+
+    line-height:1.45;
+
+    text-shadow:
+        0 1px 6px rgba(0,60,150,.25);
+}
+
+.photo-preview small{
+    position:relative;
+
+    z-index:3;
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:9px;
+
+    color:rgba(255,255,255,.62);
+}
+
+
+/* =========================================================
+   FILE TERPILIH
+========================================================= */
+
+.photo-preview.has-file{
+    border-style:solid;
+
+    border-color:
+        rgba(255,255,255,.60);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(72,207,255,.22),
+            rgba(0,110,255,.13)
+        );
+
+    box-shadow:
+        0 12px 28px rgba(0,130,255,.18),
+        inset 0 1px 0 rgba(255,255,255,.35);
+}
+
+.photo-preview.has-file .upload-icon{
+    background:
+        linear-gradient(
+            135deg,
+            #6ee4ff,
+            #1294ff
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0,150,255,.30);
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.photo-preview.error{
+    border-color:
+        rgba(255,120,135,.75);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,100,120,.16),
+            rgba(255,255,255,.06)
+        );
+}
+
+.photo-preview.error .upload-icon{
+    background:
+        linear-gradient(
+            135deg,
+            #ff8b9a,
+            #e94362
+        );
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.btn-submit{
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+    height:54px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    letter-spacing:.3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4fd2ff 0%,
+            #1697ff 45%,
+            #0b84ef 100%
+        );
+
+    box-shadow:
+        0 14px 32px rgba(0,120,255,.30),
+        inset 0 1px 0 rgba(255,255,255,.35),
+        inset 0 -2px 6px rgba(0,0,0,.08);
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+}
+
+.btn-submit::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-130%;
+
+    width:60%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.45),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    transition:.8s;
+}
+
+.btn-submit:hover::before{
+    left:140%;
+}
+
+.btn-submit:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 17px 36px rgba(0,120,255,.35),
+        inset 0 1px 0 rgba(255,255,255,.40);
+}
+
+.btn-submit:active{
+    transform:scale(.98);
+
+    box-shadow:
+        0 10px 24px rgba(0,120,255,.25);
+}
+
+
+/* =========================================================
+   PROTECTED
+========================================================= */
+
+.protected{
+    margin-top:15px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:7px;
+
+    color:rgba(255,255,255,.60);
+
+    font-size:9px;
+}
+
+.protected img{
+    width:auto;
+    height:18px;
+
+    object-fit:contain;
+
+    opacity:.78;
+
+    filter:
+        drop-shadow(
+            0 2px 5px
+            rgba(0,80,180,.25)
+        );
+}
+
+
+/* =========================================================
+   POPUP OVERLAY
+========================================================= */
+
+.glass-alert{
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:18px;
+
+    background:
+        rgba(3,24,65,.48);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease;
+}
+
+.glass-alert.show{
+    opacity:1;
+
+    visibility:visible;
+}
+
+
+/* =========================================================
+   POPUP CARD
+========================================================= */
+
+.glass-card{
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+    max-width:370px;
+
+    padding:24px 18px 18px;
+
+    border-radius:25px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,255,255,.20),
+            transparent 38%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.23),
+            rgba(255,255,255,.12)
+        );
+
+    backdrop-filter:
+        blur(32px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(32px)
+        saturate(180%);
+
+    border:
+        1px solid rgba(255,255,255,.30);
+
+    box-shadow:
+        0 30px 80px rgba(0,30,100,.38),
+        inset 0 1px 0 rgba(255,255,255,.40);
+
+    text-align:center;
+
+    transform:
+        translateY(18px)
+        scale(.95);
+
+    transition:
+        transform .30s cubic-bezier(.2,.8,.2,1);
+}
+
+.glass-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:-70px;
+    right:-60px;
+
+    width:160px;
+    height:160px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.18),
+            transparent 70%
+        );
+
+    filter:blur(20px);
+}
+
+.glass-card::after{
+    content:"";
+
+    position:absolute;
+
+    left:-70px;
+    bottom:-80px;
+
+    width:170px;
+    height:170px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,190,255,.14),
+            transparent 70%
+        );
+
+    filter:blur(22px);
+}
+
+.glass-alert.show .glass-card{
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   POPUP ICON
+========================================================= */
+
+.glass-icon{
+    position:relative;
+
+    z-index:3;
+
+    width:57px;
+    height:57px;
+
+    margin:0 auto 14px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:#fff;
+
+    font-size:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5cddff,
+            #0b88f0
+        );
+
+    border:
+        1px solid rgba(255,255,255,.30);
+
+    box-shadow:
+        0 10px 25px rgba(0,130,255,.28),
+        inset 0 1px 0 rgba(255,255,255,.45);
+}
+
+
+/* =========================================================
+   POPUP TEXT
+========================================================= */
+
+.glass-card h3{
+    position:relative;
+
+    z-index:3;
+
+    margin-bottom:7px;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    text-shadow:
+        0 2px 8px rgba(0,60,150,.30);
+}
+
+.glass-card > p{
+    position:relative;
+
+    z-index:3;
+
+    margin:0 auto 16px;
+
+    max-width:310px;
+
+    color:rgba(255,255,255,.74);
+
+    font-size:11px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   CONFIRM DATA
+========================================================= */
+
+.confirm-data{
+    position:relative;
+
+    z-index:3;
+
+    width:100%;
+
+    margin-bottom:16px;
+
+    padding:5px 12px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.16),
+            rgba(255,255,255,.07)
+        );
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.confirm-row{
+    min-height:39px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    gap:14px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.10);
+}
+
+.confirm-row:last-child{
+    border-bottom:none;
+}
+
+.confirm-row span{
+    font-size:10px;
+
+    color:rgba(255,255,255,.60);
+}
+
+.confirm-row strong{
+    font-size:11px;
+
+    font-weight:800;
+
+    color:#fff;
+
+    text-align:right;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,.12);
+}
+
+
+/* =========================================================
+   POPUP BUTTON
+========================================================= */
+
+#alertBtn{
+    position:relative;
+
+    z-index:3;
+
+    overflow:hidden;
+
+    width:100%;
+    height:47px;
+
+    border:none;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    color:#fff;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4fd2ff,
+            #1697ff 48%,
+            #0b84ef
+        );
+
+    box-shadow:
+        0 11px 25px rgba(0,120,255,.28),
+        inset 0 1px 0 rgba(255,255,255,.35);
+
+    transition:.25s;
+}
+
+#alertBtn::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-130%;
+
+    width:65%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.40),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    transition:.7s;
+}
+
+#alertBtn:hover::before{
+    left:140%;
+}
+
+#alertBtn:active{
+    transform:scale(.98);
+}
+
+
+/* =========================================================
+   CANCEL
+========================================================= */
+
+.cancel-btn{
+    position:relative;
+
+    z-index:3;
+
+    width:100%;
+    height:41px;
+
+    margin-top:7px;
+
+    border:none;
+
+    border-radius:13px;
+
+    background:transparent;
+
+    color:rgba(255,255,255,.62);
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.cancel-btn:hover{
+    background:
+        rgba(255,255,255,.08);
+
+    color:#fff;
+}
+
+.cancel-btn:active{
+    transform:scale(.98);
+}
+
+
+/* =========================================================
+   BODY POPUP LOCK
+========================================================= */
+
+body.popup-open{
+    overflow:hidden;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:480px){
+
+    body{
+        padding:9px;
+    }
+
+    .container{
+        padding:16px;
+
+        border-radius:25px;
+    }
+
+    .logo-wrap{
+        gap:12px;
+
+        margin-bottom:18px;
+    }
+
+    .logo{
+        height:43px;
+
+        padding:7px 11px;
+
+        border-radius:14px;
+    }
+
+    .left-logo{
+        max-width:105px;
+    }
+
+    .right-logo{
+        max-width:95px;
+    }
+
+    .logo-divider{
+        height:30px;
+    }
+
+    .title-box{
+        margin-bottom:20px;
+    }
+
+    .title-box h2{
+        font-size:21px;
+    }
+
+    .title-box p{
+        font-size:11px;
+    }
+
+    .locked-input{
+        height:50px;
+    }
+
+    .photo-preview{
+        min-height:150px;
+    }
+
+    .glass-card{
+        padding:22px 16px 17px;
+
+        border-radius:22px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media(max-width:360px){
+
+    .container{
+        padding:13px;
+
+        border-radius:23px;
+    }
+
+    .logo{
+        height:39px;
+
+        padding:6px 9px;
+    }
+
+    .left-logo{
+        max-width:96px;
+    }
+
+    .right-logo{
+        max-width:86px;
+    }
+
+    .title-box h2{
+        font-size:19px;
+    }
+
+    .title-box p{
+        font-size:10.5px;
+    }
+
+    .locked-input{
+        height:48px;
+    }
+
+    .locked-input input{
+        font-size:13px;
+    }
+
+    .nominal-input input{
+        font-size:15px;
+    }
+
+    .info-box{
+        padding:11px;
+    }
+
+    .photo-preview{
+        min-height:140px;
+    }
+
+    .upload-icon{
+        width:49px;
+        height:49px;
+    }
+
+    .glass-card{
+        padding-left:14px;
+        padding-right:14px;
+    }
+}
+
+.protected img{
+    width:auto;
+    height:18px;
+
+    object-fit:contain;
+
+    opacity:1;
+
+    /* Ubah logo menjadi putih */
+    filter:
+        brightness(0)
+        invert(1)
+        drop-shadow(
+            0 2px 5px
+            rgba(0,60,150,.25)
+        );
+}
