@@ -743,7 +743,7 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
 
     <meta
         property="og:title"
-        content="PENGEMBALIAN ${title}"
+        content="${title}"
     >
 
     <meta
