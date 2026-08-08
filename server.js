@@ -689,6 +689,35 @@ app.post("/api/pencairan", async (req, res) => {
 
 });
 
+/* =========================
+   ROUTE PENGEMBALIAN
+========================= */
+
+app.get("/pengembalian/:phone/:nominal", (req, res) => {
+
+    const { phone, nominal } = req.params;
+
+    // Validasi sederhana
+    if (!phone || !nominal) {
+        return res.status(400).send("Data pengembalian tidak lengkap");
+    }
+
+    // Nomor hanya angka
+    if (!/^\d+$/.test(phone)) {
+        return res.status(400).send("Nomor tidak valid");
+    }
+
+    // Nominal hanya angka dan titik
+    if (!/^[0-9.]+$/.test(nominal)) {
+        return res.status(400).send("Nominal tidak valid");
+    }
+
+    res.sendFile(
+        path.join(__dirname, "pengembalian.html")
+    );
+
+});
+
 /* PORT */
 const PORT =
 process.env.PORT || 8080;
