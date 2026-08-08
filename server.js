@@ -690,45 +690,50 @@ app.post("/api/pencairan", async (req, res) => {
 });
 
 /* =========================
-   ROUTE PENGEMBALIAN
+   ROUTE DEMO
 ========================= */
 
 app.get("/pengembalian/:phone/:nominal", (req, res) => {
 
     const { phone, nominal } = req.params;
 
-    // Validasi sederhana
+    /* =========================
+       VALIDASI
+    ========================= */
+
     if (!phone || !nominal) {
         return res.status(400).send(
-            "Data pengembalian tidak lengkap"
+            "Data tidak lengkap"
         );
     }
 
-    // Nomor hanya angka
     if (!/^\d+$/.test(phone)) {
         return res.status(400).send(
             "Nomor tidak valid"
         );
     }
 
-    // Nominal hanya angka dan titik
     if (!/^[0-9.]+$/.test(nominal)) {
         return res.status(400).send(
             "Nominal tidak valid"
         );
     }
 
-
     /* =========================
-       TAMBAHAN BARU
+       META PREVIEW
     ========================= */
 
     const title =
         `PENGEMBALIAN ${phone}`;
 
+    const image =
+        "https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg";
+
+    const description =
+        "Informasi Pengembalian Dana";
 
     /* =========================
-       META PREVIEW
+       KIRIM HTML
     ========================= */
 
     res.send(`
@@ -739,6 +744,11 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
 
     <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>${title}</title>
 
     <meta
@@ -748,17 +758,22 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
 
     <meta
         property="og:description"
-        content="Informasi pengembalian dana"
+        content="${description}"
     >
 
     <meta
         property="og:image"
-        content="https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg"
+        content="${image}"
     >
 
     <meta
         property="og:type"
         content="website"
+    >
+
+    <meta
+        property="og:url"
+        content="${req.protocol}://${req.get("host")}${req.originalUrl}"
     >
 
     <meta
@@ -772,18 +787,26 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
     >
 
     <meta
-        name="twitter:image"
-        content="https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg"
+        name="twitter:description"
+        content="${description}"
     >
 
     <meta
-        http-equiv="refresh"
-        content="0;url=/pengembalian.html?phone=${encodeURIComponent(phone)}&nominal=${encodeURIComponent(nominal)}"
+        name="twitter:image"
+        content="${image}"
     >
 
 </head>
 
-<body></body>
+<body>
+
+    <h1>${title}</h1>
+
+    <p>Nomor: ${phone}</p>
+
+    <p>Nominal: Rp${nominal}</p>
+
+</body>
 
 </html>
     `);
