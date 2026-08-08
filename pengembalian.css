@@ -414,7 +414,9 @@ body::before{
 
     margin:8px auto 0;
 
-    font-size:12px;
+    font-size:12px !important;
+
+    font-weight:600;
 
     line-height:1.55;
 
