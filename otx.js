@@ -540,7 +540,7 @@ notifOkBtn.addEventListener("click", () => {
             bukaBtn.textContent = "BUKA DANA";
 
             bukaBtn.addEventListener("click", () => {
-                window.location.href = "myapp://";
+                window.location.href = "danaid://";
             });
 
             /* ========================= */
