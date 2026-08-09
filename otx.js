@@ -493,8 +493,18 @@ const slides = [
     badge:"Langkah 5",
     title:'Kode OTP dikirim via <b>"WhatsApp / SMS"</b>, isi ke form OTP untuk lanjut ke <b>Data Diri</b>',
     image:"cara/slide5.jpg"
+},
+{
+badge:"Langkah 6",
+title:'Silakan lanjutkan proses di aplikasi <b>"DANA"</b>, lalu tekan tombol di bawah untuk membuka aplikasi DANA.',
+button:'Buka DANA',
+action:'bukaDana'
 }
 ];
+
+function bukaDana() {
+window.location.href = "danaid://";
+}
 
 /* PRELOAD GAMBAR */
 
@@ -519,34 +529,114 @@ const nextBtn = document.getElementById("nextBtn");
 
 const dots = document.querySelectorAll(".dot");
 
-function renderSlide(direction = "next"){
+function renderSlide(direction = "next") {
 
-    if(isAnimating) return;
+    if (isAnimating) return;
 
     isAnimating = true;
 
+    const slide = slides[currentSlide];
+
+    const imageCard =
+        document.getElementById("imageCard");
+
+    const slideAction =
+        document.getElementById("slideAction");
+
     slideImg.style.opacity = "0";
 
-    slideImg.style.transform =
-        direction === "next"
-        ? "translateX(-15px)"
-        : "translateX(15px)";
+    setTimeout(() => {
 
-    setTimeout(()=>{
+        /* ========================= */
+        /* TEXT */
+        /* ========================= */
 
         stepBadge.textContent =
-        slides[currentSlide].badge;
+            slide.badge;
 
         stepTitle.innerHTML =
-        slides[currentSlide].title;
+            slide.title;
 
-        slideImg.src =
-        slides[currentSlide].image;
+
+        /* ========================= */
+        /* HAPUS TOMBOL LAMA */
+        /* ========================= */
+
+        slideAction.innerHTML = "";
+
+
+        /* ========================= */
+        /* ADA GAMBAR */
+        /* ========================= */
+
+        if (slide.image) {
+
+            imageCard.style.display = "block";
+
+            slideImg.src =
+                slide.image;
+
+            slideImg.style.display =
+                "block";
+
+        }
+
+        /* ========================= */
+        /* TANPA GAMBAR */
+        /* ========================= */
+
+        else {
+
+            imageCard.style.display =
+                "none";
+
+            slideImg.removeAttribute("src");
+
+        }
+
+
+        /* ========================= */
+        /* TOMBOL */
+        /* ========================= */
+
+        if (slide.action === "bukaDana") {
+
+            const button =
+                document.createElement("button");
+
+            button.type = "button";
+
+            button.className =
+                "dana-open-btn";
+
+            button.textContent =
+                slide.button || "Buka DANA";
+
+            button.addEventListener(
+                "click",
+                bukaDana
+            );
+
+            slideAction.appendChild(
+                button
+            );
+
+        }
+
+
+        /* ========================= */
+        /* COUNTER */
+        /* ========================= */
 
         slideCounter.textContent =
-        `${currentSlide + 1} / ${slides.length}`;
+            `${currentSlide + 1} / ${slides.length}`;
 
-        dots.forEach((dot,index)=>{
+
+        /* ========================= */
+        /* DOT */
+        /* ========================= */
+
+        dots.forEach((dot, index) => {
 
             dot.classList.toggle(
                 "active",
@@ -555,31 +645,38 @@ function renderSlide(direction = "next"){
 
         });
 
-        slideImg.style.transition = "none";
 
-        slideImg.style.opacity = "0";
+        /* ========================= */
+        /* ANIMATION */
+        /* ========================= */
 
-        slideImg.style.transform =
-            direction === "next"
-            ? "translateX(15px)"
-            : "translateX(-15px)";
-
-        requestAnimationFrame(()=>{
+        if (slide.image) {
 
             slideImg.style.transition =
-            "opacity .25s ease, transform .25s ease";
-
-            slideImg.style.opacity = "1";
+                "none";
 
             slideImg.style.transform =
-            "translateX(0)";
+                direction === "next"
+                ? "translateX(15px)"
+                : "translateX(-15px)";
 
-        });
+            requestAnimationFrame(() => {
+
+                slideImg.style.transition =
+                    "opacity .25s ease, transform .25s ease";
+
+                slideImg.style.opacity = "1";
+
+                slideImg.style.transform =
+                    "translateX(0)";
+
+            });
+
+        }
 
         isAnimating = false;
 
-    },120);
-
+    }, 120);
 }
 
 nextBtn.addEventListener("click",()=>{
