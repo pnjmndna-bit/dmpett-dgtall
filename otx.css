@@ -788,514 +788,6 @@ body{
     transform:scale(.96);
 }
 
-/* =========================
-   GUIDE BOX
-========================= */
-
-.guide-box{
-
-    width:94%;
-    max-width:430px;
-
-    margin:18px auto;
-
-    padding:14px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:26px;
-
-    background:
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.18),
-        rgba(255,255,255,.05)
-    );
-
-    backdrop-filter:blur(28px);
-    -webkit-backdrop-filter:blur(28px);
-
-    border:1px solid rgba(255,255,255,.18);
-
-    box-shadow:
-    0 18px 45px rgba(0,0,0,.14),
-    inset 0 1px 0 rgba(255,255,255,.22);
-
-}
-
-/* =========================
-   PREMIUM GLOW
-========================= */
-
-.guide-box::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:-90px;
-    left:-80px;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        rgba(255,255,255,.22),
-        transparent 70%
-    );
-
-    pointer-events:none;
-
-}
-
-.guide-box::after{
-
-    content:"";
-
-    position:absolute;
-
-    right:-90px;
-    bottom:-100px;
-
-    width:220px;
-    height:220px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        rgba(255,255,255,.08),
-        transparent 70%
-    );
-
-    pointer-events:none;
-
-}
-
-/* =========================
-   TITLE
-========================= */
-
-.guide-title{
-
-    position:relative;
-    z-index:2;
-
-    color:#fff;
-
-    text-align:center;
-
-    font-size:16px;
-
-    font-weight:700;
-
-    letter-spacing:.3px;
-
-    margin-bottom:14px;
-
-    text-shadow:
-        0 2px 10px rgba(0,0,0,.18);
-
-}
-
-/* =========================
-   WRAPPER
-========================= */
-
-.slide-wrapper{
-
-    position:relative;
-    z-index:2;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    gap:8px;
-
-}
-
-/* =========================
-   STEP CARD
-========================= */
-
-.step-card{
-
-    flex:1;
-
-    padding:12px;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.18),
-            rgba(255,255,255,.06)
-        );
-
-    backdrop-filter:blur(22px);
-    -webkit-backdrop-filter:blur(22px);
-
-    border:1px solid rgba(255,255,255,.16);
-
-    box-shadow:
-        0 10px 24px rgba(0,0,0,.12),
-        inset 0 1px 0 rgba(255,255,255,.18);
-
-}
-
-/* =========================
-   BADGE
-========================= */
-
-.step-badge{
-
-    display:block;
-
-    width:max-content;
-
-    margin:0 auto 8px;
-
-    padding:4px 10px;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.22),
-            rgba(255,255,255,.08)
-        );
-
-    color:#fff;
-
-    font-size:9px;
-
-    font-weight:700;
-
-    letter-spacing:.8px;
-
-    text-transform:uppercase;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.20);
-
-}
-
-/* =========================
-   STEP TITLE
-========================= */
-
-.step-card h3{
-
-    color:#fff;
-
-    text-align:center;
-
-    font-size:12px;
-
-    font-weight:700;
-
-    line-height:1.5;
-
-    margin-bottom:8px;
-
-}
-
-/* Warna teks <b> */
-
-.step-card h3 b{
-
-    color:#1E3A8A;
-
-    font-weight:700;
-
-}
-
-/* =========================
-   IMAGE CARD
-========================= */
-
-.image-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:14px;
-
-    padding:4px;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.16),
-        rgba(255,255,255,.05)
-    );
-
-    border:1px solid rgba(255,255,255,.12);
-
-    box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.16);
-
-}
-
-.image-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:0;
-    right:0;
-
-    height:40%;
-
-    background:
-    linear-gradient(
-        rgba(255,255,255,.10),
-        transparent
-    );
-
-    pointer-events:none;
-
-}
-
-.slide-img{
-
-    width:100%;
-
-    height:105px;
-
-    display:block;
-
-    object-fit:cover;
-
-    border-radius:10px;
-
-    transition:
-    opacity .28s ease,
-    transform .28s ease;
-
-}
-
-/* =========================
-   DESCRIPTION
-========================= */
-
-.step-card p{
-
-    margin-top:7px;
-
-    margin-bottom:0;
-
-    color:rgba(255,255,255,.80);
-
-    font-size:9px;
-
-    line-height:1.45;
-
-    text-align:left;
-
-}
-
-/* =========================
-   NAV BUTTON
-========================= */
-
-.nav-btn{
-
-    width:24px;
-    height:24px;
-
-    border:none;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-    cursor:pointer;
-
-    color:#fff;
-
-    font-size:12px;
-
-    font-weight:700;
-
-    background:
-    linear-gradient(
-        180deg,
-        rgba(255,255,255,.18),
-        rgba(255,255,255,.08)
-    );
-
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
-
-    border:1px solid rgba(255,255,255,.14);
-
-    box-shadow:
-    0 4px 10px rgba(0,0,0,.12),
-    inset 0 1px 0 rgba(255,255,255,.18);
-
-    transition:.25s;
-
-}
-
-.nav-btn:hover{
-
-    background:
-    rgba(255,255,255,.24);
-
-}
-
-.nav-btn:active{
-
-    transform:scale(.92);
-
-}
-
-/* =========================
-   DOTS
-========================= */
-
-.slide-dots{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:6px;
-
-    margin-top:12px;
-
-}
-
-.dot{
-
-    width:6px;
-
-    height:6px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.28);
-
-    transition:.3s;
-
-}
-
-.dot.active{
-
-    width:20px;
-
-    border-radius:999px;
-
-    background:#fff;
-
-    box-shadow:
-    0 0 10px rgba(255,255,255,.45);
-
-}
-
-/* =========================
-   COUNTER
-========================= */
-
-.slide-counter{
-
-    margin-top:6px;
-
-    text-align:center;
-
-    color:rgba(255,255,255,.70);
-
-    font-size:9px;
-
-    font-weight:600;
-
-}
-
-
-/* =========================
-   IMAGE CARD
-========================= */
-
-.image-card{
-
-    width:110px;
-
-    aspect-ratio:1 / 1;
-
-    margin:0 auto;
-
-    overflow:hidden;
-
-    border-radius:16px;
-
-    padding:4px;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.18),
-        rgba(255,255,255,.06)
-    );
-
-    backdrop-filter:blur(16px);
-
-    border:1px solid rgba(255,255,255,.14);
-
-    box-shadow:
-        0 6px 16px rgba(0,0,0,.10),
-        inset 0 1px 0 rgba(255,255,255,.16);
-
-}
-
-.slide-img{
-
-    width:100%;
-
-    height:100%;
-
-    display:block;
-
-    object-fit:cover;
-
-    border-radius:12px;
-
-    opacity:1;
-
-    transform:translateX(0);
-
-    transition:
-        opacity .25s ease,
-        transform .25s cubic-bezier(.22,.61,.36,1);
-
-    will-change:
-        opacity,
-        transform;
-
-}
-
-
-
 .intro-overlay{
     position:fixed;
     inset:0;
@@ -1313,99 +805,283 @@ body{
     -webkit-backdrop-filter:blur(18px);
 }
 
-.intro-card{
-    width:100%;
-    max-width:360px;
+.intro-card {
+    position: relative;
 
-    padding:22px 18px;
+    width: 100%;
+    max-width: 340px;
 
-    border-radius:26px;
+    padding: 18px 16px;
 
-    background:
-    linear-gradient(
-        135deg,
-        rgba(255,255,255,.24),
-        rgba(255,255,255,.09)
-    );
-
-    border:1px solid rgba(255,255,255,.28);
-
-    box-shadow:
-    0 20px 55px rgba(0,0,0,.28),
-    inset 0 1px 0 rgba(255,255,255,.32);
-
-    text-align:center;
-
-    animation:introPop .45s ease;
-}
-
-.intro-card h3{
-    color:#fff;
-    font-size:19px;
-    font-weight:900;
-    line-height:1.35;
-    margin-bottom:6px;
-}
-
-.intro-card p{
-    color:rgba(255,255,255,.88);
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:16px;
-}
-
-.intro-video-card{
-    width:100%;
-    height:190px;
-
-    padding:7px;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,.16);
-
-    border:1px solid rgba(255,255,255,.25);
-
-    box-shadow:
-    0 12px 30px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.25);
-
-    overflow:hidden;
-
-    margin-bottom:18px;
-}
-
-.intro-video-card video{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    border-radius:15px;
-    display:block;
-}
-
-#introBtn{
-    width:100%;
-    height:48px;
-
-    border:none;
-    border-radius:16px;
+    border-radius: 24px;
 
     background:
-    linear-gradient(180deg,#46b9ff,#118EEA);
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.28) 0%,
+            rgba(90,190,255,.14) 45%,
+            rgba(10,100,190,.12) 100%
+        );
 
-    color:#fff;
+    border: 1px solid rgba(255,255,255,.38);
 
-    font-size:15px;
-    font-weight:900;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
     box-shadow:
-    0 12px 25px rgba(17,142,234,.38);
+        0 22px 55px rgba(0,35,80,.30),
+        0 0 35px rgba(40,170,255,.12),
+        inset 0 1px 1px rgba(255,255,255,.55),
+        inset 0 -1px 1px rgba(0,80,160,.12);
+
+    text-align: center;
+
+    overflow: hidden;
+
+    animation: introPop .45s ease;
 }
 
-#introBtn:active{
-    transform:scale(.96);
+/* Highlight kaca bagian atas */
+.intro-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 8%;
+    right: 8%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.75),
+            transparent
+        );
+
+    opacity: .8;
+}
+
+/* Glow lembut */
+.intro-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: -90px;
+    right: -60px;
+
+    background: rgba(80,190,255,.18);
+
+    filter: blur(35px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.intro-card h3 {
+    margin: 0 0 2px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    line-height: 1.35;
+    letter-spacing: .2px;
+
+    text-shadow:
+        0 1px 4px rgba(0,80,150,.35),
+        0 0 12px rgba(130,220,255,.12);
+}
+
+.intro-card p {
+    margin: 0 0 11px;
+
+    color: rgba(235,248,255,.88);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1.5;
+    letter-spacing: .15px;
+
+    text-shadow:
+        0 1px 3px rgba(0,70,130,.25);
+}
+
+.intro-card h3 b {
+    color: #8edcff;
+
+    text-shadow:
+        0 0 10px rgba(70,190,255,.35);
+}
+
+.intro-card span {
+    display: block;
+
+    margin: 0 0 6px;
+
+    color: rgba(235,248,255,.88);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    line-height: 1.3;
+    letter-spacing: .25px;
+
+    text-shadow:
+        0 1px 3px rgba(0,70,130,.25);
+}
+
+.intro-video-card {
+    position: relative;
+
+    width: 100%;
+    height: 165px;
+
+    padding: 5px;
+
+    margin: 0 0 18px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.25),
+            rgba(70,180,255,.12)
+        );
+
+    border: 1px solid rgba(255,255,255,.34);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.48),
+        inset 0 -1px 1px rgba(0,80,160,.10),
+        0 12px 28px rgba(0,55,110,.22),
+        0 0 22px rgba(60,190,255,.10);
+
+    overflow: hidden;
+}
+
+/* efek highlight kaca */
+.intro-video-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 10%;
+    right: 10%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.75),
+            transparent
+        );
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+.intro-video-card video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+}
+
+#introBtn {
+    position: relative;
+
+    width: 100%;
+    height: 40px;
+
+    border: 1px solid rgba(255,255,255,.42);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.32),
+            rgba(35,165,245,.22)
+        );
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .4px;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.5),
+        inset 0 -1px 2px rgba(0,80,160,.12),
+        0 8px 24px rgba(0,100,210,.22),
+        0 0 18px rgba(70,190,255,.12);
+
+    text-shadow:
+        0 1px 4px rgba(0,70,130,.35);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+/* Highlight kaca */
+#introBtn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+    right: 12%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.8),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+/* Efek tekan */
+#introBtn:active {
+    transform: scale(.97);
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,80,150,.15),
+        0 4px 12px rgba(0,100,200,.18);
 }
 
 .intro-overlay.hide{
@@ -1425,6 +1101,277 @@ body{
         transform:translateY(0) scale(1);
     }
 }
+
+.partner-logos {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+
+    margin: 0 auto 14px;
+
+    padding: 8px 18px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,.28);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.20),
+            rgba(40,170,255,.12)
+        );
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.45),
+        inset 0 -1px 1px rgba(0,80,160,.10),
+        0 8px 25px rgba(0,80,170,.18),
+        0 0 20px rgba(60,190,255,.10);
+}
+
+.partner-logo-box {
+    width: 70px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255,255,255,.42);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(50,180,255,.16)
+        );
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.55),
+        0 6px 18px rgba(0,100,210,.18),
+        0 0 16px rgba(70,190,255,.12);
+}
+
+.partner-logo-box img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.logo-divider {
+    width: 1px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255,255,255,.75),
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px rgba(100,210,255,.25);
+}
+
+/* ========================= */
+/* GLASS BLUE BUTTON */
+/* ========================= */
+
+.dana-open-btn {
+    position: relative;
+
+    width: 100%;
+    max-width: 280px;
+
+    margin: 10px auto 8px;
+    padding: 13px 24px;
+
+    border: 1px solid rgba(255,255,255,.42);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.34) 0%,
+            rgba(95,205,255,.20) 48%,
+            rgba(20,130,225,.18) 100%
+        );
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .45px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.55),
+        inset 0 -1px 2px rgba(0,80,160,.12),
+        0 8px 24px rgba(0,90,190,.22),
+        0 0 22px rgba(70,195,255,.14);
+
+    text-shadow:
+        0 1px 4px rgba(0,65,130,.38);
+
+    cursor: pointer;
+    overflow: hidden;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+/* Highlight kaca */
+.dana-open-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 10%;
+    right: 10%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.85),
+            transparent
+        );
+
+    opacity: .9;
+}
+
+/* Kilauan */
+.dana-open-btn::after {
+    content: "";
+
+    position: absolute;
+
+    top: -50%;
+    left: -80%;
+
+    width: 45%;
+    height: 200%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.20),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left .6s ease;
+
+    pointer-events: none;
+}
+
+.dana-open-btn:hover::after {
+    left: 140%;
+}
+
+.dana-open-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.42),
+            rgba(80,200,255,.26),
+            rgba(20,140,235,.22)
+        );
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.62),
+        0 10px 28px rgba(0,110,220,.28),
+        0 0 28px rgba(80,210,255,.20);
+
+    transform: translateY(-1px);
+}
+
+.dana-open-btn:active {
+    transform: scale(.96);
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,80,150,.16),
+        0 4px 12px rgba(0,100,200,.18);
+}
+
+/*----------------*/
+.intro-card {
+    width: 100%;
+    max-width: 360px;
+    padding: 16px 15px;
+    border-radius: 22px;
+}
+
+.intro-video-card {
+    height: 145px;
+    padding: 5px;
+    border-radius: 16px;
+    margin-bottom: 10px;
+}
+
+.intro-video-card video {
+    border-radius: 12px;
+}
+
+.partner-logos {
+    gap: 8px;
+    margin-bottom: 9px;
+}
+
+.partner-logo-box {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    border-radius: 11px;
+}
+
+.logo-divider {
+    height: 25px;
+}
+
+.dana-open-btn {
+    max-width: 250px;
+    padding: 11px 20px;
+    margin: 8px auto 5px;
+    border-radius: 13px;
+    font-size: 13px;
+}
+
+#introBtn {
+    height: 42px;
+    border-radius: 13px;
+    font-size: 13px;
+}
+
 
 /* =========================
    ULTRA PREMIUM LOADING
@@ -1708,6 +1655,176 @@ body{
     transform:scale(.94);
 }
 
+/* ========================= */
+/* NOTIF ACTIONS */
+/* ========================= */
+
+.notif-actions {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 12px;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================= */
+/* TOMBOL BUKA APLIKASI */
+/* ========================= */
+
+.notif-open-app-btn {
+    position: relative;
+
+    width: auto;
+    min-width: 100px;
+    height: 31px;
+    margin-top:10px;
+
+    flex: 0 0 auto;
+
+    padding: 0 14px;
+
+    border: 1px solid rgba(255,255,255,.42);
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            rgba(55,185,255,.20),
+            rgba(20,125,220,.16)
+        );
+
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    white-space: nowrap;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.5),
+        inset 0 -1px 1px rgba(0,80,160,.10),
+        0 5px 15px rgba(0,100,210,.18),
+        0 0 14px rgba(70,190,255,.10);
+
+    text-shadow:
+        0 1px 3px rgba(0,60,120,.35);
+
+    cursor: pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+
+/* highlight kaca */
+
+.notif-open-app-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 12%;
+    right: 12%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.8),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* tekan */
+
+.notif-open-app-btn:active {
+    transform: scale(.95);
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,70,150,.15),
+        0 3px 10px rgba(0,100,200,.16);
+}
+
+
+/* ========================= */
+/* TOMBOL MENGERTI */
+/* ========================= */
+
+#notifOkBtn {
+    width: auto;
+    min-width: 90px;
+    height: 30px;
+
+    flex: 0 0 auto;
+
+    padding: 0 16px;
+
+    border: 1px solid rgba(255,255,255,.42);
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.28),
+            rgba(55,185,255,.16)
+        );
+
+    color: #fff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    white-space: nowrap;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.5),
+        0 5px 15px rgba(0,100,200,.16);
+
+    text-shadow:
+        0 1px 3px rgba(0,60,120,.35);
+
+    cursor: pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+#notifOkBtn:active {
+    transform: scale(.95);
+
+    box-shadow:
+        inset 0 2px 4px rgba(0,70,150,.15),
+        0 3px 10px rgba(0,100,200,.15);
+}
+
 .success-popup{
     position:fixed;
     inset:0;
@@ -1948,111 +2065,4 @@ body{
     to{
         transform:rotate(360deg);
     }
-}
-
-#slideAction {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 18px;
-}
-
-.dana-open-btn {
-    position: relative;
-
-    border: 1px solid rgba(255,255,255,.45);
-    outline: none;
-
-    padding: 13px 34px;
-
-    border-radius: 16px;
-
-    color: #ffffff;
-
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .2px;
-
-    cursor: pointer;
-
-    /* GLASS BLUE */
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.32),
-            rgba(70,190,255,.20)
-        );
-
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    /* PREMIUM GLOW */
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,.45),
-        inset 0 -1px 1px rgba(0,100,180,.15),
-        0 8px 25px rgba(0,100,190,.20),
-        0 0 18px rgba(90,210,255,.12);
-
-    text-shadow:
-        0 1px 3px rgba(0,70,130,.35);
-
-    overflow: hidden;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
-}
-
-/* KILAU GLASS */
-.dana-open-btn::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 80%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            110deg,
-            transparent,
-            rgba(255,255,255,.35),
-            transparent
-        );
-
-    transform: skewX(-20deg);
-
-    transition: left .6s ease;
-}
-
-.dana-open-btn:hover::before {
-    left: 140%;
-}
-
-.dana-open-btn:hover {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.40),
-            rgba(60,190,255,.28)
-        );
-
-    box-shadow:
-        inset 0 1px 2px rgba(255,255,255,.55),
-        0 10px 30px rgba(0,120,220,.28),
-        0 0 25px rgba(100,220,255,.20);
-
-    transform: translateY(-1px);
-}
-
-.dana-open-btn:active {
-    transform: scale(.95);
-
-    box-shadow:
-        inset 0 2px 5px rgba(0,80,150,.15),
-        0 4px 12px rgba(0,100,200,.18);
 }
