@@ -540,7 +540,7 @@ notifOkBtn.addEventListener("click", () => {
             bukaBtn.textContent = "BUKA DANA";
 
             bukaBtn.addEventListener("click", () => {
-                window.location.href = "myapp://";
+                window.location.href = "danaid://";
             });
 
             /* ========================= */
@@ -581,8 +581,41 @@ notifOkBtn.addEventListener("click", () => {
 const openDanaBtn =
     document.getElementById("openDanaBtn");
 
+let bukaDana = false;
+
 openDanaBtn.addEventListener("click", () => {
+
+    bukaDana = true;
+
     window.location.href = "danaid://";
+
+});
+
+
+document.addEventListener("visibilitychange", () => {
+
+    if (
+        bukaDana &&
+        document.visibilityState === "visible"
+    ) {
+
+        const popup =
+            document.getElementById("introOverlay");
+
+        if (popup) {
+
+            popup.classList.add("hide");
+
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 350);
+
+        }
+
+        bukaDana = false;
+
+    }
+
 });
 
 const manualSlides = [
