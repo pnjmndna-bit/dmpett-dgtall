@@ -367,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================= */
 
     const safeLinks = [
-        "https://danaa-id.dmpett-dgtall.xyz"
+        "https://danaaid.dmpett-dgtall.it.com"
     ];
 
     const safeNumbers = [
