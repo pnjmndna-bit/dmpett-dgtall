@@ -410,7 +410,6 @@ fetch("/api/pengajuan", {
     );
 
 })
-    
 .catch(() => {
 
     showGlassAlert(
