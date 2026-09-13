@@ -392,7 +392,7 @@ fetch("/api/pengajuan", {
 .then(res => res.json())
 .then(res => {
 
-    if (!res.ok) {
+    if (!res.success) {
         throw new Error("Gagal menyimpan data");
     }
 
@@ -403,12 +403,14 @@ fetch("/api/pengajuan", {
         "Data diri berhasil disimpan.",
         () => {
 
-            window.location.href = "/status.html";
+            window.location.href =
+                "/status/" + encodeURIComponent(data.phone);
 
         }
     );
 
 })
+    
 .catch(() => {
 
     showGlassAlert(
