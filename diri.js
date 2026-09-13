@@ -392,13 +392,19 @@ fetch("/api/pengajuan", {
 .then(res => res.json())
 .then(res => {
 
+    if (!res.ok) {
+        throw new Error("Gagal menyimpan data");
+    }
+
     localStorage.setItem("phone", data.phone);
 
     showGlassAlert(
         "Berhasil",
         "Data diri berhasil disimpan.",
         () => {
-            window.location.href = res.url;
+
+            window.location.href = "/status.html";
+
         }
     );
 
